@@ -388,37 +388,35 @@
 </main>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Get all image links inside the carousel
-    document.querySelectorAll(".lightbox-trigger").forEach(function (el) {
-      el.addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent default anchor click
+    const lightbox = lightGallery(document.getElementById("lightgallery"), {
+      dynamic: true,
+      dynamicEl: [
+        {% for image in product.images %}
+          { src: "{{ image | image_url: width: 1500 }}" },
+        {% endfor %}
+      ],
+      download: false,
+      zoom: true,
+      scale: 1,
+      actualSize: true,
+      closable: true,
+      backdropDuration: 300,
+      mode: "lg-fade",
+      swipeThreshold: 50,
+      speed: 500,
+      controls: true,
+      mobileSettings: {
+        controls: true,
+        download: false,
+        rotate: true,
+        pinchZoom: true,   // Enable pinch zoom
+        doubleTap: true,
+      },
+    });
 
-        // Initialize LightGallery when an image is clicked
-        lightGallery(document.getElementById("lightgallery"), {
-          dynamic: true, // Load images dynamically
-          dynamicEl: [
-            {% for image in product.images %}
-              { src: "{{ image | image_url: width: 1500 }}" },
-            {% endfor %}
-          ],
-          download: false,   // Hide download button
-          zoom: true,        // Enable pinch-to-zoom
-          scale: 1,          // Default scale for zooming
-          actualSize: true,  // Allow users to see actual size
-          closable: true,    // Show close (X) button
-          backdropDuration: 300, // Smooth transition
-          mode: "lg-fade",   // Smooth fade effect
-          swipeThreshold: 50, // Detect swipe gestures
-          speed: 500,        // Transition speed
-          mobileSettings: {
-            controls: true,   // Show controls on mobile
-            download: false,  // No download option
-            rotate: true,     // Allow rotating
-            pinchZoom: true,  // Enable pinch-to-zoom
-            doubleTap: true   // Enable double-tap zoom
-          }
-        });
-      });
+    // ✅ Force LightGallery to allow pinch gestures
+    document.querySelectorAll('.lg-outer').forEach(el => {
+      el.style.touchAction = 'pinch-zoom'; // Enables pinch gestures
     });
   });
 </script>
