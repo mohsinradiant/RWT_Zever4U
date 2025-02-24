@@ -73,13 +73,17 @@
       {%- endif -%}
     </div>
   </div>
-  <div class="addtocart">
-    <form method="post" action="/cart/add">
-      <input type="hidden" name="id" value="{{ card_product.variants.first.id }}">
-      <button type="submit" class="add-cart">Add to Cart</button>
-    </form>
-  </div>
+  {% comment %}
+    <div class="addtocart">
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ card_product.variants.first.id }}">
+        <button type="submit" class="add-cart">Add to Cart</button>
+      </form>
+    </div>
+  {% endcomment %}
+  {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
+  {%- render 'buy-buttons', product: card_product, product_form_id: product_form_id, section_id: section.id -%}
   {% comment %}
     {% assign product = card_product %}
     {%- form 'product',
