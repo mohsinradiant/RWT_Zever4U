@@ -369,6 +369,63 @@
     </div>
   </section>
 </main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let img = document.getElementById('main-product-image');
+    let scale = 1;
+    let lastDist = 0;
+
+    // Touch Start
+    img.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+        lastDist = getDistance(e.touches);
+      }
+    });
+
+    // Touch Move (Pinch to Zoom)
+    img.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        let newDist = getDistance(e.touches);
+        let zoomFactor = newDist / lastDist;
+        scale = Math.max(1, Math.min(scale * zoomFactor, 3)); // Limit zoom between 1x and 3x
+        img.style.transform = `scale(${scale})`;
+        lastDist = newDist;
+      }
+    });
+
+    // Double Tap to Zoom In
+    let lastTap = 0;
+    img.addEventListener('touchend', (e) => {
+      let currentTime = new Date().getTime();
+      let tapLength = currentTime - lastTap;
+      if (tapLength < 300 && tapLength > 0) {
+        if (scale === 1) {
+          scale = 2; // Zoom in
+        } else {
+          scale = 1; // Reset
+        }
+        img.style.transform = `scale(${scale})`;
+      }
+      lastTap = currentTime;
+    });
+
+    // Tap anywhere to reset zoom
+    document.addEventListener('click', (e) => {
+      if (!img.contains(e.target)) {
+        scale = 1;
+        img.style.transform = `scale(1)`;
+      }
+    });
+
+    // Function to calculate distance between two touch points
+    function getDistance(touches) {
+      let dx = touches[0].pageX - touches[1].pageX;
+      let dy = touches[0].pageY - touches[1].pageY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+  });
+</script>
 
 <script>
 const variants = [
