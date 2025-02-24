@@ -74,36 +74,9 @@
     </div>
   </div>
   <div class="addtocart">
-    <form class="add-to-cart-form">
+    <form method="post" action="/cart/add">
       <input type="hidden" name="id" value="{{ card_product.variants.first.id }}">
-      <button type="button" class="add-cart" data-product-id="{{ card_product.variants.first.id }}">Add to Cart</button>
+      <button type="submit" class="add-cart">Add to Cart</button>
     </form>
   </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.add-cart').forEach((button) => {
-        button.addEventListener('click', function () {
-          const productId = this.getAttribute('data-product-id');
-
-          fetch('/cart/add.js', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              id: productId,
-              quantity: 1,
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log('Product added:', data);
-              // Trigger cart drawer opening (modify as per your theme)
-              document.body.classList.add('cart-open');
-            })
-            .catch((error) => console.error('Error:', error));
-        });
-      });
-    });
-  </script>
 {%- endif -%}
