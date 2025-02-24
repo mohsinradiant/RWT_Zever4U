@@ -20,6 +20,40 @@
 
   .dropdown-toggle.active + .filter-block-body {
     max-height: 500px; /* Adjust height as needed */
+  } /* Style the track */
+  #price-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    background: #cb8161; /* Track color */
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s;
+  }
+
+  /* Style the thumb (the draggable part) */
+  #price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #cb8161; /* Change this to your accent color */
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  /* Mozilla (Firefox) */
+  #price-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #cb8161;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  /* Change track color on hover */
+  #price-slider:hover {
+    background: #cb8161;
   }
 </style>
 
