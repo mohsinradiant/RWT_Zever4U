@@ -1,10 +1,4 @@
 <script src="{{ 'wishlist-button.js' | asset_url }}" async></script>
-
-<!-- lightGallery CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
-<!-- lightGallery JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
-
 <main class="main-content homepage-content">
   <div class="topdiv"></div>
   <section class="P-detail">
@@ -20,16 +14,14 @@
               <div class="carousel-inner" id="carousel-inner">
                 {% for image in product.images %}
                   <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                    <a href="{{ image | image_url: width: 1500 }}" class="lightbox-trigger">
-                      <img
-                        {% if forloop.first %}
-                          id="main-product-image"
-                        {% endif %}
-                        src="{{ image | image_url }}"
-                        class="d-block w-100"
-                        alt="{{ product.title }}"
-                      >
-                    </a>
+                    <img
+                      {% if forloop.first %}
+                        id="main-product-image"
+                      {% endif %}
+                      src="{{ image | image_url }}"
+                      class="d-block w-100"
+                      alt="{{ product.title }}"
+                    >
                   </div>
                 {% endfor %}
               </div>
@@ -49,15 +41,6 @@
                   </button>
                 {% endfor %}
               </div>
-            </div>
-
-            <!-- Hidden LightGallery Container -->
-            <div id="lightgallery" style="display: none;">
-              {% for image in product.images %}
-                <a href="{{ image | image_url: width: 1500 }}">
-                  <img src="{{ image | image_url }}" alt="{{ product.title }}" style="display: none;">
-                </a>
-              {% endfor %}
             </div>
           </div>
 
@@ -386,40 +369,6 @@
     </div>
   </section>
 </main>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const lightbox = lightGallery(document.getElementById("lightgallery"), {
-      dynamic: true,
-      dynamicEl: [
-        {% for image in product.images %}
-          { src: "{{ image | image_url: width: 1500 }}" },
-        {% endfor %}
-      ],
-      download: false,
-      zoom: true,
-      scale: 1,
-      actualSize: true,
-      closable: true,
-      backdropDuration: 300,
-      mode: "lg-fade",
-      swipeThreshold: 50,
-      speed: 500,
-      controls: true,
-      mobileSettings: {
-        controls: true,
-        download: false,
-        rotate: true,
-        pinchZoom: true,   // Enable pinch zoom
-        doubleTap: true,
-      },
-    });
-
-    // ✅ Force LightGallery to allow pinch gestures
-    document.querySelectorAll('.lg-outer').forEach(el => {
-      el.style.touchAction = 'pinch-zoom'; // Enables pinch gestures
-    });
-  });
-</script>
 
 <script>
 const variants = [
