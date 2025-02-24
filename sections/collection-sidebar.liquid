@@ -16,11 +16,11 @@
 <div class="filter-bg">
   <aside class="sidebar-col">
     <div class="filters-sidebar">
-      <h4 class="filter-header h4 dropdown-toggle">Filters <span class="toggle-icon">▼</span></h4>
+      <h4 class="filter-header h4 dropdown-toggle">Filters</h4>
       <div class="filter-body">
         <!-- Price Range Filter -->
         <div class="filter-block">
-          <div class="filter-block-title h5 dropdown-toggle">Price <span class="toggle-icon">▼</span></div>
+          <div class="filter-block-title h5 dropdown-toggle">Price</div>
           <div class="filter-block-body">
             <input type="range" id="price-slider" min="0" step="100">
             <span id="price-value">₹0 - ₹0</span>
@@ -29,18 +29,14 @@
 
         <!-- Gender Filter -->
         <div class="filter-block" id="gender-filter-section">
-          <div class="filter-block-title h5 dropdown-toggle">Gender <span class="toggle-icon">▼</span></div>
-          <div class="filter-block-body" id="gender-filters">
-            <!-- Dynamic content will be added here -->
-          </div>
+          <div class="filter-block-title h5 dropdown-toggle">Gender</div>
+          <div class="filter-block-body" id="gender-filters"></div>
         </div>
 
         <!-- Category Filter -->
         <div class="filter-block" id="category-filter-section">
-          <div class="filter-block-title h5 dropdown-toggle">Categories <span class="toggle-icon">▼</span></div>
-          <div class="filter-block-body" id="category-filters">
-            <!-- Dynamic content will be added here -->
-          </div>
+          <div class="filter-block-title h5 dropdown-toggle">Categories</div>
+          <div class="filter-block-body" id="category-filters"></div>
         </div>
       </div>
     </div>
@@ -59,7 +55,7 @@
     let genderCount = {};
     let categoryCount = {};
 
-    // Count filters and get max price dynamically
+    // Get max price and count filters dynamically
     products.forEach((product) => {
       let price = parseInt(product.getAttribute('data-price'));
       maxPrice = Math.max(maxPrice, price);
@@ -106,9 +102,8 @@
     document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
       toggle.addEventListener('click', function () {
         const body = this.nextElementSibling;
-        const icon = this.querySelector('.toggle-icon');
         body.style.display = body.style.display === 'block' ? 'none' : 'block';
-        icon.classList.toggle('rotate');
+        this.classList.toggle('active'); // Toggles arrow rotation
       });
     });
 
