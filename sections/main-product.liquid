@@ -369,6 +369,19 @@
     </div>
   </section>
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const mainProductImage = document.querySelector('#main-product-image');
+    if (mainProductImage) {
+      mediumZoom(mainProductImage, {
+        margin: 20, // Space between zoomed image and viewport
+        background: '#000', // Background color when zoomed
+        scrollOffset: 40, // Scroll sensitivity
+      });
+    }
+  });
+</script>
 
 <script>
 const variants = [
