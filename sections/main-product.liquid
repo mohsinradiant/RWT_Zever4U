@@ -401,10 +401,22 @@
               { src: "{{ image | image_url: width: 1500 }}" },
             {% endfor %}
           ],
-          download: false,  // Hide download button
-          zoom: true,       // Enable pinch-to-zoom
-          closable: true,   // Show close (X) button
+          download: false,   // Hide download button
+          zoom: true,        // Enable pinch-to-zoom
+          scale: 1,          // Default scale for zooming
+          actualSize: true,  // Allow users to see actual size
+          closable: true,    // Show close (X) button
           backdropDuration: 300, // Smooth transition
+          mode: "lg-fade",   // Smooth fade effect
+          swipeThreshold: 50, // Detect swipe gestures
+          speed: 500,        // Transition speed
+          mobileSettings: {
+            controls: true,   // Show controls on mobile
+            download: false,  // No download option
+            rotate: true,     // Allow rotating
+            pinchZoom: true,  // Enable pinch-to-zoom
+            doubleTap: true   // Enable double-tap zoom
+          }
         });
       });
     });
