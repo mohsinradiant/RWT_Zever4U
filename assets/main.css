@@ -2488,3 +2488,9 @@ div:not([class])>.wf-floating-launcher {
     font-size: 18px;
   }
 }
+
+@media(max-width:370px) {
+  .header-brand .container-xl .align-items-center .header-account {
+    margin-right: 40px;
+  }
+}
