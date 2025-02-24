@@ -1,15 +1,25 @@
 <style>
+  .filter-block-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+
   .dropdown-toggle {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
-  .toggle-icon {
-    transition: transform 0.2s ease;
-  }
-  .rotate {
+
+  /* When active, open dropdown */
+  .dropdown-toggle.active::after {
     transform: rotate(180deg);
+  }
+
+  .dropdown-toggle.active + .filter-block-body {
+    max-height: 500px; /* Adjust height as needed */
   }
 </style>
 
@@ -42,68 +52,13 @@
     </div>
   </aside>
 </div>
-
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const priceSlider = document.getElementById('price-slider');
-    const priceValue = document.getElementById('price-value');
-    const products = document.querySelectorAll('#product-list .product-item');
-    const genderContainer = document.getElementById('gender-filters');
-    const categoryContainer = document.getElementById('category-filters');
+    const toggles = document.querySelectorAll('.dropdown-toggle');
 
-    let maxPrice = 0;
-    let genderCount = {};
-    let categoryCount = {};
-
-    // Get max price and count filters dynamically
-    products.forEach((product) => {
-      let price = parseInt(product.getAttribute('data-price'));
-      maxPrice = Math.max(maxPrice, price);
-
-      let tags = product.getAttribute('data-tags').split(',');
-      tags.forEach((tag) => {
-        let cleanTag = tag.trim();
-        if (['Men', 'Women', 'Kids'].includes(cleanTag)) {
-          genderCount[cleanTag] = (genderCount[cleanTag] || 0) + 1;
-        } else {
-          categoryCount[cleanTag] = (categoryCount[cleanTag] || 0) + 1;
-        }
-      });
-    });
-
-    // Set price slider max dynamically
-    priceSlider.max = maxPrice;
-    priceSlider.value = maxPrice;
-    priceValue.innerText = `₹0 - ₹${maxPrice}`;
-
-    // Generate gender filter dynamically
-    genderContainer.innerHTML = Object.keys(genderCount)
-      .map(
-        (gender) =>
-          `<label><input type="checkbox" class="gender-filter" value="${gender}"> ${gender} (${genderCount[gender]})</label>`
-      )
-      .join('');
-
-    // Generate category filter dynamically
-    categoryContainer.innerHTML = Object.keys(categoryCount)
-      .map(
-        (category) =>
-          `<label><input type="checkbox" class="category-filter" value="${category}"> ${category} (${categoryCount[category]})</label>`
-      )
-      .join('');
-
-    // Hide filters if empty
-    document.getElementById('gender-filter-section').style.display = Object.keys(genderCount).length ? 'block' : 'none';
-    document.getElementById('category-filter-section').style.display = Object.keys(categoryCount).length
-      ? 'block'
-      : 'none';
-
-    // Toggle dropdowns
-    document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
+    toggles.forEach((toggle) => {
       toggle.addEventListener('click', function () {
-        const body = this.nextElementSibling;
-        body.style.display = body.style.display === 'block' ? 'none' : 'block';
-        this.classList.toggle('active'); // Toggles arrow rotation
+        this.classList.toggle('active');
       });
     });
 
@@ -126,7 +81,6 @@
       });
     }
 
-    // Event Listeners
     priceSlider.addEventListener('input', function () {
       priceValue.innerText = `₹0 - ₹${priceSlider.value}`;
       filterProducts();
@@ -136,7 +90,6 @@
       checkbox.addEventListener('change', filterProducts);
     });
 
-    // Initial filter setup
     filterProducts();
   });
 </script>
