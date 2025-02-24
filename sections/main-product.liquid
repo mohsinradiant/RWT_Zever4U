@@ -20,7 +20,7 @@
               <div class="carousel-inner" id="carousel-inner">
                 {% for image in product.images %}
                   <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                    <a href="{{ image | image_url: width: 1500 }}" data-lg-size="1500-1500">
+                    <a href="{{ image | image_url: width: 1500 }}" class="lightbox-trigger">
                       <img
                         {% if forloop.first %}
                           id="main-product-image"
@@ -49,6 +49,15 @@
                   </button>
                 {% endfor %}
               </div>
+            </div>
+
+            <!-- Hidden LightGallery Container -->
+            <div id="lightgallery" style="display: none;">
+              {% for image in product.images %}
+                <a href="{{ image | image_url: width: 1500 }}">
+                  <img src="{{ image | image_url }}" alt="{{ product.title }}" style="display: none;">
+                </a>
+              {% endfor %}
             </div>
           </div>
 
@@ -378,16 +387,26 @@
   </section>
 </main>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    lightGallery(document.getElementById('carousel-inner'), {
-      thumbnail: false,
-      animateThumb: false,
-      showThumbByDefault: false,
-      zoom: true, // Enable zoom
-      scale: 1, // Default scale
-      actualSize: true, // Allow pinch-to-zoom
-      closable: true, // Show close (X) button
-      backdropDuration: 300, // Smooth transition
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get all image links inside the carousel
+    document.querySelectorAll(".lightbox-trigger").forEach(function (el) {
+      el.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default anchor click
+
+        // Initialize LightGallery when an image is clicked
+        lightGallery(document.getElementById("lightgallery"), {
+          dynamic: true, // Load images dynamically
+          dynamicEl: [
+            {% for image in product.images %}
+              { src: "{{ image | image_url: width: 1500 }}" },
+            {% endfor %}
+          ],
+          download: false,  // Hide download button
+          zoom: true,       // Enable pinch-to-zoom
+          closable: true,   // Show close (X) button
+          backdropDuration: 300, // Smooth transition
+        });
+      });
     });
   });
 </script>
