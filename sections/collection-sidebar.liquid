@@ -1,11 +1,30 @@
+<style>
+  .filter-block-body {
+    display: none;
+    padding: 5px 0;
+  }
+  .dropdown-toggle {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toggle-icon {
+    transition: transform 0.2s ease;
+  }
+  .rotate {
+    transform: rotate(180deg);
+  }
+</style>
+
 <div class="filter-bg">
   <aside class="sidebar-col">
     <div class="filters-sidebar">
-      <h4 class="filter-header h4">Filters</h4>
+      <h4 class="filter-header h4 dropdown-toggle">Filters <span class="toggle-icon">▼</span></h4>
       <div class="filter-body">
         <!-- Price Range Filter -->
         <div class="filter-block">
-          <div class="filter-block-title h5 dropdown-toggle">Price <span class="toggle-icon">+</span></div>
+          <div class="filter-block-title h5 dropdown-toggle">Price <span class="toggle-icon">▼</span></div>
           <div class="filter-block-body">
             <input type="range" id="price-slider" min="0" step="100">
             <span id="price-value">₹0 - ₹0</span>
@@ -14,24 +33,17 @@
 
         <!-- Gender Filter -->
         <div class="filter-block" id="gender-filter-section">
-          <div class="filter-block-title h5 dropdown-toggle">Gender <span class="toggle-icon">+</span></div>
-          <div class="filter-block-body">
-            <label><input type="checkbox" class="gender-filter" value="Men"> Men</label>
-            <label><input type="checkbox" class="gender-filter" value="Women"> Women</label>
-            <label><input type="checkbox" class="gender-filter" value="Kids"> Kids</label>
+          <div class="filter-block-title h5 dropdown-toggle">Gender <span class="toggle-icon">▼</span></div>
+          <div class="filter-block-body" id="gender-filters">
+            <!-- Dynamic content will be added here -->
           </div>
         </div>
 
         <!-- Category Filter -->
         <div class="filter-block" id="category-filter-section">
-          <div class="filter-block-title h5 dropdown-toggle">Categories <span class="toggle-icon">+</span></div>
-          <div class="filter-block-body">
-            <label><input type="checkbox" class="category-filter" value="Earring"> Earrings</label>
-            <label><input type="checkbox" class="category-filter" value="Bracelet"> Bracelets</label>
-            <label><input type="checkbox" class="category-filter" value="Ring"> Rings</label>
-            <label><input type="checkbox" class="category-filter" value="Toe Ring"> Toe Rings</label>
-            <label><input type="checkbox" class="category-filter" value="Accessory"> Accessories</label>
-            <label><input type="checkbox" class="category-filter" value="Wedding"> Wedding</label>
+          <div class="filter-block-title h5 dropdown-toggle">Categories <span class="toggle-icon">▼</span></div>
+          <div class="filter-block-body" id="category-filters">
+            <!-- Dynamic content will be added here -->
           </div>
         </div>
       </div>
@@ -43,15 +55,28 @@
   document.addEventListener('DOMContentLoaded', function () {
     const priceSlider = document.getElementById('price-slider');
     const priceValue = document.getElementById('price-value');
-    const genderFilters = document.querySelectorAll('.gender-filter');
-    const categoryFilters = document.querySelectorAll('.category-filter');
     const products = document.querySelectorAll('#product-list .product-item');
+    const genderContainer = document.getElementById('gender-filters');
+    const categoryContainer = document.getElementById('category-filters');
 
-    // Find max price dynamically
     let maxPrice = 0;
+    let genderCount = {};
+    let categoryCount = {};
+
+    // Count filters and get max price dynamically
     products.forEach((product) => {
       let price = parseInt(product.getAttribute('data-price'));
-      if (price > maxPrice) maxPrice = price;
+      maxPrice = Math.max(maxPrice, price);
+
+      let tags = product.getAttribute('data-tags').split(',');
+      tags.forEach((tag) => {
+        let cleanTag = tag.trim();
+        if (['Men', 'Women', 'Kids'].includes(cleanTag)) {
+          genderCount[cleanTag] = (genderCount[cleanTag] || 0) + 1;
+        } else {
+          categoryCount[cleanTag] = (categoryCount[cleanTag] || 0) + 1;
+        }
+      });
     });
 
     // Set price slider max dynamically
@@ -59,71 +84,68 @@
     priceSlider.value = maxPrice;
     priceValue.innerText = `₹0 - ₹${maxPrice}`;
 
+    // Generate gender filter dynamically
+    genderContainer.innerHTML = Object.keys(genderCount)
+      .map(
+        (gender) =>
+          `<label><input type="checkbox" class="gender-filter" value="${gender}"> ${gender} (${genderCount[gender]})</label>`
+      )
+      .join('');
+
+    // Generate category filter dynamically
+    categoryContainer.innerHTML = Object.keys(categoryCount)
+      .map(
+        (category) =>
+          `<label><input type="checkbox" class="category-filter" value="${category}"> ${category} (${categoryCount[category]})</label>`
+      )
+      .join('');
+
+    // Hide filters if empty
+    document.getElementById('gender-filter-section').style.display = Object.keys(genderCount).length ? 'block' : 'none';
+    document.getElementById('category-filter-section').style.display = Object.keys(categoryCount).length
+      ? 'block'
+      : 'none';
+
     // Toggle dropdowns
     document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
       toggle.addEventListener('click', function () {
         const body = this.nextElementSibling;
-        body.style.display = body.style.display === 'none' || body.style.display === '' ? 'block' : 'none';
-        this.querySelector('.toggle-icon').innerText = body.style.display === 'block' ? '−' : '+';
+        const icon = this.querySelector('.toggle-icon');
+        body.style.display = body.style.display === 'block' ? 'none' : 'block';
+        icon.classList.toggle('rotate');
       });
     });
 
-    // Add event listeners to checkboxes
-    [...genderFilters, ...categoryFilters].forEach((checkbox) => {
-      checkbox.addEventListener('change', filterProducts);
-    });
+    // Filtering logic
+    function filterProducts() {
+      const maxPrice = parseInt(priceSlider.value);
+      const selectedGenders = [...document.querySelectorAll('.gender-filter:checked')].map((cb) => cb.value);
+      const selectedCategories = [...document.querySelectorAll('.category-filter:checked')].map((cb) => cb.value);
 
-    // Price slider update
+      products.forEach((product) => {
+        const productPrice = parseInt(product.getAttribute('data-price'));
+        const productTags = product.getAttribute('data-tags').split(',');
+
+        const matchesPrice = productPrice <= maxPrice;
+        const matchesGender = selectedGenders.length === 0 || selectedGenders.some((g) => productTags.includes(g));
+        const matchesCategory =
+          selectedCategories.length === 0 || selectedCategories.some((c) => productTags.includes(c));
+
+        product.style.display = matchesPrice && matchesGender && matchesCategory ? 'block' : 'none';
+      });
+    }
+
+    // Event Listeners
     priceSlider.addEventListener('input', function () {
       priceValue.innerText = `₹0 - ₹${priceSlider.value}`;
       filterProducts();
     });
 
-    function filterProducts() {
-      const maxPrice = parseInt(priceSlider.value);
-      const selectedGenders = [...genderFilters].filter((cb) => cb.checked).map((cb) => cb.value.toLowerCase());
-      const selectedCategories = [...categoryFilters].filter((cb) => cb.checked).map((cb) => cb.value.toLowerCase());
+    document.querySelectorAll('.gender-filter, .category-filter').forEach((checkbox) => {
+      checkbox.addEventListener('change', filterProducts);
+    });
 
-      let genderCount = { Men: 0, Women: 0, Kids: 0 };
-      let categoryCount = { Earring: 0, Bracelet: 0, Ring: 0, 'Toe Ring': 0, Accessory: 0, Wedding: 0 };
-
-      products.forEach((product) => {
-        const productPrice = parseInt(product.getAttribute('data-price'));
-        const productTags = product.getAttribute('data-tags').toLowerCase().split(',');
-
-        const matchesPrice = productPrice <= maxPrice;
-        const matchesGender =
-          selectedGenders.length === 0 || selectedGenders.some((gender) => productTags.includes(gender));
-        const matchesCategory =
-          selectedCategories.length === 0 || selectedCategories.some((category) => productTags.includes(category));
-
-        if (matchesPrice && matchesGender && matchesCategory) {
-          product.style.display = 'block';
-
-          // Count matching filters
-          productTags.forEach((tag) => {
-            if (genderCount[tag] !== undefined) genderCount[tag]++;
-            if (categoryCount[tag] !== undefined) categoryCount[tag]++;
-          });
-        } else {
-          product.style.display = 'none';
-        }
-      });
-
-      // Hide empty filters
-      document.getElementById('gender-filter-section').style.display = Object.values(genderCount).some(
-        (count) => count > 0
-      )
-        ? 'block'
-        : 'none';
-      document.getElementById('category-filter-section').style.display = Object.values(categoryCount).some(
-        (count) => count > 0
-      )
-        ? 'block'
-        : 'none';
-    }
-
-    // Initial filter update
+    // Initial filter setup
     filterProducts();
   });
 </script>
