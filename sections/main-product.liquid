@@ -1,4 +1,10 @@
 <script src="{{ 'wishlist-button.js' | asset_url }}" async></script>
+
+<!-- lightGallery CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+<!-- lightGallery JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+
 <main class="main-content homepage-content">
   <div class="topdiv"></div>
   <section class="P-detail">
@@ -14,14 +20,16 @@
               <div class="carousel-inner" id="carousel-inner">
                 {% for image in product.images %}
                   <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                    <img
-                      {% if forloop.first %}
-                        id="main-product-image"
-                      {% endif %}
-                      src="{{ image | image_url }}"
-                      class="d-block w-100"
-                      alt="{{ product.title }}"
-                    >
+                    <a href="{{ image | image_url: width: 1500 }}" data-lg-size="1500-1500">
+                      <img
+                        {% if forloop.first %}
+                          id="main-product-image"
+                        {% endif %}
+                        src="{{ image | image_url }}"
+                        class="d-block w-100"
+                        alt="{{ product.title }}"
+                      >
+                    </a>
                   </div>
                 {% endfor %}
               </div>
@@ -369,17 +377,18 @@
     </div>
   </section>
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const mainProductImage = document.querySelector('#main-product-image');
-    if (mainProductImage) {
-      mediumZoom(mainProductImage, {
-        margin: 20, // Space between zoomed image and viewport
-        background: '#000', // Background color when zoomed
-        scrollOffset: 40, // Scroll sensitivity
-      });
-    }
+    lightGallery(document.getElementById('carousel-inner'), {
+      thumbnail: false,
+      animateThumb: false,
+      showThumbByDefault: false,
+      zoom: true, // Enable zoom
+      scale: 1, // Default scale
+      actualSize: true, // Allow pinch-to-zoom
+      closable: true, // Show close (X) button
+      backdropDuration: 300, // Smooth transition
+    });
   });
 </script>
 
