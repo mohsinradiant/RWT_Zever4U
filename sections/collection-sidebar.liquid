@@ -5,33 +5,40 @@
       <div class="filter-body">
         <!-- Price Range Filter -->
         <div class="filter-block">
-          <div class="filter-block-title h5">Price</div>
-          <input type="range" id="price-slider" min="0" max="10000" step="100" value="10000">
-          <span id="price-value">₹0 - ₹10,000</span>
+          <div class="filter-block-title h5 dropdown-toggle">Price <span class="toggle-icon">+</span></div>
+          <div class="filter-block-body">
+            <input type="range" id="price-slider" min="0" step="100">
+            <span id="price-value">₹0 - ₹0</span>
+          </div>
         </div>
 
         <!-- Gender Filter -->
-        <div class="filter-block">
-          <div class="filter-block-title h5">Gender</div>
-          <label><input type="checkbox" class="gender-filter" value="Men"> Men</label>
-          <label><input type="checkbox" class="gender-filter" value="Women"> Women</label>
-          <label><input type="checkbox" class="gender-filter" value="Kids"> Kids</label>
+        <div class="filter-block" id="gender-filter-section">
+          <div class="filter-block-title h5 dropdown-toggle">Gender <span class="toggle-icon">+</span></div>
+          <div class="filter-block-body">
+            <label><input type="checkbox" class="gender-filter" value="Men"> Men</label>
+            <label><input type="checkbox" class="gender-filter" value="Women"> Women</label>
+            <label><input type="checkbox" class="gender-filter" value="Kids"> Kids</label>
+          </div>
         </div>
 
         <!-- Category Filter -->
-        <div class="filter-block">
-          <div class="filter-block-title h5">Categories</div>
-          <label><input type="checkbox" class="category-filter" value="Earring"> Earrings</label>
-          <label><input type="checkbox" class="category-filter" value="Bracelet"> Bracelets</label>
-          <label><input type="checkbox" class="category-filter" value="Ring"> Rings</label>
-          <label><input type="checkbox" class="category-filter" value="Toe Ring"> Toe Rings</label>
-          <label><input type="checkbox" class="category-filter" value="Accessory"> Accessories</label>
-          <label><input type="checkbox" class="category-filter" value="Wedding"> Wedding</label>
+        <div class="filter-block" id="category-filter-section">
+          <div class="filter-block-title h5 dropdown-toggle">Categories <span class="toggle-icon">+</span></div>
+          <div class="filter-block-body">
+            <label><input type="checkbox" class="category-filter" value="Earring"> Earrings</label>
+            <label><input type="checkbox" class="category-filter" value="Bracelet"> Bracelets</label>
+            <label><input type="checkbox" class="category-filter" value="Ring"> Rings</label>
+            <label><input type="checkbox" class="category-filter" value="Toe Ring"> Toe Rings</label>
+            <label><input type="checkbox" class="category-filter" value="Accessory"> Accessories</label>
+            <label><input type="checkbox" class="category-filter" value="Wedding"> Wedding</label>
+          </div>
         </div>
       </div>
     </div>
   </aside>
 </div>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const priceSlider = document.getElementById('price-slider');
@@ -40,10 +47,25 @@
     const categoryFilters = document.querySelectorAll('.category-filter');
     const products = document.querySelectorAll('#product-list .product-item');
 
-    // Update price label
-    priceSlider.addEventListener('input', function () {
-      priceValue.innerText = `₹0 - ₹${priceSlider.value}`;
-      filterProducts();
+    // Find max price dynamically
+    let maxPrice = 0;
+    products.forEach((product) => {
+      let price = parseInt(product.getAttribute('data-price'));
+      if (price > maxPrice) maxPrice = price;
+    });
+
+    // Set price slider max dynamically
+    priceSlider.max = maxPrice;
+    priceSlider.value = maxPrice;
+    priceValue.innerText = `₹0 - ₹${maxPrice}`;
+
+    // Toggle dropdowns
+    document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
+      toggle.addEventListener('click', function () {
+        const body = this.nextElementSibling;
+        body.style.display = body.style.display === 'none' || body.style.display === '' ? 'block' : 'none';
+        this.querySelector('.toggle-icon').innerText = body.style.display === 'block' ? '−' : '+';
+      });
     });
 
     // Add event listeners to checkboxes
@@ -51,10 +73,19 @@
       checkbox.addEventListener('change', filterProducts);
     });
 
+    // Price slider update
+    priceSlider.addEventListener('input', function () {
+      priceValue.innerText = `₹0 - ₹${priceSlider.value}`;
+      filterProducts();
+    });
+
     function filterProducts() {
       const maxPrice = parseInt(priceSlider.value);
       const selectedGenders = [...genderFilters].filter((cb) => cb.checked).map((cb) => cb.value.toLowerCase());
       const selectedCategories = [...categoryFilters].filter((cb) => cb.checked).map((cb) => cb.value.toLowerCase());
+
+      let genderCount = { Men: 0, Women: 0, Kids: 0 };
+      let categoryCount = { Earring: 0, Bracelet: 0, Ring: 0, 'Toe Ring': 0, Accessory: 0, Wedding: 0 };
 
       products.forEach((product) => {
         const productPrice = parseInt(product.getAttribute('data-price'));
@@ -68,11 +99,32 @@
 
         if (matchesPrice && matchesGender && matchesCategory) {
           product.style.display = 'block';
+
+          // Count matching filters
+          productTags.forEach((tag) => {
+            if (genderCount[tag] !== undefined) genderCount[tag]++;
+            if (categoryCount[tag] !== undefined) categoryCount[tag]++;
+          });
         } else {
           product.style.display = 'none';
         }
       });
+
+      // Hide empty filters
+      document.getElementById('gender-filter-section').style.display = Object.values(genderCount).some(
+        (count) => count > 0
+      )
+        ? 'block'
+        : 'none';
+      document.getElementById('category-filter-section').style.display = Object.values(categoryCount).some(
+        (count) => count > 0
+      )
+        ? 'block'
+        : 'none';
     }
+
+    // Initial filter update
+    filterProducts();
   });
 </script>
 
