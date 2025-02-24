@@ -1,0 +1,237 @@
+{
+  "article": [],
+  "blog": [],
+  "brand": [],
+  "collection": [
+    {
+      "key": "banner_image",
+      "namespace": "custom",
+      "name": "Banner Image",
+      "description": "",
+      "type": {
+        "name": "file_reference",
+        "category": "REFERENCE"
+      }
+    }
+  ],
+  "company": [],
+  "company_location": [],
+  "location": [],
+  "market": [],
+  "order": [],
+  "page": [],
+  "product": [
+    {
+      "key": "color-pattern",
+      "namespace": "shopify",
+      "name": "Color",
+      "description": "Defines the primary color or pattern, such as blue or striped",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "jewelry-material",
+      "namespace": "shopify",
+      "name": "Jewelry material",
+      "description": "Identifies the main material used in jewelry items, such as gold or enamel",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "ring-design",
+      "namespace": "shopify",
+      "name": "Ring design",
+      "description": "Describes the style of a ring, such as band or solitaire",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "ring-size",
+      "namespace": "shopify",
+      "name": "Ring size",
+      "description": "Specifies the size of a ring, such as L or 6.5",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "short_description",
+      "namespace": "custom",
+      "name": "Short Description",
+      "description": "",
+      "type": {
+        "name": "multi_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "metal_purity",
+      "namespace": "custom",
+      "name": "Metal Purity",
+      "description": "",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "other_description",
+      "namespace": "custom",
+      "name": "Other Description",
+      "description": "",
+      "type": {
+        "name": "json",
+        "category": "JSON"
+      }
+    },
+    {
+      "key": "reference",
+      "namespace": "custom",
+      "name": "Reference",
+      "description": "",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "care_instructions",
+      "namespace": "custom",
+      "name": "Care Instructions",
+      "description": "",
+      "type": {
+        "name": "rich_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "shipping_return",
+      "namespace": "custom",
+      "name": "Shipping & Return",
+      "description": "",
+      "type": {
+        "name": "rich_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "length",
+      "namespace": "custom",
+      "name": "Length",
+      "description": "",
+      "type": {
+        "name": "dimension",
+        "category": "MEASUREMENT"
+      }
+    },
+    {
+      "key": "insidethebox",
+      "namespace": "custom",
+      "name": "In The Box",
+      "description": "",
+      "type": {
+        "name": "rich_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "earring-design",
+      "namespace": "shopify",
+      "name": "Earring design",
+      "description": "Describes the style or structure of earrings, such as hoop or stud",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "target-gender",
+      "namespace": "shopify",
+      "name": "Target gender",
+      "description": "Identifies the intended gender for a product, such as female, male or unisex",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "age-group",
+      "namespace": "shopify",
+      "name": "Age group",
+      "description": "Defines the target age range for a product, such as adults or kids",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "jewelry-type",
+      "namespace": "shopify",
+      "name": "Jewelry type",
+      "description": "Distinguishes between types of jewelry, such as fine or imitation jewelry",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "bracelet-design",
+      "namespace": "shopify",
+      "name": "Bracelet design",
+      "description": "Specifies the design of a bracelet, such as charm or cuff",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "theme",
+      "namespace": "shopify",
+      "name": "Theme",
+      "description": "Describes the product's primary theme or motif, such as sport, space, or holidays",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "decoration-material",
+      "namespace": "shopify",
+      "name": "Decoration material",
+      "description": "Identifies the material used for decoration, such as sequins or feathers",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "chain-link-type",
+      "namespace": "shopify",
+      "name": "Chain link type",
+      "description": "Defines the style of chain link for jewelry, such as rope or flat",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "necklace-design",
+      "namespace": "shopify",
+      "name": "Necklace design",
+      "description": "Describes the style of a necklace, such as pendant or choker",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    }
+  ],
+  "variant": [],
+  "shop": []
+}

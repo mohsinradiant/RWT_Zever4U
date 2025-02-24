@@ -1,62 +1,86 @@
+<style>
+  .filter-block-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  .dropdown-toggle {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  /* When active, open dropdown */
+  .dropdown-toggle.active::after {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-toggle.active + .filter-block-body {
+    max-height: 500px; /* Adjust height as needed */
+  } /* Style the track */
+  #price-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    background: #cb8161; /* Track color */
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s;
+  }
+
+  /* Style the thumb (the draggable part) */
+  #price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #cb8161; /* Change this to your accent color */
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  /* Mozilla (Firefox) */
+  #price-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #cb8161;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  /* Change track color on hover */
+  #price-slider:hover {
+    background: #cb8161;
+  }
+</style>
+
 <div class="filter-bg">
   <aside class="sidebar-col">
     <div class="filters-sidebar">
-      <h4 class="filter-header h4">Filters</h4>
+      <h4 class="filter-header h4 ">Filters</h4>
       <div class="filter-body">
+        <!-- Price Range Filter -->
         <div class="filter-block">
-          <div class="filter-block-title h5">
-            {{ section.settings.collection_heading }}
-            <span><i class="fa-solid fa-plus"></i></span>
-          </div>
-          <div class="filter-block-body" style="display: block;">
-            {{ template.suffix }}
-            <ul>
-              {% for collection in section.settings.collections_list %}
-                <li
-                  {% if collection.handle == template.suffix %}
-                    class="active"
-                  {% endif %}
-                >
-                  <a href="{{ collection.url }}">{{ collection.title }}</a>
-                </li>
-              {%- endfor -%}
-            </ul>
+          <div class="filter-block-title h5 dropdown-toggle">Price</div>
+          <div class="filter-block-body">
+            <input type="range" id="price-slider" min="0" step="100">
+            <span id="price-value">₹0 - ₹0</span>
           </div>
         </div>
-        <div class="filter-block">
-          <div class="filter-block-title h5">
-            Material <span><i class="fa-solid fa-plus"></i></span>
-          </div>
-          <div class="filter-block-body">
-            {% assign materials = '' %}
 
-            {% for product in collection.products %}
-              {% for variant in product.variants %}
-                {% for option_name in product.options_with_values %}
-                  {% if option_name.name == 'Material' %}
-                    {% assign material_value = variant.options[forloop.index0] %}
-                    {% assign materials = materials | append: material_value | append: ',' %}
-                  {% endif %}
-                {% endfor %}
-              {% endfor %}
-            {% endfor %}
+        <!-- Gender Filter -->
+        <div class="filter-block" id="gender-filter-section">
+          <div class="filter-block-title h5 dropdown-toggle">Gender</div>
+          <div class="filter-block-body" id="gender-filters"></div>
+        </div>
 
-            {% assign materials = materials | split: ',' | uniq %}
-
-            {% for material in materials %}
-              {% unless material == '' %}
-                <div class="custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input material-filter"
-                    id="material-{{ material | handle }}"
-                    value="{{ material }}"
-                  >
-                  <label class="custom-control-label" for="material-{{ material | handle }}">{{ material }}</label>
-                </div>
-              {% endunless %}
-            {% endfor %}
-          </div>
+        <!-- Category Filter -->
+        <div class="filter-block" id="category-filter-section">
+          <div class="filter-block-title h5 dropdown-toggle">Categories</div>
+          <div class="filter-block-body" id="category-filters"></div>
         </div>
       </div>
     </div>
@@ -64,82 +88,111 @@
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const filterHeader = document.querySelector('.filter-header');
-    const filterBody = document.querySelector('.filter-body');
+    const priceSlider = document.getElementById('price-slider');
+    const priceValue = document.getElementById('price-value');
+    const products = document.querySelectorAll('#product-list .product-item');
+    const genderContainer = document.getElementById('gender-filters');
+    const categoryContainer = document.getElementById('category-filters');
 
-    // Create dropdown icon
-    const dropdownIcon = document.createElement('span');
-    dropdownIcon.innerHTML = '<i class="fa-solid fa-plus"></i>';
-    dropdownIcon.classList.add('filter-toggle');
-    filterHeader.prepend(dropdownIcon);
+    let maxPrice = 0;
+    let genderCount = {};
+    let categoryCount = {};
 
-    // Hide filter body initially on small screens
-    if (window.innerWidth <= 756) {
-      filterBody.style.display = 'none';
+    // Check if products exist
+    if (!products.length) {
+      console.warn('No products found.');
+      return;
     }
 
-    // Toggle filter body on icon click
-    dropdownIcon.addEventListener('click', function () {
-      if (filterBody.style.display === 'none' || filterBody.style.display === '') {
-        filterBody.style.display = 'block';
-        dropdownIcon.innerHTML = '<i class="fa-solid fa-minus"></i>';
-      } else {
-        filterBody.style.display = 'none';
-        dropdownIcon.innerHTML = '<i class="fa-solid fa-plus"></i>';
-      }
-    });
+    // Get max price and count filters dynamically
+    products.forEach((product) => {
+      let price = parseInt(product.getAttribute('data-price'));
+      maxPrice = Math.max(maxPrice, price);
 
-    // Handle material filter logic
-    const checkboxes = document.querySelectorAll('.material-filter');
-    const products = document.querySelectorAll('#product-list .product-item');
+      let tags = product.getAttribute('data-tags')?.split(',');
+      if (!tags) return; // If no tags, skip this product
 
-    checkboxes.forEach(function (checkbox) {
-      checkbox.addEventListener('change', function () {
-        filterProducts();
-      });
-    });
-
-    function filterProducts() {
-      const selectedMaterials = Array.from(checkboxes)
-        .filter((cb) => cb.checked)
-        .map((cb) => cb.value.toLowerCase());
-
-      products.forEach(function (product) {
-        const productMaterials = product.getAttribute('data-materials').toLowerCase();
-
-        if (
-          selectedMaterials.length === 0 ||
-          selectedMaterials.some((material) => productMaterials.includes(material))
-        ) {
-          product.style.display = 'block';
+      tags.forEach((tag) => {
+        let cleanTag = tag.trim();
+        if (['Men', 'Women', 'Kids'].includes(cleanTag)) {
+          genderCount[cleanTag] = (genderCount[cleanTag] || 0) + 1;
         } else {
-          product.style.display = 'none';
+          categoryCount[cleanTag] = (categoryCount[cleanTag] || 0) + 1;
         }
       });
+    });
+
+    // Set price slider max dynamically
+    priceSlider.max = maxPrice;
+    priceSlider.value = maxPrice;
+    priceValue.innerText = `₹0 - ₹${maxPrice}`;
+
+    // Generate gender filter dynamically
+    if (Object.keys(genderCount).length > 0) {
+      genderContainer.innerHTML = Object.keys(genderCount)
+        .map(
+          (gender) =>
+            `<label><input type="checkbox" class="gender-filter" value="${gender}"> ${gender} (${genderCount[gender]})</label>`
+        )
+        .join('');
+    } else {
+      document.getElementById('gender-filter-section').style.display = 'none';
     }
+
+    // Generate category filter dynamically
+    if (Object.keys(categoryCount).length > 0) {
+      categoryContainer.innerHTML = Object.keys(categoryCount)
+        .map(
+          (category) =>
+            `<label><input type="checkbox" class="category-filter" value="${category}"> ${category} (${categoryCount[category]})</label>`
+        )
+        .join('');
+    } else {
+      document.getElementById('category-filter-section').style.display = 'none';
+    }
+
+    // Ensure dropdown functionality works
+    document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
+      toggle.addEventListener('click', function () {
+        this.classList.toggle('active');
+      });
+    });
+
+    // Filtering logic
+    function filterProducts() {
+      const maxPrice = parseInt(priceSlider.value);
+      const selectedGenders = [...document.querySelectorAll('.gender-filter:checked')].map((cb) => cb.value);
+      const selectedCategories = [...document.querySelectorAll('.category-filter:checked')].map((cb) => cb.value);
+
+      products.forEach((product) => {
+        const productPrice = parseInt(product.getAttribute('data-price'));
+        const productTags = product.getAttribute('data-tags')?.split(',');
+
+        if (!productTags) return;
+
+        const matchesPrice = productPrice <= maxPrice;
+        const matchesGender = selectedGenders.length === 0 || selectedGenders.some((g) => productTags.includes(g));
+        const matchesCategory =
+          selectedCategories.length === 0 || selectedCategories.some((c) => productTags.includes(c));
+
+        product.style.display = matchesPrice && matchesGender && matchesCategory ? 'block' : 'none';
+      });
+    }
+
+    // Event Listeners
+    priceSlider.addEventListener('input', function () {
+      priceValue.innerText = `₹0 - ₹${priceSlider.value}`;
+      filterProducts();
+    });
+
+    document.querySelectorAll('.gender-filter, .category-filter').forEach((checkbox) => {
+      checkbox.addEventListener('change', filterProducts);
+    });
+
+    // Initial filter setup
+    filterProducts();
   });
 </script>
-<style>
-  .filter-toggle {
-    display: none;
-  }
-
-  @media (max-width: 756px) {
-    .filter-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: row-reverse;
-      margin: 0 !important;
-    }
-    .filter-toggle {
-      display: flex;
-    }
-    .filter-body {
-      margin-top: 15px;
-    }
-  }
-</style>
 
 {% schema %}
 {

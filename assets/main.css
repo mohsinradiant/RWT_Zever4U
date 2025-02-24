@@ -2237,7 +2237,7 @@ div:not([class])>.wf-floating-launcher {
     order: 3;
     position: absolute;
     right: 15px;
-    top: 64px;
+    top: 24px;
   }
 
   .header-brand .container-xl .align-items-center .col-sm-6 .navbar-collapse {
@@ -2486,5 +2486,11 @@ div:not([class])>.wf-floating-launcher {
 
   .filters-sidebar .filter-header {
     font-size: 18px;
+  }
+}
+
+@media(max-width:370px) {
+  .header-brand .container-xl .align-items-center .header-account {
+    margin-right: 40px;
   }
 }

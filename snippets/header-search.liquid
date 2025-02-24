@@ -39,15 +39,64 @@
         {%- else -%}
           <search-form class="search-modal__form">
         {%- endif -%}
+        <style>
+          .search__input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            outline: none;
+            background: transparent;
+          }
+
+          .placeholder-animation {
+            position: absolute;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            display: flex;
+            user-select: none;
+            z-index: 9;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            gap: 5px;
+            transition: opacity 0.2s ease-in-out;
+          }
+
+          .placeholder-text {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid rgba(0, 0, 0, 0.5);
+            animation: blinkCursor 0.8s steps(2, start) infinite;
+          }
+
+          @keyframes blinkCursor {
+            50% {
+              border-color: transparent;
+            }
+          }
+          .search-modal__form .field__input {
+            padding: 2rem !important;
+          }
+        </style>
+
         <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
-          <div class="field">
+          <div class="field" style="position: relative; display: inline-block; width: 100%;">
+            <!-- Animated Placeholder -->
+            <span class="placeholder-animation" id="animated-placeholder">
+              Search for <span class="placeholder-text"></span>
+            </span>
+
+            <!-- Search Input -->
             <input
               class="search__input field__input"
-              id="{{ input_id }}"
-              type="search"
+              id="search-input"
               name="q"
               value="{{ search.terms | escape }}"
-              placeholder="{{ 'general.search.search' | t }}"
+              placeholder=""
+              oninput="togglePlaceholder()"
               {%- if settings.predictive_search_enabled -%}
                 role="combobox"
                 aria-expanded="false"
@@ -61,7 +110,61 @@
                 spellcheck="false"
               {%- endif -%}
             >
-            <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
+
+            <script>
+              const placeholderText = document.querySelector('.placeholder-text');
+              const searchInput = document.getElementById('search-input');
+              const animatedPlaceholder = document.getElementById('animated-placeholder');
+
+              const words = ['Rings', 'Earrings', 'Pendants', 'Necklaces', 'Bracelets'];
+              let wordIndex = 0;
+              let charIndex = 0;
+              let typingSpeed = 120;
+              let erasingSpeed = 80;
+              let delayBetweenWords = 1500;
+              let isErasing = false;
+
+              function typeEffect() {
+                if (!isErasing) {
+                  if (charIndex < words[wordIndex].length) {
+                    placeholderText.textContent += words[wordIndex][charIndex];
+                    charIndex++;
+                    setTimeout(typeEffect, typingSpeed);
+                  } else {
+                    setTimeout(() => {
+                      isErasing = true;
+                      typeEffect();
+                    }, delayBetweenWords);
+                  }
+                } else {
+                  if (charIndex > 0) {
+                    placeholderText.textContent = words[wordIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(typeEffect, erasingSpeed);
+                  } else {
+                    isErasing = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(typeEffect, typingSpeed);
+                  }
+                }
+              }
+
+              function togglePlaceholder() {
+                if (searchInput.value.trim().length > 0) {
+                  animatedPlaceholder.style.opacity = '0';
+                } else {
+                  animatedPlaceholder.style.opacity = '1';
+                }
+              }
+
+              // Ensure placeholder is visible when input is empty
+              searchInput.addEventListener('focus', togglePlaceholder);
+              searchInput.addEventListener('blur', togglePlaceholder);
+
+              typeEffect();
+            </script>
+
+            {% comment %} <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label> {% endcomment %}
             <input type="hidden" name="options[prefix]" value="last">
             <button
               type="reset"
@@ -87,6 +190,7 @@
             <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
           {%- endif -%}
         </form>
+
         {%- if settings.predictive_search_enabled -%}
           </predictive-search>
         {%- else -%}

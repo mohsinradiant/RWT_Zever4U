@@ -27,11 +27,8 @@
               {% for product in collection.products %}
                 <div
                   class="col-md-4 col-6 product-item"
-                  data-materials="
-                    {% for variant in product.variants %}
-                      {{ variant.options | join: ',' }}
-                    {% endfor %}
-                  "
+                  data-price="{{ product.price | divided_by: 100 }}"
+                  data-tags="{{ product.tags | join: ',' }}"
                 >
                   <div class="product-card">
                     {% render 'card-product-new', card_product: product %}
