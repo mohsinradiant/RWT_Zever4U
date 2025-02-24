@@ -1,0 +1,492 @@
+<script src="{{ 'wishlist-button.js' | asset_url }}" async></script>
+<main class="main-content homepage-content">
+  <div class="topdiv"></div>
+  <section class="P-detail">
+    <div class="container custom-width">
+      <div class="row g-md-0">
+        <div class="col-md-6">
+          <div class="slider-prod">
+            <img
+              class="p-logo-watermark"
+              src="https://cdn.shopify.com/s/files/1/0597/5080/9671/files/Skype_Picture_2025_02_21T05_42_27_194Z.png?v=1740116580"
+            >
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner" id="carousel-inner">
+                {% for image in product.images %}
+                  <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                    <img
+                      {% if forloop.first %}
+                        id="main-product-image"
+                      {% endif %}
+                      src="{{ image | image_url }}"
+                      class="d-block w-100"
+                      alt="{{ product.title }}"
+                    >
+                  </div>
+                {% endfor %}
+              </div>
+              <div id="carousel-thumbnails" class="carousel-indicators">
+                {% for image in product.images %}
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="{{ forloop.index0 }}"
+                    class="{% if forloop.first %} active {% endif %} thumbnail"
+                    {% if forloop.first %}
+                      aria-current="true"
+                    {% endif %}
+                    aria-label="Slide {{ forloop.index }}"
+                  >
+                    <img src="{{ image | image_url }}" class="thumbnail d-block w-100" alt="{{ product.title }}">
+                  </button>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="Details-block-left pe-md-2">
+            <h2 class="all_heading">Details</h2>
+
+            <div class="detail-table ">
+              {% if product.metafields.custom.reference != blank %}
+                <div class="item-row row">
+                  <div class="col-5 heading">Reference</div>
+                  <div class="col-7 info">{{ product.metafields.custom.reference }}</div>
+                </div>
+              {%- endif -%}
+
+              {% if product.metafields.shopify.jewelry_material_reference %}
+                <div class="item-row row">
+                  <div class="col-5 heading">Material</div>
+                  <div class="col-7 info">{{ collection.metafields.custom['jewelry-material'] }}</div>
+                </div>
+              {%- endif -%}
+
+              {% if product.metafields.custom.length != blank %}
+                <div class="item-row row">
+                  <div class="col-5 heading">Length</div>
+                  <div class="col-7 info">
+                    {{ product.metafields.custom.length.value }}
+                    {{ product.metafields.custom.length.unit }}
+                  </div>
+                </div>
+              {%- endif -%}
+              {% if collection.metafields.custom.color != blank %}
+                <div class="item-row row">
+                  <div class="col-5 heading">Colour</div>
+                  <div class="col-7 info">{{ collection.metafields.custom.color }}</div>
+                </div>
+              {%- endif -%}
+
+              {% if product.metafields.custom.reference != blank %}
+                <div class="item-row row">
+                  <div class="col-5 heading">HSN Code</div>
+                  <div class="col-7 info" id="product-hsn">
+                    {{ product.variants.first.metafields.global.harmonized_system_code }}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+
+            <div class="product-info-details mb-4">
+              {% if product.description != blank %}
+                <div class="product-info-block transition">
+                  <h5 class="product-info-header body-font transition">Description <i class="fa fa-angle-down"></i></h5>
+                  <p class="product-info-content" style="display: none;">{{ product.description }}</p>
+                </div>
+              {%- endif -%}
+              {% if product.metafields.custom.insidethebox %}
+                <div class="product-info-block transition">
+                  <h5 class="product-info-header body-font transition">In The Box <i class="fa fa-angle-down"></i></h5>
+                  {{ product.metafields.custom.insidethebox | metafield_tag }}
+                </div>
+              {%- endif -%}
+              {% if product.metafields.custom.care_instructions != blank %}
+                <div class="product-info-block transition">
+                  <h5 class="product-info-header body-font transition">
+                    Care Instructions <i class="fa fa-angle-down"></i>
+                  </h5>
+                  {{ product.metafields.custom.care_instructions | metafield_tag }}
+                </div>
+              {%- endif -%}
+              {% if product.metafields.custom.shipping_return != blank %}
+                <div class="product-info-block transition">
+                  <h5 class="product-info-header body-font transition">
+                    Shipping & Return <i class="fa fa-angle-down"></i>
+                  </h5>
+                  {{ product.metafields.custom.shipping_return | metafield_tag }}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 filter-bg">
+          <div class="p-side-bar-right filter-bg">
+            <div class="detail-info-right">
+              <h1 class="all_heading">{{ product.title }}</h1>
+              <div id="product-price" class="product-price fs22 fw600 mt-2">
+                {{ product.price | money_with_currency }}
+                {%- if product.compare_at_price -%}
+                  <del class="fs16 fw-medium text-black-50"> {{ product.compare_at_price | money_with_currency }} </del>
+                {%- endif -%}
+              </div>
+              {% if product.metafields.custom.short_description != blank %}
+                <div class="description-wrapper mt-3">
+                  <p class="short-description">
+                    {{ product.metafields.custom.short_description }}
+                  </p>
+                </div>
+              {% endif %}
+              <form method="post" action="/cart/add">
+                <div class="share-dtail-pg fw-bold fs-5 mt-2">
+                  <div class="btn-group dropup sharelinks">
+                    <button type="button" class="dropdown-toggle pe-4" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-share-nodes"></i>
+                    </button>
+                    <ul class="dropdown-menu block">
+                      <li>
+                        <a class="dropdown-item" href="#"><i class="fa-regular fa-envelope pe-2"></i> Email</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#"><i class="fa-brands fa-facebook pe-2"></i> Facebook </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#"><i class="fa-brands fa-x-twitter pe-2"></i> Twitter </a>
+                      </li>
+                    </ul>
+                  </div>
+                  {% comment %}
+                    <button
+                      type="button"
+                      style="border: none;background: transparent;"
+                      data-product-handle="{{ product.handle }}"
+                      class="wishlist-btn"
+                    >
+                      <i class="fa-regular fa-heart"></i>
+                    </button>
+                  {% endcomment %}
+                  <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                      const observer = new MutationObserver(() => {
+                        const wishButton = document.getElementById('inject_wish_button');
+                        const shareLinks = document.querySelector('.sharelinks');
+
+                        if (wishButton && shareLinks && !shareLinks.nextElementSibling?.isSameNode(wishButton)) {
+                          shareLinks.insertAdjacentElement('afterend', wishButton);
+                          observer.disconnect(); // Stop observing once moved
+                        }
+                      });
+
+                      observer.observe(document.body, { childList: true, subtree: true });
+                    });
+                  </script>
+                </div>
+
+                <input
+                  type="hidden"
+                  name="id"
+                  id="selected-variant-id"
+                  value="{{ product.selected_or_first_available_variant.id }}"
+                >
+
+                {% assign default_variant = product.selected_or_first_available_variant %}
+                {% if product.variants.size > 1 %}
+                  {% for option in product.options_with_values %}
+                    <div class="product-option mt-4">
+                      <h6 class="body-font">{{ option.name }}</h6>
+                      {% for value in option.values %}
+                        <input
+                          type="radio"
+                          class="btn-check product-option-input"
+                          name="option[{{ option.name }}]"
+                          id="btn-{{ option.name | handleize }}-{{ value | handleize }}"
+                          value="{{ value }}"
+                          {% if default_variant.options[forloop.index0] == value %}
+                            checked
+                          {% endif %}
+                          data-option-index="{{ forloop.parentloop.index0 }}"
+                        >
+                        <label
+                          class="btn btn-outline-dark p-2"
+                          for="btn-{{ option.name | handleize }}-{{ value | handleize }}"
+                        >
+                          {{ value }}
+                        </label>
+                      {% endfor %}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+                <div class="informations mt-3">
+                  {% if product.metafields.custom.metal_purity != blank %}
+                    <p>
+                      <i class="fa-solid fa-droplet text-brand"></i> <strong>Metal Purity</strong> :
+                      {{ product.metafields.custom.metal_purity }}
+                    </p>
+                  {% endif %}
+                  {% if product.variants.first.weight != 0 %}
+                    <p>
+                      <i class="fa-solid fa-weight-scale text-brand"></i> <strong>Product Weight </strong>
+                      <small> (Approx)</small>:
+                      <span id="product-weight">
+                        {{- product.variants.first.weight }}
+                        {{ product.variants.first.weight_unit -}}
+                      </span>
+                    </p>
+                  {% endif %}
+                  <p>
+                    <i class="fa-solid fa-maximize text-brand"></i> <strong>Size Chart</strong> :
+                    <a
+                      href="#"
+                      class="text-brand"
+                    >
+                      View</a
+                    >
+                  </p>
+                </div>
+
+                <div class="cart-option pt-4 border-top">
+                  <div class="product-qty d-flex align-items-center">
+                    <div class="flex-shrink-0 me-3">
+                      <div class="input-group">
+                        <button
+                          type="button"
+                          class="btn btn-outline-prime px-3 value-button"
+                          id="decrease"
+                          onclick="decreaseValue()"
+                        >
+                          <i
+                            class="fa-solid fa-minus"
+                          ></i>
+                        </button>
+                        <input
+                          class="form-control text-center border-dark"
+                          type="number"
+                          name="quantity"
+                          id="number"
+                          value="1"
+                          min="1"
+                        >
+                        <button
+                          type="button"
+                          class="btn btn-outline-prime px-3 value-button"
+                          id="decrease"
+                          onclick="increaseValue()"
+                        >
+                          <i
+                            class="fa-solid fa-plus"
+                          ></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="flex-grow-1">
+                      <button class="btn btn-primary  text-uppercase w-100" type="submit">Add to Bag</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="Details-block-left Details-block-left-mobile pe-md-2">
+          <h2 class="all_heading">Details</h2>
+
+          <div class="detail-table ">
+            {% if product.metafields.custom.reference != blank %}
+              <div class="item-row row">
+                <div class="col-5 heading">Reference</div>
+                <div class="col-7 info">{{ product.metafields.custom.reference }}</div>
+              </div>
+            {%- endif -%}
+
+            {% if product.metafields.shopify.jewelry_material_reference %}
+              <div class="item-row row">
+                <div class="col-5 heading">Material</div>
+                <div class="col-7 info">{{ collection.metafields.custom['jewelry-material'] }}</div>
+              </div>
+            {%- endif -%}
+
+            {% if product.metafields.custom.length != blank %}
+              <div class="item-row row">
+                <div class="col-5 heading">Length</div>
+                <div class="col-7 info">
+                  {{ product.metafields.custom.length.value }}
+                  {{ product.metafields.custom.length.unit }}
+                </div>
+              </div>
+            {%- endif -%}
+            {% if collection.metafields.custom.color != blank %}
+              <div class="item-row row">
+                <div class="col-5 heading">Colour</div>
+                <div class="col-7 info">{{ collection.metafields.custom.color }}</div>
+              </div>
+            {%- endif -%}
+
+            {% if product.metafields.custom.reference != blank %}
+              <div class="item-row row">
+                <div class="col-5 heading">HSN Code</div>
+                <div class="col-7 info" id="product-hsn">
+                  {{ product.variants.first.metafields.global.harmonized_system_code }}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div class="product-info-details mb-4">
+            {% if product.description != blank %}
+              <div class="product-info-block transition">
+                <h5 class="product-info-header body-font transition">Description <i class="fa fa-angle-down"></i></h5>
+                <p class="product-info-content" style="display: none;">{{ product.description }}</p>
+              </div>
+            {%- endif -%}
+            {% if product.metafields.custom.insidethebox %}
+              <div class="product-info-block transition">
+                <h5 class="product-info-header body-font transition">In The Box <i class="fa fa-angle-down"></i></h5>
+                {{ product.metafields.custom.insidethebox | metafield_tag }}
+              </div>
+            {%- endif -%}
+            {% if product.metafields.custom.care_instructions != blank %}
+              <div class="product-info-block transition">
+                <h5 class="product-info-header body-font transition">
+                  Care Instructions <i class="fa fa-angle-down"></i>
+                </h5>
+                {{ product.metafields.custom.care_instructions | metafield_tag }}
+              </div>
+            {%- endif -%}
+            {% if product.metafields.custom.shipping_return != blank %}
+              <div class="product-info-block transition">
+                <h5 class="product-info-header body-font transition">
+                  Shipping & Return <i class="fa fa-angle-down"></i>
+                </h5>
+                {{ product.metafields.custom.shipping_return | metafield_tag }}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const variants = [
+  {% for variant in product.variants %}
+    {
+      "id": {{ variant.id }},
+      "price": {{ variant.price }},
+      "weight": {{ variant.weight }},
+      "weight_unit": "{{ variant.weight_unit }}",
+      "available": {{ variant.available | json }},
+      "sku": {{ variant.sku | json }},
+      "options": {{ variant.options | json }},
+      "featured_image": {{ variant.featured_image | json }},
+      "hsn_code": "{{ variant.metafields.global.harmonized_system_code | escape }}"
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+document.addEventListener("DOMContentLoaded", function () {
+    let metafieldDivs = document.querySelectorAll(".metafield-rich_text_field");
+
+    metafieldDivs.forEach(metafieldDiv => {
+        let parent = metafieldDiv.parentNode;
+        let newParagraph = document.createElement("p");
+        newParagraph.classList.add("product-info-content");
+        newParagraph.style.display = "none";
+
+        // Move inner content to the new <p> tag
+        while (metafieldDiv.firstChild) {
+            newParagraph.appendChild(metafieldDiv.firstChild);
+        }
+
+        // Replace the original div with the new paragraph
+        parent.replaceChild(newParagraph, metafieldDiv);
+    });
+
+  // Change product on choose option
+  const variantIdInput = document.getElementById("selected-variant-id");
+  const priceElement = document.getElementById("product-price");
+  const weightElement = document.getElementById("product-weight");
+  const hsnElement = document.getElementById("product-hsn");
+ 
+  // Listen for changes on all radio inputs
+  const optionInputs = document.querySelectorAll(".product-option-input");
+
+  optionInputs.forEach((input) => {
+    input.addEventListener("change", function () {
+      // Get selected options based on current selections
+      const selectedOptions = [];
+      const optionGroups = [...new Set([...optionInputs].map(i => i.name))];
+
+      optionGroups.forEach(groupName => {
+        const selectedInput = document.querySelector(`input[name="${groupName}"]:checked`);
+        if (selectedInput) {
+          selectedOptions.push(selectedInput.value);
+        }
+      });
+
+      // Find matching variant
+      const matchedVariant = variants.find((variant) => {
+        return variant.options.every((option, index) => option === selectedOptions[index]);
+      });
+
+      // Update DOM with matched variant details
+      if (matchedVariant) {
+        variantIdInput.value = matchedVariant.id;
+        priceElement.innerText = formatPrice(matchedVariant.price);
+        weightElement.innerText = matchedVariant.weight + ' ' + matchedVariant.weight_unit;
+        hsnElement.innerText = matchedVariant.hsn_code || 'N/A';
+      }
+    });
+  });
+});
+
+const formatPrice = (price) => {
+  const currency = "{{ shop.currency }}"; // Get your shop's currency
+  const priceInDecimal = price / 100; // Shopify stores price in cents
+  return new Intl.NumberFormat('en-US', { // You can customize locale
+    style: 'currency',
+    currency: currency
+  }).format(priceInDecimal);
+};
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+//     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+//     function updateButtonState(button) {
+//       const productId = button.dataset.productId;
+//       if (wishlist.includes(productId)) {
+//         button.innerHTML = '<i class="fa-solid fa-heart"></i>';
+//       } else {
+//         button.innerHTML = '<i class="fa-regular fa-heart"></i>';
+//       }
+//     }
+
+//     wishlistBtns.forEach(button => {
+//       updateButtonState(button);
+
+//       button.addEventListener('click', function () {
+//         const productId = this.dataset.productId;
+
+//         if (wishlist.includes(productId)) {
+//           const index = wishlist.indexOf(productId);
+//           wishlist.splice(index, 1);
+//         } else {
+//           wishlist.push(productId);
+//         }
+
+//         localStorage.setItem('wishlist', JSON.stringify(wishlist));
+//         updateButtonState(this);
+//       });
+//     });
+// });
+</script>
+
+{% schema %}
+{
+  "name": "Product Detail Page",
+  "settings": []
+}
+{% endschema %}

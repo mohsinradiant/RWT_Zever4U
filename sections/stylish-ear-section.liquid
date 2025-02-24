@@ -1,0 +1,94 @@
+<main class="main-content homepage-content">
+  <section
+    class="big-img-section"
+    style="
+      {% if section.settings.style_bg_image != blank %}
+        background-image: url('');
+      {% else %}
+        background-color: #f5f5f5;
+      {% endif %}
+    "
+  >
+    <img class="dekstop-image" src="{{ section.settings.style_bg_image | img_url: '1600x497' }}">
+    <img class="mobile-image" src="{{ section.settings.style_bg_image_mobile | img_url: '450x600' }}">
+    <div class="container custom-width">
+      <div class="row justify-content-end">
+        <div class="col-md-5 ps-md-5">
+          <div class="bg-text-part h-100">
+            <h3 class="all_heading text-white">{{ section.settings.Heading }}</h3>
+            <p class="text-white">{{ section.settings.style_content }}</p>
+            <a href="{{ section.settings.style_button_url }}" class="btn-secondary btn mt-3">
+              {{ section.settings.style_button -}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .dekstop-image {
+        display: flex;
+      }
+      .mobile-image {
+        display: none;
+      }
+      @media (max-width: 756px) {
+        .dekstop-image {
+          display: none;
+        }
+        .mobile-image {
+          display: flex;
+        }
+      }
+    </style>
+  </section>
+</main>
+{% schema %}
+{
+  "name": "Stylish Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "style_bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "style_bg_image_mobile",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "text",
+      "id": "style_heading",
+      "label": "Heading",
+      "default": "Stylish Ear Statements"
+    },
+    {
+      "type": "text",
+      "id": "style_content",
+      "label": "Content",
+      "default": "Refer To Contemporary Earring Designs That Embody Current Trends And Styles. These Earrings Often Feature…"
+    },
+    {
+      "type": "text",
+      "id": "style_button",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "style_button_url",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stylish Section",
+      "settings": {
+        "style_heading": "Stylish Ear Statements",
+        "style_content": "Refer To Contemporary Earring Designs That Embody Current Trends And Styles. These Earrings Often Feature…",
+        "style_button": "Shop Now"
+      }
+    }
+  ]
+}
+{% endschema %}

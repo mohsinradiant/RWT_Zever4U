@@ -1,0 +1,79 @@
+<section class="products-section pt-3 pb-5 NewArrivals">
+  <div class="container-xl custom-width"> 
+    {% if section.settings.product_heading %}
+    <h2 class="all_heading text-center">{{ section.settings.product_heading}}</h2>
+    {% endif %}
+    <div class="products-slider swiper mt-md-5 mt-3">
+      <div class="swiper-wrapper">
+        
+        {% for product in section.settings.product_list %}
+        <div class="swiper-slide">
+          <div class="product-card"> 
+            <!-- <a class="wishlist-icon" href="javascript:void(0);"><i class="fa-regular fa-heart"></i></a> <a class="product-image" href="#"><img src="images/product-5.jpg" alt=""></a> -->
+            {% render 'card-product-new',
+              card_product: product,
+              show_rating: section.settings.show_rating,
+              section_id: section.id,
+            %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Home Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Choose Products"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 25,
+      "step": 1,
+      "default": 4,
+      "label": "Product to Show"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show View All Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show Rating",
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Featured Products"
+    }
+  ]
+}
+{% endschema %}

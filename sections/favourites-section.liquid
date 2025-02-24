@@ -1,0 +1,111 @@
+<main class="main-content homepage-content">
+  <section class="Categorys-section">
+    <div class="container custom-width">
+      <div class="row">
+        <div class="col-md-4">
+          <p class="sub-heading">{{ section.settings.sub_heading }}</p>
+          <h3 class="all_heading">{{ section.settings.top_heading }}</h3>
+
+          <a href="{{ section.settings.button_url }}" class="btn-sm btn mt-3">{{ section.settings.button_label }}</a>
+        </div>
+        <div class="col-md-8">
+          <div class="row gy-3 gx-3">
+          
+
+            {% for block in section.blocks %}
+            <div class="col-md-4">
+              <div class="Category_box text-center">
+                <a href="{{ block.settings.category_url }}">
+                  {% if block.settings.category_image != blank %}
+                  <img
+                    src="{{ block.settings.category_image | img_url: 'medium' }}"
+                    alt="{{ block.settings.category_title }}"
+                  />
+                  {% endif %}
+                  <p>{{ block.settings.category_title }}</p>
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% schema %}
+{
+  "name": "Favourites Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "FIND YOUR FAVOURITES"
+    },
+    {
+      "type": "text",
+      "id": "top_heading",
+      "label": "Heading",
+      "default": "Add to your jewellery wardrobe"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "ALL CATEGORIES"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL",
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "category_image",
+          "label": "Category Image"
+        },
+        {
+          "type": "text",
+          "id": "category_title",
+          "label": "Category Title"
+        },
+        {
+          "type": "url",
+          "id": "category_url",
+          "label": "Category URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Favourites Section",
+      "category": "Custom",
+      "settings": {
+        "sub_heading": "FIND YOUR FAVOURITES",
+        "top_heading": "Add to your jewellery wardrobe",
+        "button_label": "ALL CATEGORIES",
+        "button_url": "/collections/all"
+      },
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

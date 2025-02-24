@@ -1,0 +1,67 @@
+<section class="Shopthem-section py-5 ">
+  <div class="container-xl custom-width">
+    <h3 class="all_heading text-center">{{ section.settings.them_heading }} </h3>
+    <div class="row gx-3 gy-3 mt-3">
+      <div class="accordian">
+        <ul>
+          {% for block in section.blocks %}
+          
+          <li>
+            <div class="image_title">
+              <h5>{{ block.settings.banner_title }}</h5>
+            </div>
+            <a href="{{ block.settings.banner_url }}">
+              <img src="{{ block.settings.banner_image | image_url }}" />
+            </a>
+          </li>
+          {% endfor %}
+
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Shop for them Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "them_heading",
+      "default": "Shop for them",
+      "label": "Heading"
+    },
+    
+  ],
+  "blocks": [
+    {
+      "type": "image_picker",
+      "name": "Add Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Select Image"
+        },
+        {
+          "type": "text",
+          "id": "banner_title",
+          "label": "Title",
+          "default": "For Queen"
+        },
+        {
+          "type": "url",
+          "id": "banner_url",
+          "label": "Collection URL",
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop for them Section"
+    }
+  ]
+}
+{% endschema %}

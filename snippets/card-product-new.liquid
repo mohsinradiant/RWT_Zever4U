@@ -1,0 +1,83 @@
+{%- if card_product and card_product != empty -%}
+  {%- liquid
+    assign ratio = 1
+    if card_product.featured_media and media_aspect_ratio == 'portrait'
+      assign ratio = 0.8
+    elsif card_product.featured_media and media_aspect_ratio == 'adapt'
+      assign ratio = card_product.featured_media.aspect_ratio
+    endif
+    if ratio == 0 or ratio == null
+      assign ratio = 1
+    endif
+  -%}
+ <script src="{{ 'wishlist-button.js' | asset_url }}" async></script> 
+   <div class="ratings position-absolute">
+     <!-- <i class="fa-solid fa-star stars text-brand"></i> 4.8 | <span class="light-text">186</span> -->
+     {% comment %} <button type="button" style="border: none;background: transparent;" data-product-handle="{{ card_product.handle }}" class="wishlist-btn"> <i class="fa-regular fa-heart"></i> </button> {% endcomment %}
+     {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
+        {% liquid
+          assign rating_decimal = 0
+          assign decimal = card_product.metafields.reviews.rating.value.rating | modulo: 1
+          if decimal >= 0.3 and decimal <= 0.7
+            assign rating_decimal = 0.5
+          elsif decimal > 0.7
+            assign rating_decimal = 1
+          endif
+        %}
+        <div
+          class="rating"
+          role="img"
+          aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: card_product.metafields.reviews.rating.value, rating_max: card_product.metafields.reviews.rating.value.scale_max }}"
+        >
+          <span
+            aria-hidden="true"
+            class="rating-star"
+            style="--rating: {{ card_product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ card_product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
+          ></span>
+        </div>
+        <p class="rating-text caption">
+          <span aria-hidden="true">
+            {{- card_product.metafields.reviews.rating.value }} /
+            {{ card_product.metafields.reviews.rating.value.scale_max -}}
+          </span>
+        </p>
+        <p class="rating-count caption">
+          <span aria-hidden="true">({{ card_product.metafields.reviews.rating_count }})</span>
+          <span class="visually-hidden">
+            {{- card_product.metafields.reviews.rating_count }}
+            {{ 'accessibility.total_reviews' | t -}}
+          </span>
+        </p>
+      {%- endif -%}
+   </div>
+   <!-- <a class="wishlist-icon" href="javascript:void(0);"><i class="fa-regular fa-heart"></i></a>  -->
+   <a class="product-image" href="{{ card_product.url }}">
+     {%- if card_product.featured_media -%}
+     <img
+        src="{{ card_product.featured_media | image_url}}"
+        alt="{{ card_product.featured_media.alt | escape }}"
+        {% unless lazy_load == false %}
+          loading="lazy"
+        {% endunless %}
+        width="auto"
+        height="auto"
+      >
+     {%- endif -%}
+   </a>
+   <div class="product-info py-3">
+    <p class="product-name">{{ card_product.title | escape }}</p>
+    <div class="product-price"> 
+      {{ card_product.price | money_with_currency }}
+      {%- if card_product.compare_at_price -%}
+      <del> {{ card_product.compare_at_price | money_with_currency }} </del>
+      {%- endif -%}
+    </div>
+   </div>
+   <div class="addtocart"> 
+    <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ card_product.variants.first.id }}">
+        <button type="submit" class="add-cart">Add to Cart</button>
+      </form>  
+   </div>
+
+{%- endif -%}

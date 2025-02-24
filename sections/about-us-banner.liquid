@@ -1,0 +1,85 @@
+<section class="about-us-top-banner inner-banner">
+  <img class="desktop-image" src="{{ section.settings.bg_image |  image_url  }}">
+  <img class="mobile-image" src="{{ section.settings.bg_image_mobile |  image_url  }}">
+  <div class="container h-100 custom-width">
+    <div class="hero-text ">
+      <h1 style="font-family: 'Canela', serif;" class="Banner-heading text-brand">
+        {{ section.settings.heading }}
+      </h1>
+      <p style="font-family:'Lato', sans-serif">{{ section.settings.subheading }}</p>
+    </div>
+  </div>
+</section>
+<style>
+  .about-us-top-banner {
+    position: relative !important;
+    background: transparent;
+    margin-top: -140px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .about-us-top-banner img {
+    position: absolute;
+    top: 0;
+    height: auto;
+    width: auto;
+    min-width: 100%;
+    z-index: -1;
+    min-height: 100%;
+  }
+  .desktop-image {
+    display: flex;
+    left: -28%;
+  }
+  .mobile-image {
+    display: none;
+  }
+  @media (max-width: 756px) {
+    .about-us-top-banner .Banner-heading,
+    .about-us-top-banner p {
+      text-align: center;
+      width: 100%;
+    }
+    .desktop-image {
+      display: none;
+    }
+    .mobile-image {
+      display: flex;
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "About Us Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Our Story",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "STUNNING, STYLISH AND WITHIN REACH",
+      "label": "subheading"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background Image Mobile"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us Banner"
+    }
+  ]
+}
+{% endschema %}

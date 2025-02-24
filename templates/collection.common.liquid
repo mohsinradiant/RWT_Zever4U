@@ -1,0 +1,47 @@
+<section
+  class=" inner-banner"
+  style="background-image: url({% if collection.metafields.custom.banner_image != blank %}{{ collection.metafields.custom.banner_image.value | image_url }}{% else %}{{ 'inner-banner-listing.jpg' | asset_url }}{% endif %});"
+>
+  <div class="container h-100 custom-width">
+    <div class="hero-text ">
+      <h1 class="Banner-heading text-brand">{{ collection.title }}</h1>
+      {% if collection.description %}
+        <p>{{ collection.description }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+<!-- ################################################################################ -->
+<!-- ################################################################################ -->
+<main class="common-collection-container page-width main-content homepage-content">
+  <section class="section-tbspacing">
+    <div class="fullbleed-wrapper">
+      <div class="container-fluid ps-lg-0">
+        <div class="content-row ">
+          <!-- FILTER SIDEBAR START -->
+          {% section 'collection-sidebar' %}
+
+          <!-- PRODUCT LIST START -->
+          <div class="listing-block">
+            <div class="row" id="product-list">
+              {% for product in collection.products %}
+                <div
+                  class="col-md-4 col-6 product-item"
+                  data-materials="
+                    {% for variant in product.variants %}
+                      {{ variant.options | join: ',' }}
+                    {% endfor %}
+                  "
+                >
+                  <div class="product-card">
+                    {% render 'card-product-new', card_product: product %}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

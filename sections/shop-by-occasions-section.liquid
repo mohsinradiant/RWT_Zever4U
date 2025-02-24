@@ -1,0 +1,56 @@
+<section class="ShopOccasions-section">
+    
+  <h2 class="all_heading text-center">{{ section.settings.occasions_heading }}</h2>
+  
+  <div class="Occasions-swiper swiper mt-md-5 mt-3">
+    <div class="swiper-wrapper">
+
+      {% for block in section.blocks %}
+          {% assign collection = block.settings.collection %}
+          {% if collection != blank %}
+          <div class="swiper-slide">
+            <a href="{{ collection.url }}">
+              <figure class="Occasions-block position-relative image-hover  overflow-hidden"> 
+                <img class="mx-auto d-block w-100" src="{{ collection.image | default: collection.products.first.featured_image | image_url }}" alt="{{ collection.title }}">
+                <div class="Occasions-text"> {{ collection.title }}</div>
+              </figure>
+            </a>
+          </div>
+          {% endif %}
+      {% endfor %}
+     
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Shop by Occasions Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "occasions_heading",
+      "default": "Shop by Occasions",
+      "label": "Heading"
+    },
+    
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Occasions Section"
+    }
+  ]
+}
+{% endschema %}

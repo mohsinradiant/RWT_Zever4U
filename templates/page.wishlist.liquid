@@ -1,0 +1,82 @@
+<section class="inner-banner" style="background-image: url({{ 'inner-banner-listing.jpg' | asset_url }});">
+  <div class="container h-100 custom-width">
+    <div class="hero-text ">
+      <h1 class="Banner-heading text-brand">Your Wishlist</h1>
+     </div>
+  </div>
+</section>
+<!-- ################################################################################ --> 
+<!-- ################################################################################ -->
+<main class="main-content homepage-content">
+  <section class="section-tbspacing">
+    <div class="fullbleed-wrapper">
+      <div class="container-fluid ps-lg-0">
+        <div class="content-row "> 
+           <div class="listing-block">
+              <div class="row" id="wishlist-products-container">Loading wishlist...</div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', async function () {
+    const wishlistContainer = document.getElementById('wishlist-products-container');
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    async function renderWishlist() {
+      wishlistContainer.innerHTML = '';
+
+      if (wishlist.length === 0) {
+        wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
+        return;
+      }
+
+      const productPromises = wishlist.map(handle =>
+        fetch(`/products/${handle}.js`).then(res => res.json())
+      );
+
+      const products = await Promise.all(productPromises);
+
+      products.forEach(product => {
+        wishlistContainer.innerHTML += `
+          <div class="col-md-3 col-6 wishlist-product" data-handle="${product.handle}">
+          <div class="product-card"> 
+              <button type="button" style="border: none;background: #fff;" class="remove-from-wishlist  wishlist-icon" data-handle="${product.handle}"> <i class="fa fa-trash"></i> </button>
+              <a class="product-image" href="${product.url}"><img src="${product.featured_image}" alt="${product.title}"></a>
+              <div class="product-info py-3">
+                <h6 class="product-name">${product.title}</h6>
+                <div class="product-price"> Rs. ${(product.price / 100).toFixed(2)}</div>
+              </div>
+              <div class="addtocart"> <a href="${product.url}" class="add-cart">Buy Now</a> </div>
+            </div>
+         </div>
+        `;
+      });
+    }
+
+    // Initial render
+    await renderWishlist();
+
+    // Remove from wishlist (Event Delegation)
+    wishlistContainer.addEventListener('click', async function (e) {
+      if (e.target.classList.contains('remove-from-wishlist')) {
+        const handleToRemove = e.target.dataset.handle;
+
+        // Update wishlist array in memory
+        wishlist = wishlist.filter(handle => handle !== handleToRemove);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+        // Re-render wishlist after removal
+        await renderWishlist();
+
+        // Optional: Update wishlist count in header
+        const wishlistCountElement = document.getElementById('wishlist-count');
+        if (wishlistCountElement) {
+          wishlistCountElement.innerText = wishlist.length;
+        }
+      }
+    });
+  });
+</script>
