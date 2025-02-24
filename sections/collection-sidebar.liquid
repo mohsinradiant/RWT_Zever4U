@@ -23,43 +23,6 @@
             </ul>
           </div>
         </div>
-        {% comment %}
-          <div class="filter-block">
-            <div class="filter-block-title h5">
-              Material <span><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="filter-block-body">
-              {% assign materials = '' %}
-
-              {% for product in collection.products %}
-                {% for variant in product.variants %}
-                  {% for option_name in product.options_with_values %}
-                    {% if option_name.name == 'Material' %}
-                      {% assign material_value = variant.options[forloop.index0] %}
-                      {% assign materials = materials | append: material_value | append: ',' %}
-                    {% endif %}
-                  {% endfor %}
-                {% endfor %}
-              {% endfor %}
-
-              {% assign materials = materials | split: ',' | uniq %}
-
-              {% for material in materials %}
-                {% unless material == '' %}
-                  <div class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input material-filter"
-                      id="material-{{ material | handle }}"
-                      value="{{ material }}"
-                    >
-                    <label class="custom-control-label" for="material-{{ material | handle }}">{{ material }}</label>
-                  </div>
-                {% endunless %}
-              {% endfor %}
-            </div>
-          </div>
-        {% endcomment %}
       </div>
     </div>
   </aside>
