@@ -80,7 +80,9 @@
               type="search"
               name="q"
               value="{{ search.terms | escape }}"
-              placeholder="{{ 'general.search.search' | t }}"
+              placeholder=""
+              onfocus="hidePlaceholder()"
+              onblur="showPlaceholder()"
               {%- if settings.predictive_search_enabled -%}
                 role="combobox"
                 aria-expanded="false"
@@ -94,6 +96,56 @@
                 spellcheck="false"
               {%- endif -%}
             >
+
+            <script>
+              const placeholderText = document.querySelector('.placeholder-text');
+              const searchInput = document.getElementById('search-input');
+
+              const words = ['Rings', 'Earrings', 'Pendants', 'Necklaces', 'Bracelets'];
+              let wordIndex = 0;
+              let charIndex = 0;
+              let typingSpeed = 120;
+              let erasingSpeed = 80;
+              let delayBetweenWords = 1500;
+              let isErasing = false;
+
+              function typeEffect() {
+                if (!isErasing) {
+                  if (charIndex < words[wordIndex].length) {
+                    placeholderText.textContent += words[wordIndex][charIndex];
+                    charIndex++;
+                    setTimeout(typeEffect, typingSpeed);
+                  } else {
+                    setTimeout(() => {
+                      isErasing = true;
+                      typeEffect();
+                    }, delayBetweenWords);
+                  }
+                } else {
+                  if (charIndex > 0) {
+                    placeholderText.textContent = words[wordIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(typeEffect, erasingSpeed);
+                  } else {
+                    isErasing = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(typeEffect, typingSpeed);
+                  }
+                }
+              }
+
+              function hidePlaceholder() {
+                document.querySelector('.placeholder-animation').style.opacity = '0';
+              }
+
+              function showPlaceholder() {
+                if (!searchInput.value) {
+                  document.querySelector('.placeholder-animation').style.opacity = '1';
+                }
+              }
+
+              typeEffect();
+            </script>
             <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
             <input type="hidden" name="options[prefix]" value="last">
             <button
