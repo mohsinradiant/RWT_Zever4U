@@ -39,8 +39,41 @@
         {%- else -%}
           <search-form class="search-modal__form">
         {%- endif -%}
+        <style>
+          .search__input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            outline: none;
+          }
+
+          .placeholder-animation {
+            position: relative;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            user-select: none;
+          }
+
+          .placeholder-text {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid rgba(0, 0, 0, 0.5);
+            animation: blinkCursor 0.8s steps(2, start) infinite;
+          }
+
+          @keyframes blinkCursor {
+            50% {
+              border-color: transparent;
+            }
+          }
+        </style>
         <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
-          <div class="field">
+          <div class="field" style="position: relative; display: inline-block;">
+            <span class="placeholder-animation"> Search for <span class="placeholder-text"></span> </span>
+
             <input
               class="search__input field__input"
               id="{{ input_id }}"
