@@ -3,30 +3,36 @@
     <div class="filters-sidebar">
       <h4 class="filter-header h4">Filters</h4>
       <div class="filter-body">
+        <!-- Price Range Filter -->
         <div class="filter-block">
-          <div class="filter-block-title h5">
-            {{ section.settings.collection_heading }}
-            <span><i class="fa-solid fa-plus"></i></span>
-          </div>
-          <div class="filter-block-body" style="display: block;">
-            {{ template.suffix }}
-            <ul>
-              {% for collection in section.settings.collections_list %}
-                <li
-                  {% if collection.handle == template.suffix %}
-                    class="active"
-                  {% endif %}
-                >
-                  <a href="{{ collection.url }}">{{ collection.title }}</a>
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
+          <div class="filter-block-title h5">Price</div>
+          <input type="range" id="price-slider" min="0" max="10000" step="100" value="10000">
+          <span id="price-value">₹0 - ₹10,000</span>
+        </div>
+
+        <!-- Gender Filter -->
+        <div class="filter-block">
+          <div class="filter-block-title h5">Gender</div>
+          <label><input type="checkbox" class="gender-filter" value="Men"> Men</label>
+          <label><input type="checkbox" class="gender-filter" value="Women"> Women</label>
+          <label><input type="checkbox" class="gender-filter" value="Kids"> Kids</label>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-block">
+          <div class="filter-block-title h5">Categories</div>
+          <label><input type="checkbox" class="category-filter" value="Earring"> Earrings</label>
+          <label><input type="checkbox" class="category-filter" value="Bracelet"> Bracelets</label>
+          <label><input type="checkbox" class="category-filter" value="Ring"> Rings</label>
+          <label><input type="checkbox" class="category-filter" value="Toe Ring"> Toe Rings</label>
+          <label><input type="checkbox" class="category-filter" value="Accessory"> Accessories</label>
+          <label><input type="checkbox" class="category-filter" value="Wedding"> Wedding</label>
         </div>
       </div>
     </div>
   </aside>
 </div>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const filterHeader = document.querySelector('.filter-header');
@@ -105,6 +111,49 @@
     }
   }
 </style>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const priceSlider = document.getElementById('price-slider');
+    const priceValue = document.getElementById('price-value');
+    const genderFilters = document.querySelectorAll('.gender-filter');
+    const categoryFilters = document.querySelectorAll('.category-filter');
+    const products = document.querySelectorAll('#product-list .product-item');
+
+    // Update price label
+    priceSlider.addEventListener('input', function () {
+      priceValue.innerText = `₹0 - ₹${priceSlider.value}`;
+      filterProducts();
+    });
+
+    // Add event listeners to checkboxes
+    [...genderFilters, ...categoryFilters].forEach((checkbox) => {
+      checkbox.addEventListener('change', filterProducts);
+    });
+
+    function filterProducts() {
+      const maxPrice = parseInt(priceSlider.value);
+      const selectedGenders = [...genderFilters].filter((cb) => cb.checked).map((cb) => cb.value.toLowerCase());
+      const selectedCategories = [...categoryFilters].filter((cb) => cb.checked).map((cb) => cb.value.toLowerCase());
+
+      products.forEach((product) => {
+        const productPrice = parseInt(product.getAttribute('data-price'));
+        const productTags = product.getAttribute('data-tags').toLowerCase().split(',');
+
+        const matchesPrice = productPrice <= maxPrice;
+        const matchesGender =
+          selectedGenders.length === 0 || selectedGenders.some((gender) => productTags.includes(gender));
+        const matchesCategory =
+          selectedCategories.length === 0 || selectedCategories.some((category) => productTags.includes(category));
+
+        if (matchesPrice && matchesGender && matchesCategory) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    }
+  });
+</script>
 
 {% schema %}
 {
