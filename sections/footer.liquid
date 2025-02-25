@@ -1,132 +1,148 @@
 <div class="usps-section py-5">
   <div class="container-xl custom-width">
     <div class="row">
-
       {% for block in section.blocks %}
-      <div class="col-lg-3 usp-block py-3">
-        <div class="d-flex align-items-center">
-          <div class="flex-shrink-0">
-             <img class="img-fluid mx-auto d-block " src="{{ block.settings.icon | image_url }}" alt="{{ block.settings.usps_heading }}">
-          </div>
-          <div class="flex-grow-1 ms-3">
-            <div class=" fs15 mb-0 fw600">{{ block.settings.usps_heading }}</div>
+        <div class="col-lg-3 usp-block py-3">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <img
+                class="img-fluid mx-auto d-block "
+                src="{{ block.settings.icon | image_url }}"
+                alt="{{ block.settings.usps_heading }}"
+              >
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <div class=" fs15 mb-0 fw600">{{ block.settings.usps_heading }}</div>
               <p class="mb-0 fs12 text-black-50">{{ block.settings.usps_subheading }}</p>
             </div>
           </div>
-       </div>
+        </div>
       {%- endfor -%}
     </div>
   </div>
 </div>
-<footer class="footer-main"> 
+<footer class="footer-main">
   <!-- ################################################################################ -->
   <div class="container custom-width">
     <div class="row">
       <div class="col-md-4 footer-about pe-md-5">
         {%- if section.settings.logo != blank -%}
-        <figure class="footerlogo">
-          <img src="{{ section.settings.footer_logo | image_url }}" class="img-fluid">
-        </figure>
+          <figure class="footerlogo">
+            <img src="{{ section.settings.footer_logo | image_url }}" class="img-fluid">
+          </figure>
         {%- endif -%}
-        
+
         {{ section.settings.footer_content }}
-       
+
         <div class="mt-1 mt-md-4 headings">Follow us on</div>
-        <p class="social-handles"> 
+        <p class="social-handles">
           {%- if settings.social_facebook_link != blank -%}
-          <a href="{{ settings.social_facebook_link }}" target="_blank"><i class="fab fa-facebook"></i></a> 
+            <a href="{{ settings.social_facebook_link }}" target="_blank"><i class="fab fa-facebook"></i></a>
           {%- endif -%}
-          {%- if settings.social_twitter_link != blank -%}
-          <a href="{{ settings.social_twitter_link }}" target="_blank"><i class="fa-brands fa-x-twitter"></i></a> 
+          {% comment %}
+            {%- if settings.social_twitter_link != blank -%}
+            <a href="{{ settings.social_twitter_link }}" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            {%- endif -%}
+            {%- if settings.social_linkedin_link != blank -%}
+            <a href="{{ settings.social_linkedin_link }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+            {%- endif -%}
+          {% endcomment %}
+          {%- if settings.social_instagram_link != blank -%}
+            <a href="{{ settings.social_instagram_link }}" target="_blank"><i class="fab fa-instagram"></i></a>
           {%- endif -%}
-          {%- if settings.social_linkedin_link != blank -%}
-          <a href="{{ settings.social_linkedin_link }}" target="_blank"><i class="fab fa-linkedin"></i></a> 
-          {%- endif -%}
+
           {%- if settings.social_youtube_link != blank -%}
-          <a href="{{ settings.social_youtube_link }}" target="_blank"><i class="fab fa-youtube"></i></a> 
+            <a href="{{ settings.social_youtube_link }}" target="_blank"><i class="fab fa-youtube"></i></a>
           {%- endif -%}
         </p>
-        
       </div>
-      
-      {%- if section.settings.menu_1 -%} 
-      <div class="col-md-2 footer-links">
-        <div class="headings">{{ section.settings.menu_1_title }}</div>
-        <ul>
-           {% for link in section.settings.menu_1.links %}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-           {% endfor %}
-        </ul>
-      </div>
+
+      {%- if section.settings.menu_1 -%}
+        <div class="col-md-2 footer-links">
+          <div class="headings">{{ section.settings.menu_1_title }}</div>
+          <ul>
+            {% for link in section.settings.menu_1.links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       {%- endif -%}
-      
-      {%- if section.settings.menu_2 -%} 
-      <div class="col-md-2 footer-links">
-        <div class="headings">{{ section.settings.menu_2_title }}</div>
-        <ul>
-           {% for link in section.settings.menu_2.links %}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-           {% endfor %}
-        </ul>
-      </div>
+
+      {%- if section.settings.menu_2 -%}
+        <div class="col-md-2 footer-links">
+          <div class="headings">{{ section.settings.menu_2_title }}</div>
+          <ul>
+            {% for link in section.settings.menu_2.links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       {%- endif -%}
-      
+
       <div class="col-md-4 contact-info">
         <div class="headings">Contact Info</div>
-        
-        {%- if section.settings.office_location -%} 
-        <div class="info-block mb-3 mb-md-4">
-          <div class="d-flex">
-            <div class="flex-shrink-0 me-4"> <img src="{{ section.settings.map_icon | image_url }}" alt=""> </div>
-            <div class="flex-grow-1">
-              <div class="mb-2 headings">OFFICE LOCATION</div>
-              {{ section.settings.office_location }}
+
+        {%- if section.settings.office_location -%}
+          <div class="info-block mb-3 mb-md-4">
+            <div class="d-flex">
+              <div class="flex-shrink-0 me-4"><img src="{{ section.settings.map_icon | image_url }}" alt=""></div>
+              <div class="flex-grow-1">
+                <div class="mb-2 headings">OFFICE LOCATION</div>
+                {{ section.settings.office_location }}
+              </div>
             </div>
           </div>
-        </div>
         {%- endif -%}
 
         {%- if section.settings.contact_numbers -%}
-        <div class="info-block mb-3 mb-md-4">
-          <div class="d-flex">
-            <div class="flex-shrink-0 me-4"> <img src="{{ section.settings.phone_icon | image_url }}" alt=""> </div>
-            <div class="flex-grow-1">
-              <div class="mb-2 headings">CONTACT NO.</div>
-              {{ section.settings.contact_numbers }}
+          <div class="info-block mb-3 mb-md-4">
+            <div class="d-flex">
+              <div class="flex-shrink-0 me-4"><img src="{{ section.settings.phone_icon | image_url }}" alt=""></div>
+              <div class="flex-grow-1">
+                <div class="mb-2 headings">CONTACT NO.</div>
+                {{ section.settings.contact_numbers }}
+              </div>
             </div>
           </div>
-        </div>
         {%- endif -%}
 
         {%- if section.settings.official_emails -%}
-        <div class="info-block mb-3 mb-md-4">
-          <div class="d-flex">
-            <div class="flex-shrink-0 me-4"> <img src="{{ section.settings.email_icon | image_url }}" alt=""> </div>
-            <div class="flex-grow-1">
-              <div class="mb-2 headings">OFFICIAL EMAIL</div>
-              {{ section.settings.official_emails }}
+          <div class="info-block mb-3 mb-md-4">
+            <div class="d-flex">
+              <div class="flex-shrink-0 me-4"><img src="{{ section.settings.email_icon | image_url }}" alt=""></div>
+              <div class="flex-grow-1">
+                <div class="mb-2 headings">OFFICIAL EMAIL</div>
+                {{ section.settings.official_emails }}
+              </div>
             </div>
           </div>
-        </div>
         {%- endif -%}
-        
       </div>
     </div>
     <hr class="bdr">
     <div class="Subscribe-sec py-2">
       <div class="row justify-content-between align-items-center">
-      <div class="col-md-5">   
-       <form class="subscribe_form">
+        <div class="col-md-5">
+          <form class="subscribe_form">
             <div class="input-group">
-               <input type="text" class="form-control" name="email" placeholder="Enter your email">
-               <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">subscribe</button>
-               </span>
+              <input type="text" class="form-control" name="email" placeholder="Enter your email">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">subscribe</button>
+              </span>
             </div>
           </form>
-      </div>
-      
-      <div class="col-md-auto"><span class="text-white fs16 pe-3"> Need more information, Write to us now <i class="fa-solid fa-caret-right ps-2"></i> </span> <a href="#" class="btn btn-secondary"> CONTACT US</a></div>
+        </div>
+
+        <div class="col-md-auto">
+          <span class="text-white fs16 pe-3">
+            Need more information, Write to us now <i class="fa-solid fa-caret-right ps-2"></i>
+          </span>
+          <a href="#" class="btn btn-secondary"> CONTACT US</a>
+        </div>
       </div>
     </div>
     <hr class="bdr">
@@ -134,18 +150,20 @@
       <div class="col-sm-auto copyrights">
         <p class="mb-0">© Copyright 2025 zever4u.com - All Rights Reserved</p>
       </div>
-      <div class="col-sm-auto gototop"> <a class="gotoTop" href="#"> <i class="fa-solid fa-arrow-up"></i></a> </div>
+      <div class="col-sm-auto gototop">
+        <a class="gotoTop" href="#"> <i class="fa-solid fa-arrow-up"></i></a>
+      </div>
     </div>
   </div>
 </footer>
 {% schema %}
-  {
+{
   "name": "Footer",
   "settings": [
     {
       "type": "image_picker",
       "id": "footer_logo",
-      "label": "Footer Logo",
+      "label": "Footer Logo"
     },
     {
       "type": "richtext",
@@ -207,7 +225,7 @@
       "id": "official_emails",
       "label": "Official Emails",
       "default": "<p>Emails here...</p>"
-    },
+    }
   ],
   "blocks": [
     {
@@ -222,19 +240,19 @@
         {
           "type": "text",
           "id": "usps_heading",
-          "label": "Heading",
+          "label": "Heading"
         },
         {
           "type": "text",
           "id": "usps_subheading",
-          "label": "Sub Heading",
+          "label": "Sub Heading"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Footer",
+      "name": "Footer"
     }
   ]
 }

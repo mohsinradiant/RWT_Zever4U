@@ -1,28 +1,28 @@
 <section class="products-section py-5">
-    <div class="container-xl custom-width">
-      <h2 class="all_heading text-center">{{ section.settings.trending_heading}}</h2>
-      <div class="products-slider swiper mt-md-5 mt-3">
-        <div class="swiper-wrapper">
-          
-          {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+  <div class="container-xl custom-width">
+    <h2 class="all_heading text-center">{{ section.settings.trending_heading }}</h2>
+    <div class="products-slider swiper mt-md-5 mt-3">
+      <div class="swiper-wrapper">
+        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
           <div class="swiper-slide">
             <div class="product-card">
-              {% render 'card-product-new',
+              {% render 'card-product',
                 card_product: product,
                 show_rating: section.settings.show_rating,
                 section_id: section.id,
+                show_secondary_image: true,
+                quick_add: 'standard'
               %}
-              </div>
+            </div>
           </div>
-          {%- endfor -%}
-
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        {%- endfor -%}
       </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
     </div>
-  </section>
+  </div>
+</section>
 {% schema %}
 {
   "name": "Trending Section",
@@ -66,7 +66,7 @@
       "type": "checkbox",
       "id": "show_rating",
       "default": false,
-      "label": "Show Rating",
+      "label": "Show Rating"
     }
   ],
   "presets": [

@@ -2085,7 +2085,42 @@ div:not([class])>.wf-floating-launcher {
   display: none !important;
 }
 
+.card__content {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.card__content h3,
+.card__content a,
+.card__content span {
+  font-family: 'Lato' !important;
+}
+
+.card__content a {
+  font-size: 1.6rem;
+}
+
+.card__content .price__regular .price-item--regular {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 0;
+  letter-spacing: 0;
+}
+
 @media(max-width:756px) {
+  .collection-hero-text-container {
+    position: relative;
+  }
+
+  .inner-banner .hero-text {
+    align-items: center;
+    height: fit-content;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .header-top .col-md-4 {
     -webkit-box-pack: center;
     -ms-flex-pack: center;

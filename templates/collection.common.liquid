@@ -2,7 +2,7 @@
   class=" inner-banner"
   style="background-image: url({% if collection.metafields.custom.banner_image != blank %}{{ collection.metafields.custom.banner_image.value | image_url }}{% else %}{{ 'inner-banner-listing.jpg' | asset_url }}{% endif %});"
 >
-  <div class="container h-100 custom-width">
+  <div class="collection-hero-text-container container h-100 custom-width">
     <div class="hero-text ">
       <h1 class="Banner-heading text-brand">{{ collection.title }}</h1>
       {% if collection.description %}
