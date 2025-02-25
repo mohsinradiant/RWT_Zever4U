@@ -2093,7 +2093,7 @@ div:not([class])>.wf-floating-launcher {
 .card__content h3,
 .card__content a,
 .card__content span {
-  font-family: 'Canela' !important;
+  font-family: 'Lato' !important;
 }
 
 @media(max-width:756px) {
