@@ -2086,9 +2086,19 @@ div:not([class])>.wf-floating-launcher {
 }
 
 @media(max-width:756px) {
-  .inner-banner .hero-text{
-    align-items: center;
+  .collection-hero-text-container {
+    position: relative;
   }
+
+  .inner-banner .hero-text {
+    align-items: center;
+    height: fit-content;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .header-top .col-md-4 {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
