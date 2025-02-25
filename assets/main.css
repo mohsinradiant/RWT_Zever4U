@@ -2096,6 +2096,10 @@ div:not([class])>.wf-floating-launcher {
   font-family: 'Lato' !important;
 }
 
+.card__content a {
+  font-size: 1.6rem;
+}
+
 @media(max-width:756px) {
   .collection-hero-text-container {
     position: relative;
