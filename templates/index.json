@@ -148,6 +148,12 @@
     "shop_by_occasions_section": {
       "type": "shop-by-occasions-section",
       "blocks": {
+        "collection_88NE7g": {
+          "type": "collection",
+          "settings": {
+            "collection": "birthdays"
+          }
+        },
         "collection_GNRn6d": {
           "type": "collection",
           "settings": {
@@ -174,6 +180,7 @@
         }
       },
       "block_order": [
+        "collection_88NE7g",
         "collection_GNRn6d",
         "collection_xQf9nj",
         "collection_Fdm7nD",
