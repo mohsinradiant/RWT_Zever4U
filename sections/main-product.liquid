@@ -97,12 +97,20 @@
                   <p class="product-info-content" style="display: none;">{{ product.description }}</p>
                 </div>
               {%- endif -%}
-              {% if product.metafields.custom.insidethebox %}
-                <div class="product-info-block transition">
-                  <h5 class="product-info-header body-font transition">In The Box <i class="fa fa-angle-down"></i></h5>
-                  {{ product.metafields.custom.insidethebox | metafield_tag }}
-                </div>
-              {%- endif -%}
+              {% comment %} {% if product.metafields.custom.insidethebox %} {% endcomment %}
+              <div class="product-info-block transition">
+                <h5 class="product-info-header body-font transition">In the box<i class="fa fa-angle-down"></i></h5>
+                {% comment %} {{ product.metafields.custom.insidethebox | metafield_tag }} {% endcomment %}
+                <p class="product-info-content">
+                  1)An environment friendly sustainable cardboard box.<br>
+                  2)Silver Polishing Cloth.<br>
+                  3)Thankyou Scratch Coupon Card<br>
+                  4)Safety Tips Card<br>
+                  5)Authenticity Certificate<br>
+                  6)Sterling Silver Jewellery Piece That You Order<br>
+                </p>
+              </div>
+              {% comment %} {%- endif -%} {% endcomment %}
               {% if product.metafields.custom.care_instructions != blank %}
                 <div class="product-info-block transition">
                   <h5 class="product-info-header body-font transition">
