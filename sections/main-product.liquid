@@ -107,18 +107,26 @@
                   3) Thankyou Scratch Coupon Card<br>
                   4) Safety Tips Card<br>
                   5) Authenticity Certificate<br>
-                  6) Sterling Silver Jewellery Piece That You Order<br>
+                  6) Sterling Silver Jewellery Piece That You Order
                 </p>
               </div>
               {% comment %} {%- endif -%} {% endcomment %}
-              {% if product.metafields.custom.care_instructions != blank %}
-                <div class="product-info-block transition">
-                  <h5 class="product-info-header body-font transition">
-                    Care Instructions <i class="fa fa-angle-down"></i>
-                  </h5>
-                  {{ product.metafields.custom.care_instructions | metafield_tag }}
-                </div>
-              {%- endif -%}
+              {% comment %} {% if product.metafields.custom.care_instructions != blank %} {% endcomment %}
+              <div class="product-info-block transition">
+                <h5 class="product-info-header body-font transition">
+                  Care Instructions <i class="fa fa-angle-down"></i>
+                </h5>
+                <p class="product-info-content">
+                  1) Avoid direct contact with perfume, body lotion and makeup.<br>
+                  2) Avoid direct sunlight and humidity wherever possible<br>
+                  3) Remove jewellery when swimming, bathing and exercising<br>
+                  4) Remove jewellery before going to bed<br>
+                  5) Regularly clean with a silver polishing cloth<br>
+                  6) Store jewellery in it’s original box to prevent scratching and tangling
+                </p>
+                {% comment %} {{ product.metafields.custom.care_instructions | metafield_tag }} {% endcomment %}
+              </div>
+              {% comment %} {%- endif -%} {% endcomment %}
               {% if product.metafields.custom.shipping_return != blank %}
                 <div class="product-info-block transition">
                   <h5 class="product-info-header body-font transition">
