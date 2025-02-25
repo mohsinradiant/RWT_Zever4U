@@ -2086,6 +2086,9 @@ div:not([class])>.wf-floating-launcher {
 }
 
 @media(max-width:756px) {
+  .inner-banner .hero-text{
+    align-items: center;
+  }
   .header-top .col-md-4 {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
