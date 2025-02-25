@@ -2100,6 +2100,13 @@ div:not([class])>.wf-floating-launcher {
   font-size: 1.6rem;
 }
 
+.card__content .price__regular .price-item--regular {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 0;
+  letter-spacing: 0;
+}
+
 @media(max-width:756px) {
   .collection-hero-text-container {
     position: relative;
