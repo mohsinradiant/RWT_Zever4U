@@ -2084,7 +2084,10 @@ button {}
 div:not([class])>.wf-floating-launcher {
   display: none !important;
 }
-
+.card__content{
+  display: flex !important;
+  flex-direction: column !important;
+}
 @media(max-width:756px) {
   .collection-hero-text-container {
     position: relative;

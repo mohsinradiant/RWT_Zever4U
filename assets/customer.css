@@ -11,10 +11,6 @@
     max-width: 47.8rem;
   }
 }
-.card__content{
-  display: flex !important;
-  flex-direction: column !important;
-}
 .customer > h1,
 .customer__title {
   margin-top: 0;
