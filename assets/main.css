@@ -2084,10 +2084,18 @@ button {}
 div:not([class])>.wf-floating-launcher {
   display: none !important;
 }
-.card__content{
+
+.card__content {
   display: flex !important;
   flex-direction: column !important;
 }
+
+.card__content h3,
+.card__content a,
+.card__content span {
+  font-family: 'Canela' !important;
+}
+
 @media(max-width:756px) {
   .collection-hero-text-container {
     position: relative;
