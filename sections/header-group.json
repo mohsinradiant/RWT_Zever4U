@@ -39,7 +39,6 @@
     },
     "header": {
       "type": "header",
-      "disabled": true,
       "settings": {
         "location_text": "Location",
         "store_email": "support@zever4u.com",
