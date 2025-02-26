@@ -1648,6 +1648,8 @@ button {}
   letter-spacing: 3px;
   font-size: 40px;
   text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'lato', sans-serif;
 }
 
 .filter-bg {
@@ -2144,8 +2146,9 @@ div:not([class])>.wf-floating-launcher {
   }
 
   .Banner-heading {
-    font-size: 3.5rem;
-  }
+    font-size: 4rem;
+    text-align: center;
+}
 
   .inner-banner .hero-text {
     width: 90%;
