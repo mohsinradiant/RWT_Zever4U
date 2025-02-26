@@ -388,7 +388,7 @@
 <style>
   .zoom-box {
     position: absolute;
-    width: 200px;
+    width: 200px; /* Zoom box size */
     height: 200px;
     border: 2px solid #000;
     overflow: hidden;
@@ -396,7 +396,6 @@
     pointer-events: none;
     z-index: 10;
   }
-
   .zoom-box img {
     position: absolute;
     width: 400%;
@@ -429,18 +428,21 @@
 
       activeImage.addEventListener('mousemove', function (e) {
         const rect = activeImage.getBoundingClientRect();
-        const offsetX = e.clientX - rect.left;
-        const offsetY = e.clientY - rect.top;
+        const offsetX = e.clientX - rect.left; // Cursor position inside the image (X)
+        const offsetY = e.clientY - rect.top; // Cursor position inside the image (Y)
 
-        const zoomFactor = 4; // Adjust zoom level
+        const zoomFactor = 3; // Adjust zoom level
+        const zoomBoxSize = 200; // Keep same as CSS width/height
 
         // Position zoom box near cursor
-        zoomBox.style.left = `${e.pageX + 20}px`;
-        zoomBox.style.top = `${e.pageY + 20}px`;
+        zoomBox.style.left = `${e.pageX + 15}px`;
+        zoomBox.style.top = `${e.pageY - zoomBoxSize / 2}px`; // Center it over cursor
 
-        // Move zoomed image inside zoom box
-        zoomBox.querySelector('img').style.left = `-${offsetX * zoomFactor}px`;
-        zoomBox.querySelector('img').style.top = `-${offsetY * zoomFactor}px`;
+        // Calculate background movement
+        const zoomImg = zoomBox.querySelector('img');
+        zoomImg.style.transform = `translate(-${offsetX * zoomFactor - zoomBoxSize / 2}px, -${
+          offsetY * zoomFactor - zoomBoxSize / 2
+        }px) scale(${zoomFactor})`;
       });
 
       activeImage.addEventListener('mouseleave', function () {
