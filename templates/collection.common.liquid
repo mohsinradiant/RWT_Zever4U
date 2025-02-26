@@ -7,7 +7,7 @@
   >
   <img
     class="mobile_image"
-    src="{% if collection.metafields.custom.banner_image == blank %}https://cdn.shopify.com/s/files/1/0597/5080/9671/files/for-mobile.jpg?v=1740551086{% endif %}"
+    src="{% if collection.metafields.custom.mobile_banner_image != blank %}{{ collection.metafields.custom.mobile_banner_image.value | image_url }}{% else %}https://cdn.shopify.com/s/files/1/0597/5080/9671/files/for-mobile.jpg?v=1740551086{% endif %}"
   >
   <div class="collection-hero-text-container container h-100 custom-width">
     <div class="hero-text ">
