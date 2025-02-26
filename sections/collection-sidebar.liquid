@@ -137,7 +137,7 @@
         let max = Math.min(min + step, maxPrice);
         let button = document.createElement('button');
         button.classList.add('price-button');
-        button.innerText = `₹${min} - ₹${max}`;
+        button.innerText = `₹0 - ₹${max}`;
         button.setAttribute('data-min', min);
         button.setAttribute('data-max', max);
 
@@ -232,7 +232,7 @@
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background 0.3s;
+    transition: all 0.3s;
   }
   .price-button:hover {
     background: #ddd;
