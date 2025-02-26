@@ -1592,6 +1592,7 @@ button {}
   background-size: cover;
   position: relative;
 }
+
 .inner-banner img {
   position: absolute;
   top: 0;
@@ -1599,6 +1600,25 @@ button {}
   height: auto;
   z-index: -1;
 }
+
+.inner-banner .desktop_image {
+  display: flex;
+}
+
+.inner-banner .mobile_image {
+  display: none;
+}
+
+@media(max-width:756px) {
+  .inner-banner .desktop_image {
+    display: none;
+  }
+
+  .inner-banner .mobile_image {
+    display: flex;
+  }
+}
+
 .inner-banner .hero-text {
   display: -webkit-box;
   display: -ms-flexbox;
