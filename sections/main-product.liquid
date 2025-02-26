@@ -405,6 +405,11 @@
 </style>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    // Check if device supports hover (cursor-based input)
+    if (!window.matchMedia('(hover: hover)').matches) {
+      return; // Stop script on touch devices
+    }
+
     const carouselInner = document.getElementById('carousel-inner');
 
     function updateZoomImage() {
