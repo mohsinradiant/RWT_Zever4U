@@ -1586,6 +1586,7 @@ button {}
 /*###################___________LISTING PAGE ___________######################*/
 .inner-banner {
   height: auto;
+  aspect-ratio: 1280/333;
   background-color: #fdfbf5;
   background-repeat: no-repeat !important;
   background-position: top center !important;
