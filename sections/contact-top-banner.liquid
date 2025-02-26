@@ -13,11 +13,16 @@
   </div>
 </section>
 <style>
-  .contact_desktop_image > .inner-banner {
+  .inner-banner:has(.contact_desktop_image) {
     display: flex;
     width: 100%;
     height: auto;
     aspect-ratio: 1280/500;
+    overflow: hidden;
+  }
+  .contact_desktop_image {
+    width: 100%;
+    height: auto;
   }
 </style>
 {% schema %}
