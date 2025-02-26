@@ -39,11 +39,16 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "contact_page_map_gFKHE7": {
+      "type": "contact-page-map",
+      "settings": {}
     }
   },
   "order": [
     "contact_top_banner_RHNK77",
     "contact_page_form_custom_cQHFCM",
+    "contact_page_map_gFKHE7",
     "main",
     "form"
   ]
