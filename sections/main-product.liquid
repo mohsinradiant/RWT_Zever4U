@@ -388,18 +388,19 @@
 <style>
   .zoom-box {
     position: absolute;
-    width: 200px; /* Zoom box size */
+    width: 200px; /* Adjust based on requirement */
     height: 200px;
     border: 2px solid #000;
     overflow: hidden;
     display: none;
     pointer-events: none;
     z-index: 10;
+    background-color: white;
   }
+
   .zoom-box img {
     position: absolute;
-    width: 400%;
-    height: auto;
+    will-change: transform; /* Optimize performance */
   }
 </style>
 <script>
@@ -411,14 +412,14 @@
 
       if (!activeImage) return;
 
-      // Create zoom box if not exists
+      // Create zoom box if it doesn't exist
       let zoomBox = document.querySelector('.zoom-box');
       if (!zoomBox) {
         zoomBox = document.createElement('div');
         zoomBox.classList.add('zoom-box');
 
         const zoomImg = document.createElement('img');
-        zoomImg.src = activeImage.src; // Use same image
+        zoomImg.src = activeImage.src; // Same image source
 
         zoomBox.appendChild(zoomImg);
         document.body.appendChild(zoomBox);
@@ -428,21 +429,29 @@
 
       activeImage.addEventListener('mousemove', function (e) {
         const rect = activeImage.getBoundingClientRect();
-        const offsetX = e.clientX - rect.left; // Cursor position inside the image (X)
-        const offsetY = e.clientY - rect.top; // Cursor position inside the image (Y)
+        const offsetX = e.clientX - rect.left; // X position inside image
+        const offsetY = e.clientY - rect.top; // Y position inside image
 
-        const zoomFactor = 3; // Adjust zoom level
+        const zoomFactor = 3; // Zoom level
         const zoomBoxSize = 200; // Keep same as CSS width/height
 
         // Position zoom box near cursor
-        zoomBox.style.left = `${e.pageX + 15}px`;
-        zoomBox.style.top = `${e.pageY - zoomBoxSize / 2}px`; // Center it over cursor
+        zoomBox.style.left = `${e.pageX + 20}px`;
+        zoomBox.style.top = `${e.pageY - zoomBoxSize / 2}px`;
 
-        // Calculate background movement
-        const zoomImg = zoomBox.querySelector('img');
-        zoomImg.style.transform = `translate(-${offsetX * zoomFactor - zoomBoxSize / 2}px, -${
-          offsetY * zoomFactor - zoomBoxSize / 2
-        }px) scale(${zoomFactor})`;
+        // Calculate background movement (Exact cursor tracking)
+        const imgWidth = activeImage.naturalWidth;
+        const imgHeight = activeImage.naturalHeight;
+        const boxImg = zoomBox.querySelector('img');
+
+        boxImg.style.width = `${imgWidth * zoomFactor}px`;
+        boxImg.style.height = `${imgHeight * zoomFactor}px`;
+
+        // Move zoomed image inside zoom box (accurate positioning)
+        const moveX = (offsetX / rect.width) * imgWidth * zoomFactor - zoomBoxSize / 2;
+        const moveY = (offsetY / rect.height) * imgHeight * zoomFactor - zoomBoxSize / 2;
+
+        boxImg.style.transform = `translate(-${moveX}px, -${moveY}px)`;
       });
 
       activeImage.addEventListener('mouseleave', function () {
