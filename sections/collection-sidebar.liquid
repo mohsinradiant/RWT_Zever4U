@@ -91,15 +91,36 @@
   document.addEventListener('DOMContentLoaded', function () {
     const priceSlider = document.getElementById('price-slider');
     const priceValue = document.getElementById('price-value');
-    const priceButtonsContainer = document.getElementById('price-buttons');
     const products = document.querySelectorAll('#product-list .product-item');
+    const genderContainer = document.getElementById('gender-filters');
+    const categoryContainer = document.getElementById('category-filters');
 
     let maxPrice = 0;
+    let genderCount = {};
+    let categoryCount = {};
 
-    // Get max price dynamically
+    // Check if products exist
+    if (!products.length) {
+      console.warn('No products found.');
+      return;
+    }
+
+    // Get max price and count filters dynamically
     products.forEach((product) => {
       let price = parseInt(product.getAttribute('data-price'));
       maxPrice = Math.max(maxPrice, price);
+
+      let tags = product.getAttribute('data-tags')?.split(',');
+      if (!tags) return; // If no tags, skip this product
+
+      tags.forEach((tag) => {
+        let cleanTag = tag.trim();
+        if (['Men', 'Women', 'Kids'].includes(cleanTag)) {
+          genderCount[cleanTag] = (genderCount[cleanTag] || 0) + 1;
+        } else {
+          categoryCount[cleanTag] = (categoryCount[cleanTag] || 0) + 1;
+        }
+      });
     });
 
     // Set price slider max dynamically
@@ -107,53 +128,73 @@
     priceSlider.value = maxPrice;
     priceValue.innerText = `₹0 - ₹${maxPrice}`;
 
-    // Generate price range buttons
-    function generatePriceButtons() {
-      let step = 1000;
-      priceButtonsContainer.innerHTML = '';
-
-      for (let i = 0; i < maxPrice; i += step) {
-        let min = i;
-        let max = Math.min(i + step, maxPrice);
-        let button = document.createElement('button');
-        button.classList.add('price-button');
-        button.innerText = `₹${min} - ₹${max}`;
-        button.setAttribute('data-min', min);
-        button.setAttribute('data-max', max);
-
-        button.addEventListener('click', function () {
-          priceSlider.value = max;
-          priceValue.innerText = `₹0 - ₹${max}`;
-          priceSlider.dispatchEvent(new Event('input')); // Trigger existing slider logic
-        });
-
-        priceButtonsContainer.appendChild(button);
-      }
+    // Generate gender filter dynamically
+    if (Object.keys(genderCount).length > 0) {
+      genderContainer.innerHTML = Object.keys(genderCount)
+        .map(
+          (gender) =>
+            `<label><input type="checkbox" class="gender-filter" value="${gender}"> ${gender} (${genderCount[gender]})</label>`
+        )
+        .join('');
+    } else {
+      document.getElementById('gender-filter-section').style.display = 'none';
     }
 
-    // Initialize buttons
-    generatePriceButtons();
+    // Generate category filter dynamically
+    if (Object.keys(categoryCount).length > 0) {
+      categoryContainer.innerHTML = Object.keys(categoryCount)
+        .map(
+          (category) =>
+            `<label><input type="checkbox" class="category-filter" value="${category}"> ${category} (${categoryCount[category]})</label>`
+        )
+        .join('');
+    } else {
+      document.getElementById('category-filter-section').style.display = 'none';
+    }
+
+    // Ensure dropdown functionality works
+    document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
+      toggle.addEventListener('click', function () {
+        this.classList.toggle('active');
+      });
+    });
+
+    // Filtering logic
+    function filterProducts() {
+      const maxPrice = parseInt(priceSlider.value);
+      const selectedGenders = [...document.querySelectorAll('.gender-filter:checked')].map((cb) => cb.value);
+      const selectedCategories = [...document.querySelectorAll('.category-filter:checked')].map((cb) => cb.value);
+
+      products.forEach((product) => {
+        const productPrice = parseInt(product.getAttribute('data-price'));
+        const productTags = product.getAttribute('data-tags')?.split(',');
+
+        if (!productTags) return;
+
+        const matchesPrice = productPrice <= maxPrice;
+        const matchesGender = selectedGenders.length === 0 || selectedGenders.some((g) => productTags.includes(g));
+        const matchesCategory =
+          selectedCategories.length === 0 || selectedCategories.some((c) => productTags.includes(c));
+
+        product.style.display = matchesPrice && matchesGender && matchesCategory ? 'block' : 'none';
+      });
+    }
+
+    // Event Listeners
+    priceSlider.addEventListener('input', function () {
+      priceValue.innerText = `₹0 - ₹${priceSlider.value}`;
+      filterProducts();
+    });
+
+    document.querySelectorAll('.gender-filter, .category-filter').forEach((checkbox) => {
+      checkbox.addEventListener('change', filterProducts);
+    });
+
+    // Initial filter setup
+    filterProducts();
   });
 </script>
-<style>
-  .price-buttons {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-  .price-button {
-    background: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: all 0.3s;
-  }
-  .price-button:hover {
-    background: #ddd;
-  }
-</style>
+
 {% schema %}
 {
   "name": "Sidebar",
