@@ -1613,6 +1613,7 @@ button {}
   .inner-banner {
     aspect-ratio: 412/751;
   }
+
   .inner-banner .desktop_image {
     display: none;
   }
@@ -2143,6 +2144,7 @@ div:not([class])>.wf-floating-launcher {
   }
 
   .inner-banner .hero-text {
+    width: 90%;
     align-items: center;
     height: fit-content;
     position: absolute;
