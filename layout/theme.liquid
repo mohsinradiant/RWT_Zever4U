@@ -476,9 +476,9 @@
       document.addEventListener('DOMContentLoaded', function () {
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.utils.toArray('section').forEach((section) => {
+        gsap.utils.toArray('section, .product-item').forEach((element) => {
           gsap.fromTo(
-            section,
+            element,
             { opacity: 0, y: 50 },
             {
               opacity: 1,
@@ -486,10 +486,10 @@
               duration: 1,
               ease: 'power2.out',
               scrollTrigger: {
-                trigger: section,
-                start: 'top 80%', // Adjust this as needed
+                trigger: element,
+                start: 'top 80%', // Adjust as needed
                 toggleActions: 'play none none reset', // Resets when out of view
-                once: false, // Ensures it happens multiple times
+                once: false, // Ensures animation runs every time it enters viewport
               },
             }
           );
