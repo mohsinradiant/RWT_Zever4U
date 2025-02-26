@@ -1587,7 +1587,6 @@ button {}
 .inner-banner {
   height: auto;
   aspect-ratio: 1280/333;
-  background-color: #fdfbf5;
   background-repeat: no-repeat !important;
   background-position: top center !important;
   background-size: cover;
@@ -1598,6 +1597,7 @@ button {}
   top: 0;
   width: 100%;
   height: auto;
+  z-index: -1;
 }
 .inner-banner .hero-text {
   display: -webkit-box;
