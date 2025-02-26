@@ -2143,6 +2143,10 @@ div:not([class])>.wf-floating-launcher {
     position: relative;
   }
 
+  .Banner-heading {
+    font-size: 3.5rem;
+  }
+
   .inner-banner .hero-text {
     width: 90%;
     align-items: center;
