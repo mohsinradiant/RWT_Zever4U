@@ -91,6 +91,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     const priceSlider = document.getElementById('price-slider');
     const priceValue = document.getElementById('price-value');
+    const priceButtonsContainer = document.getElementById('price-buttons');
     const products = document.querySelectorAll('#product-list .product-item');
     const genderContainer = document.getElementById('gender-filters');
     const categoryContainer = document.getElementById('category-filters');
@@ -99,7 +100,6 @@
     let genderCount = {};
     let categoryCount = {};
 
-    // Check if products exist
     if (!products.length) {
       console.warn('No products found.');
       return;
@@ -111,7 +111,7 @@
       maxPrice = Math.max(maxPrice, price);
 
       let tags = product.getAttribute('data-tags')?.split(',');
-      if (!tags) return; // If no tags, skip this product
+      if (!tags) return;
 
       tags.forEach((tag) => {
         let cleanTag = tag.trim();
@@ -127,6 +127,30 @@
     priceSlider.max = maxPrice;
     priceSlider.value = maxPrice;
     priceValue.innerText = `₹0 - ₹${maxPrice}`;
+
+    // Generate price range buttons
+    function generatePriceButtons() {
+      let step = 1000;
+      priceButtonsContainer.innerHTML = '';
+
+      for (let i = 0; i < maxPrice; i += step) {
+        let min = i;
+        let max = Math.min(i + step, maxPrice);
+        let button = document.createElement('button');
+        button.classList.add('price-button');
+        button.innerText = `₹${min} - ₹${max}`;
+        button.setAttribute('data-min', min);
+        button.setAttribute('data-max', max);
+
+        button.addEventListener('click', function () {
+          priceSlider.value = max;
+          priceValue.innerText = `₹0 - ₹${max}`;
+          priceSlider.dispatchEvent(new Event('input')); // Triggers existing slider logic
+        });
+
+        priceButtonsContainer.appendChild(button);
+      }
+    }
 
     // Generate gender filter dynamically
     if (Object.keys(genderCount).length > 0) {
@@ -190,10 +214,31 @@
       checkbox.addEventListener('change', filterProducts);
     });
 
-    // Initial filter setup
+    // Initialize buttons and filters
+    generatePriceButtons();
     filterProducts();
   });
 </script>
+
+<style>
+  .price-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .price-button {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  .price-button:hover {
+    background: #ddd;
+  }
+</style>
 
 {% schema %}
 {
