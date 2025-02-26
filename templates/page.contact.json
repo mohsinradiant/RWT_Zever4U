@@ -9,6 +9,14 @@
  */
 {
   "sections": {
+    "contact_top_banner_RHNK77": {
+      "type": "contact-top-banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/inner-banner-contact.jpg",
+        "heading": "Contact",
+        "subheading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -29,6 +37,7 @@
     }
   },
   "order": [
+    "contact_top_banner_RHNK77",
     "main",
     "form"
   ]
