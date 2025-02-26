@@ -1991,6 +1991,7 @@ button {}
   color: #4e4e4e;
   font-size: 14px;
   border-radius: 0;
+  font-family: 'lato', sans-serif;
 }
 
 .contact-form label {
