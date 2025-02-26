@@ -1997,6 +1997,7 @@ button {}
   margin-bottom: 7px;
   font-weight: 600;
   font-size: 15px;
+  font-family: 'lato', sans-serif;
 }
 
 .contact-form textarea.form-control {
