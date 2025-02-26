@@ -385,6 +385,70 @@
     </div>
   </section>
 </main>
+<style>
+  .zoom-box {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #000;
+    overflow: hidden;
+    display: none;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .zoom-box img {
+    position: absolute;
+    width: 400%;
+    height: auto;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const carouselInner = document.getElementById('carousel-inner');
+
+    carouselInner.addEventListener('mouseover', function (event) {
+      const activeImage = document.querySelector('.carousel-item.active img');
+
+      if (!activeImage) return;
+
+      // Create zoom box if not exists
+      let zoomBox = document.querySelector('.zoom-box');
+      if (!zoomBox) {
+        zoomBox = document.createElement('div');
+        zoomBox.classList.add('zoom-box');
+
+        const zoomImg = document.createElement('img');
+        zoomImg.src = activeImage.src; // Use same image
+
+        zoomBox.appendChild(zoomImg);
+        document.body.appendChild(zoomBox);
+      }
+
+      zoomBox.style.display = 'block';
+
+      activeImage.addEventListener('mousemove', function (e) {
+        const rect = activeImage.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const offsetY = e.clientY - rect.top;
+
+        const zoomFactor = 4; // Adjust zoom level
+
+        // Position zoom box near cursor
+        zoomBox.style.left = `${e.pageX + 20}px`;
+        zoomBox.style.top = `${e.pageY + 20}px`;
+
+        // Move zoomed image inside zoom box
+        zoomBox.querySelector('img').style.left = `-${offsetX * zoomFactor}px`;
+        zoomBox.querySelector('img').style.top = `-${offsetY * zoomFactor}px`;
+      });
+
+      activeImage.addEventListener('mouseleave', function () {
+        zoomBox.style.display = 'none';
+      });
+    });
+  });
+</script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     let images = document.querySelectorAll('#carousel-inner img');
