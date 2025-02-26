@@ -2,70 +2,98 @@
   <div class="container custom-width">
     <div class="row py-3">
       <div class="contact-form col-lg-8 pr-lg-4 mb-3 h-100">
-        <!-- CONTACT FORM -->
         <div class="card h-100 shadow-sm">
           <h5 class="p-3 border-bottom mb-0">
             <i class="fa fa-envelope text-brand me-2" aria-hidden="true"></i> Write to us
           </h5>
           <div class="card-body">
-            <form method="post" action="#">
+            {%- form 'contact', id: 'ContactForm' -%}
+              {%- if form.posted_successfully? -%}
+                <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+                  {{- 'icon-success.svg' | inline_asset_content -}}
+                  {{ 'templates.contact.form.post_success' | t }}
+                </h2>
+              {%- elsif form.errors -%}
+                <div class="form__message">
+                  <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+                    {{- 'icon-error.svg' | inline_asset_content -}}
+                    {{ 'templates.contact.form.error_heading' | t }}
+                  </h2>
+                </div>
+              {%- endif -%}
               <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6">
                   <div class="form-group mb-4">
-                    <label for="name">Name <span class="text-danger small">*</span></label>
-                    <input class="form-control" id="name" type="text" name="name" placeholder="Enter Your Name">
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-6">
-                  <div class="form-group mb-4">
-                    <label for="emailid">Email <span class="text-danger small">*</span></label>
-                    <input class="form-control" id="emailid" type="email" name="emailid" placeholder="Enter Email">
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-6">
-                  <div class="form-group mb-4">
-                    <label for="contactno">Mobile No. <span class="text-danger small">*</span></label>
+                    <label for="ContactForm-name">Name <span class="text-danger small">*</span></label>
                     <input
                       class="form-control"
-                      id="contactno"
-                      type="tel"
-                      name="contactno"
-                      placeholder="Enter Mobile No."
+                      id="ContactForm-name"
+                      type="text"
+                      name="contact[name]"
+                      placeholder="Enter Your Name"
+                      required
                     >
                   </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
                   <div class="form-group mb-4">
-                    <label for="subject">Subject <span class="text-danger small">*</span></label>
-                    <select class="form-select" id="subject">
-                      <option value="0" selected="" disabled="">Select Subject</option>
-                      <option value="1">Feedback</option>
-                      <option value="2">Product Related</option>
-                      <option value="3">Refund Issue</option>
-                      <option value="4">Sales Related</option>
-                      <option value="5">Bulk Order</option>
+                    <label for="ContactForm-email">Email <span class="text-danger small">*</span></label>
+                    <input
+                      class="form-control"
+                      id="ContactForm-email"
+                      type="email"
+                      name="contact[email]"
+                      placeholder="Enter Email"
+                      required
+                    >
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <div class="form-group mb-4">
+                    <label for="ContactForm-phone">Mobile No. <span class="text-danger small">*</span></label>
+                    <input
+                      class="form-control"
+                      id="ContactForm-phone"
+                      type="tel"
+                      name="contact[phone]"
+                      placeholder="Enter Mobile No."
+                      required
+                    >
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <div class="form-group mb-4">
+                    <label for="ContactForm-subject">Subject <span class="text-danger small">*</span></label>
+                    <select class="form-select" id="ContactForm-subject" name="contact[subject]" required>
+                      <option value="" selected disabled>Select Subject</option>
+                      <option value="Feedback">Feedback</option>
+                      <option value="Product Related">Product Related</option>
+                      <option value="Refund Issue">Refund Issue</option>
+                      <option value="Sales Related">Sales Related</option>
+                      <option value="Bulk Order">Bulk Order</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-sm-12">
                   <div class="form-group mb-3">
-                    <label for="message">Message <span class="text-danger small">*</span></label>
+                    <label for="ContactForm-message">Message <span class="text-danger small">*</span></label>
                     <textarea
                       class="form-control"
-                      id="message"
-                      name="message"
+                      id="ContactForm-message"
+                      name="contact[body]"
                       rows="4"
                       placeholder="Enter Your Message"
+                      required
                     ></textarea>
                   </div>
                 </div>
                 <div class="col-sm-12">
                   <div class="text-right">
-                    <button class="btn btn-primary mt-3" type="submit" name="submit-form">SUBMIT DETAILS</button>
+                    <button class="btn btn-primary mt-3" type="submit">SUBMIT DETAILS</button>
                   </div>
                 </div>
               </div>
-            </form>
+            {%- endform -%}
           </div>
         </div>
       </div>
