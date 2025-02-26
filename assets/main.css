@@ -1993,7 +1993,9 @@ button {}
   border-radius: 0;
   font-family: 'lato', sans-serif;
 }
-
+.contact-form .p-3{
+  font-size: 3rem;
+}
 .contact-form label {
   margin-bottom: 7px;
   font-weight: 600;
