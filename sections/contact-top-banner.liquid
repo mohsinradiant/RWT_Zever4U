@@ -1,0 +1,39 @@
+<section class="inner-banner">
+  <img class="desktop_image" src="{{ section.settings.desktop_image |  image_url  }}">
+  <div class="container h-100 custom-width">
+    <div class="hero-text ">
+      <h1 class="Banner-heading text-brand">Contact</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.
+      </p>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Contact Page Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub-Heading"
+    }
+  ]
+}
+{% endschema %}
