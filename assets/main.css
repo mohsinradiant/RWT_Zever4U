@@ -1610,6 +1610,9 @@ button {}
 }
 
 @media(max-width:756px) {
+  .inner-banner {
+    aspect-ratio: 412/751;
+  }
   .inner-banner .desktop_image {
     display: none;
   }
