@@ -17,6 +17,10 @@
         "subheading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       }
     },
+    "contact_page_form_custom_cQHFCM": {
+      "type": "contact-page-form-custom",
+      "settings": {}
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -27,6 +31,7 @@
     },
     "form": {
       "type": "contact-form",
+      "disabled": true,
       "settings": {
         "heading": "",
         "heading_size": "h1",
@@ -38,6 +43,7 @@
   },
   "order": [
     "contact_top_banner_RHNK77",
+    "contact_page_form_custom_cQHFCM",
     "main",
     "form"
   ]
