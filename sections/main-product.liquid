@@ -408,16 +408,13 @@
     const carouselInner = document.getElementById('carousel-inner');
 
     function updateZoomImage() {
-      // Get the current active image
       return document.querySelector('.carousel-item.active img');
     }
 
     carouselInner.addEventListener('mouseover', function (event) {
       let activeImage = updateZoomImage();
-
       if (!activeImage) return;
 
-      // Create zoom box if it doesn't exist
       let zoomBox = document.querySelector('.zoom-box');
       if (!zoomBox) {
         zoomBox = document.createElement('div');
@@ -429,12 +426,16 @@
       }
 
       const zoomImg = zoomBox.querySelector('img');
+      zoomBox.style.display = 'block';
+
+      // Change cursor to crosshair
+      activeImage.style.cursor = 'crosshair';
 
       function onMouseMove(e) {
         let activeImage = updateZoomImage();
         if (!activeImage) return;
 
-        zoomImg.src = activeImage.src; // Update image dynamically
+        zoomImg.src = activeImage.src;
 
         const rect = activeImage.getBoundingClientRect();
         const offsetX = e.clientX - rect.left;
@@ -443,15 +444,12 @@
         const zoomFactor = 3;
         const zoomBoxSize = 200;
 
-        // Position zoom box near cursor
         zoomBox.style.left = `${e.pageX + 20}px`;
         zoomBox.style.top = `${e.pageY - zoomBoxSize / 2}px`;
 
-        // Update zoomed image size
         zoomImg.style.width = `${activeImage.naturalWidth * zoomFactor}px`;
         zoomImg.style.height = `${activeImage.naturalHeight * zoomFactor}px`;
 
-        // Move zoomed image correctly
         const moveX = (offsetX / rect.width) * activeImage.naturalWidth * zoomFactor - zoomBoxSize / 2;
         const moveY = (offsetY / rect.height) * activeImage.naturalHeight * zoomFactor - zoomBoxSize / 2;
 
@@ -462,13 +460,11 @@
 
       activeImage.addEventListener('mouseleave', function () {
         zoomBox.style.display = 'none';
+        activeImage.style.cursor = 'default'; // Reset cursor
         activeImage.removeEventListener('mousemove', onMouseMove);
       });
-
-      zoomBox.style.display = 'block';
     });
 
-    // Listen for carousel change and update zoom image
     document.getElementById('carouselExampleIndicators').addEventListener('slid.bs.carousel', function () {
       let activeImage = updateZoomImage();
       let zoomBox = document.querySelector('.zoom-box');
