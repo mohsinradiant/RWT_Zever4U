@@ -135,7 +135,25 @@
     generatePriceButtons();
   });
 </script>
-
+<style>
+  .price-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .price-button {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+  }
+  .price-button:hover {
+    background: #ddd;
+  }
+</style>
 {% schema %}
 {
   "name": "Sidebar",
