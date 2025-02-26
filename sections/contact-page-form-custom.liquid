@@ -1,0 +1,144 @@
+<section class="Contactpage py-5">
+  <div class="container custom-width">
+    <div class="row py-3">
+      <div class="contact-form col-lg-8 pr-lg-4 mb-3 h-100">
+        <!-- CONTACT FORM -->
+        <div class="card h-100 shadow-sm">
+          <h5 class="p-3 border-bottom mb-0">
+            <i class="fa fa-envelope text-brand me-2" aria-hidden="true"></i> Write to us
+          </h5>
+          <div class="card-body">
+            <form method="post" action="#">
+              <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <div class="form-group mb-4">
+                    <label for="name">Name <span class="text-danger small">*</span></label>
+                    <input class="form-control" id="name" type="text" name="name" placeholder="Enter Your Name">
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <div class="form-group mb-4">
+                    <label for="emailid">Email <span class="text-danger small">*</span></label>
+                    <input class="form-control" id="emailid" type="email" name="emailid" placeholder="Enter Email">
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <div class="form-group mb-4">
+                    <label for="contactno">Mobile No. <span class="text-danger small">*</span></label>
+                    <input
+                      class="form-control"
+                      id="contactno"
+                      type="tel"
+                      name="contactno"
+                      placeholder="Enter Mobile No."
+                    >
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <div class="form-group mb-4">
+                    <label for="subject">Subject <span class="text-danger small">*</span></label>
+                    <select class="form-select" id="subject">
+                      <option value="0" selected="" disabled="">Select Subject</option>
+                      <option value="1">Feedback</option>
+                      <option value="2">Product Related</option>
+                      <option value="3">Refund Issue</option>
+                      <option value="4">Sales Related</option>
+                      <option value="5">Bulk Order</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group mb-3">
+                    <label for="message">Message <span class="text-danger small">*</span></label>
+                    <textarea
+                      class="form-control"
+                      id="message"
+                      name="message"
+                      rows="4"
+                      placeholder="Enter Your Message"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="text-right">
+                    <button class="btn btn-primary mt-3" type="submit" name="submit-form">SUBMIT DETAILS</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 h-100 mb-3">
+        <div class="contact-infos shadow-sm">
+          <div class="contact-info-block border-0 shadow-sm card m-2 mb-3 rounded-0">
+            <div class="card-body px-4 py-3">
+              <div class="d-flex flex-row">
+                <i class="fa-solid fa-location-dot me-3"></i>
+                <div class="media-body">
+                  <h6 class="m-0 body-font text-uppercase">Location</h6>
+                  <p class="text-prime fw500 small mb-0">VISIT TO EXPLORE THE WORLD</p>
+                </div>
+              </div>
+              <hr class="my-2">
+              <div class="row">
+                <div class="col-12 pt-2 fs13">
+                  <p class="mb-1">zever4u Pvt. Ltd, 7500A, Hospital Rd #16-307, New Delhi 110059, India</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-info-block border-0 shadow-sm card m-2 mb-3 rounded-0">
+            <div class="card-body px-4 py-3">
+              <div class="d-flex flex-row">
+                <i class="fa fa-phone me-3"></i>
+                <div class="media-body">
+                  <h6 class="m-0 body-font text-uppercase">Make a Call</h6>
+                  <p class="text-prime fw500 small mb-0">LET’S TALK WITH OUR EXPERTS</p>
+                </div>
+              </div>
+              <hr class="my-2">
+              <div class="row">
+                <div class="col-12 pt-2 fs13">
+                  <p class="mb-1">
+                    <a href="tel:011-45541234">011-45541234</a>, <a href="tel:011-455412XX">011-455412XX</a>
+                  </p>
+                  <p class="mb-1 fw500">Mon - Fri: 09:00 to 18:00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-info-block border-0 shadow-sm card m-2 rounded-0">
+            <div class="card-body px-4 py-3">
+              <div class="d-flex flex-row">
+                <i class="fa fa-envelope-open me-3"></i>
+                <div class="media-body">
+                  <h6 class="m-0 body-font text-uppercase">Send an Email</h6>
+                  <p class="text-prime fw500 small mb-0">DONT’S HESITATE TO MAIL</p>
+                </div>
+              </div>
+              <hr class="my-2">
+              <div class="row">
+                <div class="col-12 pt-2 fs13">
+                  <p class="mb-1"><a href="mailto:contact@zever4u.com">contact@zever4u.com</a></p>
+                  <p class="mb-1"><a href="mailto:sales@zever4u.com">sales@zever4u.com</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Contact Form Custom",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Contact Form Custom"
+    }
+  ]
+}
+{% endschema %}
