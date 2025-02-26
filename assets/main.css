@@ -1585,7 +1585,7 @@ button {}
 
 /*###################___________LISTING PAGE ___________######################*/
 .inner-banner {
-  height: 500px;
+  height: auto;
   background-color: #fdfbf5;
   background-repeat: no-repeat !important;
   background-position: top center !important;
