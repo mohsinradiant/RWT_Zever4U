@@ -1590,8 +1590,14 @@ button {}
   background-repeat: no-repeat !important;
   background-position: top center !important;
   background-size: cover;
+  position: relative;
 }
-
+.inner-banner img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
 .inner-banner .hero-text {
   display: -webkit-box;
   display: -ms-flexbox;
