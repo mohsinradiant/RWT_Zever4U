@@ -128,14 +128,13 @@
     priceSlider.value = maxPrice;
     priceValue.innerText = `₹0 - ₹${maxPrice}`;
 
-    // Generate price range buttons
+    // Generate price range buttons with ₹2500 step
     function generatePriceButtons() {
-      let step = 1000;
+      let step = 2500;
       priceButtonsContainer.innerHTML = '';
 
-      for (let i = 0; i < maxPrice; i += step) {
-        let min = i;
-        let max = Math.min(i + step, maxPrice);
+      for (let min = 0; min < maxPrice; min += step) {
+        let max = Math.min(min + step, maxPrice);
         let button = document.createElement('button');
         button.classList.add('price-button');
         button.innerText = `₹${min} - ₹${max}`;
@@ -144,8 +143,8 @@
 
         button.addEventListener('click', function () {
           priceSlider.value = max;
-          priceValue.innerText = `₹0 - ₹${max}`;
-          priceSlider.dispatchEvent(new Event('input')); // Triggers existing slider logic
+          priceValue.innerText = `₹${min} - ₹${max}`;
+          priceSlider.dispatchEvent(new Event('input')); // Triggers existing filtering logic
         });
 
         priceButtonsContainer.appendChild(button);
