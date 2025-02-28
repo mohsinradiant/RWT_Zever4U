@@ -490,6 +490,12 @@
                 start: 'top 80%', // Adjust as needed
                 toggleActions: 'play none none reset', // Resets when out of view
                 once: false, // Ensures animation runs every time it enters viewport
+                onEnter: () => {
+                  // Ensure small elements become visible
+                  if (element.offsetHeight < 50) {
+                    gsap.set(element, { opacity: 1, y: 0 });
+                  }
+                },
               },
             }
           );
