@@ -22,10 +22,22 @@
             "button_link": "shopify://collections/earrings",
             "button_text": ""
           }
+        },
+        "slide_agP9HU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner2_1.jpg",
+            "mobile_image": "shopify://shop_images/banner2.jpg",
+            "title": "",
+            "content": "",
+            "button_link": "shopify://collections/earrings",
+            "button_text": ""
+          }
         }
       },
       "block_order": [
-        "slide_kezNG8"
+        "slide_kezNG8",
+        "slide_agP9HU"
       ],
       "settings": {}
     },
