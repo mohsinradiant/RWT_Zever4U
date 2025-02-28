@@ -1,19 +1,23 @@
-<section class="DealsDay-section" style="
-  {% if section.settings.deal_bg_image != blank %}
-      background-image: url('{{ section.settings.deal_bg_image | img_url: '1920x800' }}');
+<section
+  class="DealsDay-section"
+  style="
+      {% if section.settings.deal_bg_image != blank %}
+      background-image: url('{{ section.settings.deal_bg_image | image_url }}');
     {% else %}
       background-color: #f5f5f5;
     {% endif %}
-  ">
+  "
+>
   <div class="container custom-width">
     <div class="row justify-content-between">
       <div class="col-md-5">
         <div class="deals-text">
-          <h4 class="all_heading text-white"> Deals of the Day</h4>
-          <h5 class="all_heading fs25">Earring from  ₹ 1,299</h5>
+          <h4 class="all_heading text-white">Deals of the Day</h4>
+          <h5 class="all_heading fs25">Earring from ₹ 1,299</h5>
           <div class="countdown-sec d-flex justify-content-between">
             <div class="countdown_item text-center mt-md-4 mt-3">
-              <h6 class="fs64 text-brand" id="hours">00
+              <h6 class="fs64 text-brand" id="hours">
+                00
                 <span class="d-block fs16">HOURS</span>
               </h6>
             </div>
@@ -21,7 +25,8 @@
               <h6 class="fs64 text-brand">:</h6>
             </div>
             <div class="countdown_item text-center mt-md-4 mt-3">
-              <h6 class="fs64 text-brand" id="minutes">00
+              <h6 class="fs64 text-brand" id="minutes">
+                00
                 <span class="d-block fs16">MINS</span>
               </h6>
             </div>
@@ -29,11 +34,11 @@
               <h6 class="fs64 text-brand">:</h6>
             </div>
             <div class="countdown_item text-center mt-md-4 mt-3">
-              <h6 class="fs64 text-brand" id="seconds">00
+              <h6 class="fs64 text-brand" id="seconds">
+                00
                 <span class="d-block fs16">SECS</span>
               </h6>
             </div>
-
           </div>
         </div>
       </div>
@@ -41,22 +46,19 @@
       <div class="col-md-6">
         <figure class="mb-0"><img src="{{ section.settings.deal_product_image | image_url }}" class="w-100"></figure>
       </div>
-
-
     </div>
-
   </div>
 </section>
 <script>
   function startCountdown() {
     let now = new Date();
-    let endTime = "{{ section.settings.deal_end_time }}"; 
+    let endTime = '{{ section.settings.deal_end_time }}';
     let end = new Date();
-    
+
     // Set the deal end time based on the selected time
-    let [endHour, endMinute, endSecond] = endTime.split(":").map(Number);
+    let [endHour, endMinute, endSecond] = endTime.split(':').map(Number);
     end.setHours(endHour, endMinute, endSecond, 0);
-    
+
     if (end < now) {
       end.setDate(end.getDate() + 1); // Move to the next day if time has passed
     }
@@ -66,7 +68,7 @@
       let remainingTime = end - now;
 
       if (remainingTime <= 0) {
-        document.getElementById("countdown-timer").innerHTML = "Deal Expired!";
+        document.getElementById('countdown-timer').innerHTML = 'Deal Expired!';
         return;
       }
 
@@ -74,16 +76,16 @@
       let minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
       let seconds = Math.floor((remainingTime / 1000) % 60);
 
-      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
-      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
-      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
     }
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
   }
 
-  document.addEventListener("DOMContentLoaded", startCountdown);
+  document.addEventListener('DOMContentLoaded', startCountdown);
 </script>
 {% schema %}
 {
