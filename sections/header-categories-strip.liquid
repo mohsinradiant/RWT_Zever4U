@@ -37,6 +37,45 @@
     }
   }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  function startAutoScroll() {
+    const container = document.querySelector('.category-circles-strip-container');
+    if (!container) return;
+
+    // Ensure script runs only for small screens
+    function checkScreenSize() {
+      if (window.innerWidth < 756) {
+        if (!container.dataset.scrolling) {
+          container.dataset.scrolling = 'true'; // Prevent multiple GSAP instances
+
+          gsap.to(container, {
+            x: '-50%', // Moves left over time
+            duration: 10, // Adjust speed as needed
+            ease: 'linear',
+            repeat: -1, // Infinite loop
+            modifiers: {
+              x: gsap.utils.unitize((x) => {
+                const maxScroll = container.scrollWidth - container.clientWidth;
+                return x % maxScroll; // Loop back smoothly
+              }),
+            },
+          });
+        }
+      } else {
+        gsap.killTweensOf(container); // Stop GSAP on larger screens
+        delete container.dataset.scrolling;
+      }
+    }
+
+    // Run on load and on resize
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+  }
+
+  document.addEventListener('DOMContentLoaded', startAutoScroll);
+</script>
+
 {% schema %}
 {
   "name": "Category Circles Strip",
