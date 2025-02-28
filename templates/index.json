@@ -9,6 +9,62 @@
  */
 {
   "sections": {
+    "header_categories_strip_8piUrg": {
+      "type": "header-categories-strip",
+      "blocks": {
+        "category_bkYpnM": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/top-category-3.png",
+            "link": "shopify://collections/rings"
+          }
+        },
+        "category_iMJVdr": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/top-category-1.png",
+            "link": "shopify://collections/earrings"
+          }
+        },
+        "category_YwHJ4U": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/top-category-2.png",
+            "link": "shopify://collections/weddings"
+          }
+        },
+        "category_DiCqFb": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/top-category-4.png",
+            "link": "shopify://collections/toe-ring"
+          }
+        },
+        "category_qw7Cpt": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/top-category-5.png",
+            "link": "shopify://collections/bracelet"
+          }
+        },
+        "category_Y6L7aL": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/top-category-6.png",
+            "link": "shopify://collections/accessories"
+          }
+        }
+      },
+      "block_order": [
+        "category_bkYpnM",
+        "category_iMJVdr",
+        "category_YwHJ4U",
+        "category_DiCqFb",
+        "category_qw7Cpt",
+        "category_Y6L7aL"
+      ],
+      "settings": {}
+    },
     "slideshow_a6Kja8": {
       "type": "slideshow",
       "blocks": {
@@ -309,6 +365,7 @@
     }
   },
   "order": [
+    "header_categories_strip_8piUrg",
     "slideshow_a6Kja8",
     "homepage_banner",
     "favourites_section",
