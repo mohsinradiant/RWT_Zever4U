@@ -44,28 +44,30 @@
     if (!container) return;
 
     let links = Array.from(container.children);
-    let totalWidth = links.reduce((sum, link) => sum + link.offsetWidth, 0); // Get total width of all items
+    let totalWidth = links.reduce((sum, link) => sum + link.offsetWidth, 0);
 
     function checkScreenSize() {
       if (window.innerWidth < 756) {
         if (!container.dataset.scrolling) {
           container.dataset.scrolling = 'true'; // Prevent multiple instances
 
-          // Duplicate the items to create an infinite effect
-          links.forEach((link) => {
-            let clone = link.cloneNode(true);
-            container.appendChild(clone);
-          });
+          // Duplicate elements multiple times to create a continuous effect
+          while (container.scrollWidth < window.innerWidth * 2) {
+            links.forEach((link) => {
+              let clone = link.cloneNode(true);
+              container.appendChild(clone);
+            });
+          }
 
           let allLinks = Array.from(container.children);
 
           gsap.to(allLinks, {
             x: `-${totalWidth}px`, // Move all elements left by total width
-            duration: 10, // Adjust speed as needed
+            duration: 20, // Slower scrolling (previously 10s, now 20s)
             ease: 'linear',
             repeat: -1, // Infinite loop
             modifiers: {
-              x: gsap.utils.wrap(0, totalWidth), // Reset position seamlessly
+              x: gsap.utils.wrap(0, totalWidth), // Seamless looping
             },
           });
         }
