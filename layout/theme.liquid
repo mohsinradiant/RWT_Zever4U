@@ -487,9 +487,11 @@
               ease: 'power2.out',
               scrollTrigger: {
                 trigger: element,
-                start: 'top 80%', // Adjust as needed
-                toggleActions: 'play none none reset', // Resets when out of view
-                once: false, // Ensures animation runs every time it enters viewport
+                start: 'top 90%', // Adjusted for smaller elements
+                end: 'bottom 50%', // Ensures trigger area accounts for smaller height
+                toggleActions: 'play reverse play reverse', // Handles both enter and leave
+                onEnter: () => (element.style.opacity = 1), // Ensures visibility
+                onLeaveBack: () => (element.style.opacity = 0), // Hides when scrolling up
               },
             }
           );
