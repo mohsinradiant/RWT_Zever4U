@@ -21,11 +21,15 @@
 <!-- ################################################################################ -->
 <!-- ################################################################################ -->
 <main class="common-collection-container page-width main-content homepage-content">
+  {% assign max_price = request.query_params.price_max | default: 99999 %}
+  {% assign selected_genders = request.query_params.gender | split: ',' %}
+  {% assign selected_categories = request.query_params.category | split: ',' %}
+
   {% paginate collection.products by 50 %}
     <section class="section-tbspacing">
       <div class="fullbleed-wrapper">
         <div class="container-fluid ps-lg-0">
-          <div class="content-row ">
+          <div class="content-row">
             <!-- FILTER SIDEBAR START -->
             {% section 'collection-sidebar' %}
 
@@ -33,15 +37,24 @@
             <div class="listing-block">
               <div class="row" id="product-list">
                 {% for product in collection.products %}
-                  <div
-                    class="col-md-4 col-6 product-item"
-                    data-price="{{ product.price | divided_by: 100 }}"
-                    data-tags="{{ product.tags | join: ',' }}"
-                  >
-                    <div class="product-card">
-                      {% render 'card-product-new', card_product: product %}
+                  {% assign product_price = product.price | divided_by: 100 %}
+                  {% assign product_tags = product.tags %}
+
+                  {%
+                    if product_price <= max_price and
+                    (selected_genders == empty or selected_genders contains product_tags) and
+                    (selected_categories == empty or selected_categories contains product_tags)
+                  %}
+                    <div
+                      class="col-md-4 col-6 product-item"
+                      data-price="{{ product_price }}"
+                      data-tags="{{ product.tags | join: ',' }}"
+                    >
+                      <div class="product-card">
+                        {% render 'card-product-new', card_product: product %}
+                      </div>
                     </div>
-                  </div>
+                  {% endif %}
                 {% endfor %}
               </div>
               <!-- PAGINATION LINKS -->
@@ -54,6 +67,7 @@
       </div>
     </section>
   {% endpaginate %}
+
   <style>
     .pagination {
       display: flex;
