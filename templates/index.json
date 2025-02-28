@@ -222,7 +222,13 @@
         "collection_88NE7g": {
           "type": "collection",
           "settings": {
-            "collection": "birthdays"
+            "collection": "his-charm"
+          }
+        },
+        "collection_fXtt66": {
+          "type": "collection",
+          "settings": {
+            "collection": "her-elegance"
           }
         },
         "collection_GNRn6d": {
@@ -242,20 +248,14 @@
           "settings": {
             "collection": "trending"
           }
-        },
-        "collection_fXtt66": {
-          "type": "collection",
-          "settings": {
-            "collection": "weddings"
-          }
         }
       },
       "block_order": [
         "collection_88NE7g",
+        "collection_fXtt66",
         "collection_GNRn6d",
         "collection_xQf9nj",
-        "collection_Fdm7nD",
-        "collection_fXtt66"
+        "collection_Fdm7nD"
       ],
       "settings": {
         "occasions_heading": "Shop by Occasions"
