@@ -69,7 +69,9 @@
     <div class="product-price">
       {{ card_product.price | money_with_currency | replace: '.00', '' | replace: 'Rs.', '₹ ' }}
       {%- if card_product.compare_at_price -%}
-        <del> {{ card_product.compare_at_price | money_with_currency }} </del>
+        <del>
+          {{ card_product.compare_at_price | money_with_currency | replace: '.00', '' | replace: 'Rs.', '₹ ' }}
+        </del>
       {%- endif -%}
     </div>
   </div>
