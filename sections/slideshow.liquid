@@ -148,7 +148,7 @@
                   fetchpriority: fetch_priority
               }}
               {{
-                block.settings.mobile_image
+                block.settings.image_mobile
                 | image_url: width: 3840
                 | image_tag:
                   class: 'slideshow_mobile_image',
@@ -170,7 +170,7 @@
                   widths: widths
               }}
               {{
-                block.settings.mobile_image
+                block.settings.image_mobile
                 | image_url: width: 3840
                 | image_tag:
                   class: 'slideshow_mobile_image',
@@ -222,17 +222,17 @@
   </div>
   <style>
     .slideshow_desktop_image {
-      display: flex;
+      display: flex !important;
     }
     .slideshow_mobile_image {
-      display: none;
+      display: none !important;
     }
     @media (max-width: 756px) {
       .slideshow_mobile_image {
-        display: flex;
+        display: flex !important;
       }
       .slideshow_desktop_image {
-        display: none;
+        display: none !important;
       }
     }
   </style>
