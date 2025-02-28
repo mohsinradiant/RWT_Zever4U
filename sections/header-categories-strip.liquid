@@ -1,0 +1,49 @@
+<div class="category-circles-strip-container">
+  {% for block in section.blocks %}
+    <a href="{{ block.settings.link }}">
+      <img src="{{ block.settings.image |  image_url  }}">
+    </a>
+  {% endfor %}
+</div>
+<style>
+  .category-circles-strip-container {
+    display: flex;
+    gap: 15px;
+    justify-content: start;
+    align-items: center;
+    overflow-x: auto;
+  }
+  .category-circles-strip-container a {
+    width: 150px;
+    height: auto;
+  }
+</style>
+{% schema %}
+{
+  "name": "Category Circles Strip",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Circles Strip"
+    }
+  ]
+}
+{% endschema %}
