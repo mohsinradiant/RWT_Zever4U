@@ -28,9 +28,18 @@
     transition: all ease-in.3s;
     height: auto;
   }
+  .category-circles-strip-container {
+    -ms-overflow-style: none; /* Hide scrollbar in IE & Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+
+  .category-circles-strip-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Chrome, Safari & Opera */
+  }
+
   @media (max-width: 756px) {
     .category-circles-strip-container a {
-      min-width: 80px;
+      min-width: 70px;
     }
     .category-circles-strip-container {
       justify-content: start;
