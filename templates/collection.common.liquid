@@ -37,6 +37,7 @@
                     class="col-md-4 col-6 product-item"
                     data-price="{{ product.price | divided_by: 100 }}"
                     data-tags="{{ product.tags | join: ',' }}"
+                    style="display:flex !important;"
                   >
                     <div class="product-card">
                       {% render 'card-product-new', card_product: product %}
