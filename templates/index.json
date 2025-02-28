@@ -9,6 +9,61 @@
  */
 {
   "sections": {
+    "slideshow_a6Kja8": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_JzN9T9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/image_2025_02_19T11_38_03_820Z_cb71dc7b-cac0-431e-95ea-075435883757.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_B4UG8J": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner2_1.jpg",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_JzN9T9",
+        "slide_B4UG8J"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "adapt_image",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 3,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": ""
+      }
+    },
     "homepage_banner": {
       "type": "homepage-banner",
       "blocks": {
@@ -22,11 +77,25 @@
             "button_link": "shopify://collections/earrings",
             "button_text": ""
           }
+        },
+        "slide_agP9HU": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/banner2_1.jpg",
+            "mobile_image": "shopify://shop_images/banner2.jpg",
+            "title": "",
+            "content": "",
+            "button_link": "shopify://collections/earrings",
+            "button_text": ""
+          }
         }
       },
       "block_order": [
-        "slide_kezNG8"
+        "slide_kezNG8",
+        "slide_agP9HU"
       ],
+      "disabled": true,
       "settings": {}
     },
     "favourites_section": {
@@ -238,6 +307,7 @@
     }
   },
   "order": [
+    "slideshow_a6Kja8",
     "homepage_banner",
     "favourites_section",
     "stylish_section",
