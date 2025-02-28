@@ -67,7 +67,7 @@
   <div class="product-info py-3">
     <p class="product-name">{{ card_product.title | escape }}</p>
     <div class="product-price">
-      {{ card_product.price | money_with_currency }}
+      {{ card_product.price | money_with_currency | replace: '.00', '' | replace: 'Rs.', '₹ ' }}
       {%- if card_product.compare_at_price -%}
         <del> {{ card_product.compare_at_price | money_with_currency }} </del>
       {%- endif -%}
