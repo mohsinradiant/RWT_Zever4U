@@ -91,40 +91,131 @@
   document.addEventListener('DOMContentLoaded', function () {
     const priceSlider = document.getElementById('price-slider');
     const priceValue = document.getElementById('price-value');
-    const genderFilters = document.querySelectorAll('.gender-filter');
-    const categoryFilters = document.querySelectorAll('.category-filter');
+    const priceButtonsContainer = document.getElementById('price-buttons');
+    const products = document.querySelectorAll('#product-list .product-item');
+    const genderContainer = document.getElementById('gender-filters');
+    const categoryContainer = document.getElementById('category-filters');
 
-    function updateFilters() {
-      let url = new URL(window.location.href);
+    let maxPrice = 0;
+    let genderCount = {};
+    let categoryCount = {};
 
-      // Get the selected price range
-      const maxPrice = priceSlider.value;
-      url.searchParams.set('price_max', maxPrice);
-
-      // Get selected gender filters
-      const selectedGenders = [...genderFilters].filter((cb) => cb.checked).map((cb) => cb.value);
-      if (selectedGenders.length) {
-        url.searchParams.set('gender', selectedGenders.join(','));
-      } else {
-        url.searchParams.delete('gender');
-      }
-
-      // Get selected category filters
-      const selectedCategories = [...categoryFilters].filter((cb) => cb.checked).map((cb) => cb.value);
-      if (selectedCategories.length) {
-        url.searchParams.set('category', selectedCategories.join(','));
-      } else {
-        url.searchParams.delete('category');
-      }
-
-      // Reload the page with updated filter parameters
-      window.location.href = url.toString();
+    if (!products.length) {
+      console.warn('No products found.');
+      return;
     }
 
-    // Attach event listeners
-    priceSlider.addEventListener('input', updateFilters);
-    genderFilters.forEach((cb) => cb.addEventListener('change', updateFilters));
-    categoryFilters.forEach((cb) => cb.addEventListener('change', updateFilters));
+    // Get max price and count filters dynamically
+    products.forEach((product) => {
+      let price = parseInt(product.getAttribute('data-price'));
+      maxPrice = Math.max(maxPrice, price);
+
+      let tags = product.getAttribute('data-tags')?.split(',');
+      if (!tags) return;
+
+      tags.forEach((tag) => {
+        let cleanTag = tag.trim();
+        if (['Men', 'Women', 'Kids'].includes(cleanTag)) {
+          genderCount[cleanTag] = (genderCount[cleanTag] || 0) + 1;
+        } else {
+          categoryCount[cleanTag] = (categoryCount[cleanTag] || 0) + 1;
+        }
+      });
+    });
+
+    // Set price slider max dynamically
+    priceSlider.max = maxPrice;
+    priceSlider.value = maxPrice;
+    priceValue.innerText = `₹0 - ₹${maxPrice}`;
+
+    // Generate price range buttons with ₹2500 step
+    function generatePriceButtons() {
+      let step = 2500;
+      priceButtonsContainer.innerHTML = '';
+
+      for (let min = 0; min < maxPrice; min += step) {
+        let max = Math.min(min + step, maxPrice);
+        let button = document.createElement('button');
+        button.classList.add('price-button');
+        button.innerText = `₹0 - ₹${max}`;
+        button.setAttribute('data-min', min);
+        button.setAttribute('data-max', max);
+
+        button.addEventListener('click', function () {
+          priceSlider.value = max;
+          priceValue.innerText = `₹${min} - ₹${max}`;
+          priceSlider.dispatchEvent(new Event('input')); // Triggers existing filtering logic
+        });
+
+        priceButtonsContainer.appendChild(button);
+      }
+    }
+
+    // Generate gender filter dynamically
+    if (Object.keys(genderCount).length > 0) {
+      genderContainer.innerHTML = Object.keys(genderCount)
+        .map(
+          (gender) =>
+            `<label><input type="checkbox" class="gender-filter" value="${gender}"> ${gender} (${genderCount[gender]})</label>`
+        )
+        .join('');
+    } else {
+      document.getElementById('gender-filter-section').style.display = 'none';
+    }
+
+    // Generate category filter dynamically
+    if (Object.keys(categoryCount).length > 0) {
+      categoryContainer.innerHTML = Object.keys(categoryCount)
+        .map(
+          (category) =>
+            `<label><input type="checkbox" class="category-filter" value="${category}"> ${category} (${categoryCount[category]})</label>`
+        )
+        .join('');
+    } else {
+      document.getElementById('category-filter-section').style.display = 'none';
+    }
+
+    // Ensure dropdown functionality works
+    document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
+      toggle.addEventListener('click', function () {
+        this.classList.toggle('active');
+      });
+    });
+
+    // Filtering logic
+    function filterProducts() {
+      const maxPrice = parseInt(priceSlider.value);
+      const selectedGenders = [...document.querySelectorAll('.gender-filter:checked')].map((cb) => cb.value);
+      const selectedCategories = [...document.querySelectorAll('.category-filter:checked')].map((cb) => cb.value);
+
+      products.forEach((product) => {
+        const productPrice = parseInt(product.getAttribute('data-price'));
+        const productTags = product.getAttribute('data-tags')?.split(',');
+
+        if (!productTags) return;
+
+        const matchesPrice = productPrice <= maxPrice;
+        const matchesGender = selectedGenders.length === 0 || selectedGenders.some((g) => productTags.includes(g));
+        const matchesCategory =
+          selectedCategories.length === 0 || selectedCategories.some((c) => productTags.includes(c));
+
+        product.style.display = matchesPrice && matchesGender && matchesCategory ? 'block' : 'none';
+      });
+    }
+
+    // Event Listeners
+    priceSlider.addEventListener('input', function () {
+      priceValue.innerText = `₹0 - ₹${priceSlider.value}`;
+      filterProducts();
+    });
+
+    document.querySelectorAll('.gender-filter, .category-filter').forEach((checkbox) => {
+      checkbox.addEventListener('change', filterProducts);
+    });
+
+    // Initialize buttons and filters
+    generatePriceButtons();
+    filterProducts();
   });
 </script>
 
