@@ -43,32 +43,31 @@
     const container = document.querySelector('.category-circles-strip-container');
     if (!container) return;
 
-    // Ensure script runs only for small screens
+    let links = Array.from(container.children);
+
     function checkScreenSize() {
       if (window.innerWidth < 756) {
         if (!container.dataset.scrolling) {
           container.dataset.scrolling = 'true'; // Prevent multiple GSAP instances
 
-          gsap.to(container, {
-            x: '-50%', // Moves left over time
-            duration: 10, // Adjust speed as needed
+          gsap.set(links, { xPercent: 100 }); // Start elements offscreen right
+
+          gsap.to(links, {
+            xPercent: -100 * links.length, // Move elements left
+            duration: 10, // Adjust speed
             ease: 'linear',
             repeat: -1, // Infinite loop
             modifiers: {
-              x: gsap.utils.unitize((x) => {
-                const maxScroll = container.scrollWidth - container.clientWidth;
-                return x % maxScroll; // Loop back smoothly
-              }),
+              xPercent: gsap.utils.wrap(-100 * links.length, 100), // Wrap items seamlessly
             },
           });
         }
       } else {
-        gsap.killTweensOf(container); // Stop GSAP on larger screens
+        gsap.killTweensOf(links); // Stop GSAP on larger screens
         delete container.dataset.scrolling;
       }
     }
 
-    // Run on load and on resize
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
   }
