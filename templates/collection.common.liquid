@@ -21,31 +21,38 @@
 <!-- ################################################################################ -->
 <!-- ################################################################################ -->
 <main class="common-collection-container page-width main-content homepage-content">
-  <section class="section-tbspacing">
-    <div class="fullbleed-wrapper">
-      <div class="container-fluid ps-lg-0">
-        <div class="content-row ">
-          <!-- FILTER SIDEBAR START -->
-          {% section 'collection-sidebar' %}
+  {% paginate collection.products by 50 %}
+    <section class="section-tbspacing">
+      <div class="fullbleed-wrapper">
+        <div class="container-fluid ps-lg-0">
+          <div class="content-row ">
+            <!-- FILTER SIDEBAR START -->
+            {% section 'collection-sidebar' %}
 
-          <!-- PRODUCT LIST START -->
-          <div class="listing-block">
-            <div class="row" id="product-list">
-              {% for product in collection.products %}
-                <div
-                  class="col-md-4 col-6 product-item"
-                  data-price="{{ product.price | divided_by: 100 }}"
-                  data-tags="{{ product.tags | join: ',' }}"
-                >
-                  <div class="product-card">
-                    {% render 'card-product-new', card_product: product %}
+            <!-- PRODUCT LIST START -->
+            <div class="listing-block">
+              <div class="row" id="product-list">
+                {% for product in collection.products %}
+                  <div
+                    class="col-md-4 col-6 product-item"
+                    data-price="{{ product.price | divided_by: 100 }}"
+                    data-tags="{{ product.tags | join: ',' }}"
+                  >
+                    <div class="product-card">
+                      {% render 'card-product-new', card_product: product %}
+                    </div>
                   </div>
-                </div>
-              {%- endfor -%}
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- PAGINATION LINKS -->
+            <div class="pagination">
+              {{ paginate | default_pagination }}
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  {% endpaginate %}
 </main>
