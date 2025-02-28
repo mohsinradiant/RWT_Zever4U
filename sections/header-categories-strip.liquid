@@ -44,27 +44,34 @@
     if (!container) return;
 
     let links = Array.from(container.children);
+    let totalWidth = links.reduce((sum, link) => sum + link.offsetWidth, 0); // Get total width of all items
 
     function checkScreenSize() {
       if (window.innerWidth < 756) {
         if (!container.dataset.scrolling) {
-          container.dataset.scrolling = 'true'; // Prevent multiple GSAP instances
+          container.dataset.scrolling = 'true'; // Prevent multiple instances
 
-          gsap.set(links, { xPercent: 100 }); // Start elements offscreen right
+          // Duplicate the items to create an infinite effect
+          links.forEach((link) => {
+            let clone = link.cloneNode(true);
+            container.appendChild(clone);
+          });
 
-          gsap.to(links, {
-            xPercent: -100 * links.length, // Move elements left
-            duration: 10, // Adjust speed
+          let allLinks = Array.from(container.children);
+
+          gsap.to(allLinks, {
+            x: `-${totalWidth}px`, // Move all elements left by total width
+            duration: 10, // Adjust speed as needed
             ease: 'linear',
             repeat: -1, // Infinite loop
             modifiers: {
-              xPercent: gsap.utils.wrap(-100 * links.length, 100), // Wrap items seamlessly
+              x: gsap.utils.wrap(0, totalWidth), // Reset position seamlessly
             },
           });
         }
       } else {
-        gsap.killTweensOf(links); // Stop GSAP on larger screens
-        delete container.dataset.scrolling;
+        gsap.killTweensOf(container.children); // Stop GSAP on larger screens
+        container.dataset.scrolling = ''; // Allow re-init if resized back
       }
     }
 
