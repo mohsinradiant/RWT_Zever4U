@@ -1,1 +1,83 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","blocks":{"image_picker_aKmVxz":{"type":"image_picker","settings":{"icon":"shopify:\/\/shop_images\/usp-icon-1.jpg","usps_heading":"SHIPPING PAN INDIA","usps_subheading":"Shop form anywhere"}},"image_picker_eeqCh7":{"type":"image_picker","settings":{"icon":"shopify:\/\/shop_images\/usp-icon-2.jpg","usps_heading":"Exclusive Designs","usps_subheading":"All studio curated designs"}},"image_picker_eV4MjP":{"type":"image_picker","settings":{"icon":"shopify:\/\/shop_images\/usp-icon-3.jpg","usps_heading":"100% Authentic","usps_subheading":"Shop with peace of mind"}},"image_picker_cYP9Qe":{"type":"image_picker","settings":{"icon":"shopify:\/\/shop_images\/usp-icon-4.jpg","usps_heading":"ONLINE SUPPORT","usps_subheading":"We are happy to help always"}}},"block_order":["image_picker_aKmVxz","image_picker_eeqCh7","image_picker_eV4MjP","image_picker_cYP9Qe"],"settings":{"footer_logo":"shopify:\/\/shop_images\/footer-logo.png","footer_content":"<p>Zever4u.com, by Giri Zevar Mahal, is an online store offering exquisite silver jewelry with modern designs and timeless craftsmanship. Explore a stunning collection of rings, necklaces, bangles, and<\/p>","menu_1_title":"Info","menu_1":"info-menu","menu_2_title":"Category","menu_2":"category-menu","map_icon":"shopify:\/\/shop_images\/map.png","office_location":"<p>Chand Cinema Rd, beside Sanjay Lake Metro Station, Mayur Vihar Phase I, East, Kalyan Puri, Delhi, 110091<\/p>","phone_icon":"shopify:\/\/shop_images\/phone.png","contact_numbers":"<p>+91-8368160031, +91-9911249766<\/p>","email_icon":"shopify:\/\/shop_images\/mail.png","official_emails":"<p>Contactzever4u@gmail.com<\/p>"}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "about_us_founder_F34yYe": {
+      "type": "about-us-founder",
+      "disabled": true,
+      "settings": {
+        "founder_richtext": "<h3>A visionary leader, a passionate entrepreneur, and a name synonymous with trust in the jewelry industry—<strong>Kartik Giri</strong> is the driving force behind <strong>Zever4U</strong>, a unit of <strong>Giri Zever Mehal</strong>, founded with a singular mission: to offer <strong>exceptional quality jewellery at fair prices while upholding trust and transparency.</strong></h3><p>With an unwavering commitment to <strong>craftsmanship, ethical practices, and customer satisfaction</strong>, Kartik Giri has transformed his passion into a legacy. What began as a <strong>small, personal passion project—rooted in a deep appreciation for design and product quality—has blossomed into a brand recognized for its unique blend of modern aesthetics and traditional techniques.</strong></p><p>Each collection reflects the founder's commitment to <strong>sustainability, ethics, and unparalleled craftsmanship</strong>, ensuring that every piece is not just an accessory, but a meaningful work of art. Whether it's a <strong>delicate necklace that captures a moment or a bold statement piece that makes a lasting impression</strong>, Kartik Giri believes that jewelry should <strong>empower, inspire, and evoke a sense of wonder.</strong></p><p>With an eye for detail and a commitment to excellence, Kartik Giri ensures that <strong>only the finest materials are used</strong>, making every creation a true reflection of <strong>quality, sophistication, and timeless beauty</strong>. Above all, his mission remains unchanged: <strong>to make every customer feel special with jewelry that tells their unique story</strong>.</p><p><strong>Thank you for being a part of the journey. We’re honored to share our passion with you.</strong></p>"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "image_picker_aKmVxz": {
+          "type": "image_picker",
+          "settings": {
+            "icon": "shopify://shop_images/usp-icon-1.jpg",
+            "usps_heading": "SHIPPING PAN INDIA",
+            "usps_subheading": "Shop form anywhere"
+          }
+        },
+        "image_picker_eeqCh7": {
+          "type": "image_picker",
+          "settings": {
+            "icon": "shopify://shop_images/usp-icon-2.jpg",
+            "usps_heading": "Exclusive Designs",
+            "usps_subheading": "All studio curated designs"
+          }
+        },
+        "image_picker_eV4MjP": {
+          "type": "image_picker",
+          "settings": {
+            "icon": "shopify://shop_images/usp-icon-3.jpg",
+            "usps_heading": "100% Authentic",
+            "usps_subheading": "Shop with peace of mind"
+          }
+        },
+        "image_picker_cYP9Qe": {
+          "type": "image_picker",
+          "settings": {
+            "icon": "shopify://shop_images/usp-icon-4.jpg",
+            "usps_heading": "ONLINE SUPPORT",
+            "usps_subheading": "We are happy to help always"
+          }
+        }
+      },
+      "block_order": [
+        "image_picker_aKmVxz",
+        "image_picker_eeqCh7",
+        "image_picker_eV4MjP",
+        "image_picker_cYP9Qe"
+      ],
+      "settings": {
+        "footer_logo": "shopify://shop_images/footer-logo.png",
+        "footer_content": "<p>Zever4u.com, by Giri Zevar Mahal, is an online store offering exquisite silver jewelry with modern designs and timeless craftsmanship. Explore a stunning collection of rings, necklaces, bangles, and</p>",
+        "menu_1_title": "Info",
+        "menu_1": "info-menu",
+        "menu_2_title": "Category",
+        "menu_2": "category-menu",
+        "map_icon": "shopify://shop_images/map.png",
+        "office_location": "<p>Chand Cinema Rd, beside Sanjay Lake Metro Station, Mayur Vihar Phase I, East, Kalyan Puri, Delhi, 110091</p>",
+        "phone_icon": "shopify://shop_images/phone.png",
+        "contact_numbers": "<p>+91-8368160031, +91-9911249766</p>",
+        "email_icon": "shopify://shop_images/mail.png",
+        "official_emails": "<p>Contactzever4u@gmail.com</p>"
+      }
+    }
+  },
+  "order": [
+    "about_us_founder_F34yYe",
+    "footer"
+  ]
+}
