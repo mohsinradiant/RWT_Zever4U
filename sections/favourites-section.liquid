@@ -10,22 +10,20 @@
         </div>
         <div class="col-md-8">
           <div class="row gy-3 gx-3">
-          
-
             {% for block in section.blocks %}
-            <div class="col-md-4">
-              <div class="Category_box text-center">
-                <a href="{{ block.settings.category_url }}">
-                  {% if block.settings.category_image != blank %}
-                  <img
-                    src="{{ block.settings.category_image | img_url: 'medium' }}"
-                    alt="{{ block.settings.category_title }}"
-                  />
-                  {% endif %}
-                  <p>{{ block.settings.category_title }}</p>
-                </a>
+              <div class="col-md-4">
+                <div class="Category_box text-center">
+                  <a href="{{ block.settings.category_url }}">
+                    {% if block.settings.category_image != blank %}
+                      <img
+                        src="{{ block.settings.category_image | img_url: 'medium' }}"
+                        alt="{{ block.settings.category_title }}"
+                      >
+                    {% endif %}
+                    <p>{{ block.settings.category_title }}</p>
+                  </a>
+                </div>
               </div>
-            </div>
             {% endfor %}
           </div>
         </div>
@@ -33,6 +31,11 @@
     </div>
   </section>
 </main>
+<style>
+  .Categorys-section {
+    background: #fcfbf5;
+  }
+</style>
 {% schema %}
 {
   "name": "Favourites Section",
@@ -58,7 +61,7 @@
     {
       "type": "url",
       "id": "button_url",
-      "label": "Button URL",
+      "label": "Button URL"
     }
   ],
   "blocks": [
