@@ -1088,10 +1088,16 @@ button {}
   padding: 80px 0
 }
 
-.Category_box {
-  background-color: #f6f6f6;
-  padding: 10px;
+.Category_box a {
+  /* background-color: #f6f6f6;
+  padding: 10px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
+
 
 .Category_box:hover {
   -webkit-animation-name: effect-horizontal;
@@ -1993,9 +1999,11 @@ button {}
   border-radius: 0;
   font-family: 'lato', sans-serif;
 }
-.contact-form .p-3{
+
+.contact-form .p-3 {
   font-size: 2.5rem;
 }
+
 .contact-form label {
   margin-bottom: 7px;
   font-weight: 600;
@@ -2152,7 +2160,7 @@ div:not([class])>.wf-floating-launcher {
   .Banner-heading {
     font-size: 4rem;
     text-align: center;
-}
+  }
 
   .inner-banner .hero-text {
     width: 90%;
