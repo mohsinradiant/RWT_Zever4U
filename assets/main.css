@@ -1796,11 +1796,10 @@ button {}
 
 .slider-prod .p-logo-watermark {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  bottom: 30px;
+  right: 10px;
   z-index: 2;
-  width: 120px;
-}
+  width: 50px;}
 
 .slider-prod .carousel-indicators button.thumbnail:not(.active) {
   opacity: 0.7;
