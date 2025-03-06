@@ -108,6 +108,7 @@
         },
         "slide_faygTb": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_2.jpg",
             "image_mobile": "shopify://shop_images/Untitled_design_2.jpg",
@@ -127,6 +128,7 @@
         },
         "slide_QCARQC": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_1.jpg",
             "image_mobile": "shopify://shop_images/Untitled_design_1_1.jpg",
