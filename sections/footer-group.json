@@ -11,12 +11,6 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "about_us_founder_F34yYe": {
-      "type": "about-us-founder",
-      "settings": {
-        "founder_richtext": "<h3>A visionary leader, a passionate entrepreneur, and a name synonymous with trust in the jewelry industry—<strong>Kartik Giri</strong> is the driving force behind <strong>Zever4U</strong>, a unit of <strong>Giri Zever Mahal</strong>, founded with a singular mission: to offer <strong>exceptional quality jewellery at fair prices while upholding trust and transparency.</strong></h3><p>With an unwavering commitment to <strong>craftsmanship, ethical practices, and customer satisfaction</strong>, Kartik Giri has transformed his passion into a legacy. What began as a <strong>small, personal passion project—rooted in a deep appreciation for design and product quality—has blossomed into a brand recognized for its unique blend of modern aesthetics and traditional techniques.</strong></p><p>Each collection reflects the founder's commitment to <strong>sustainability, ethics, and unparalleled craftsmanship</strong>, ensuring that every piece is not just an accessory, but a meaningful work of art. Whether it's a <strong>delicate necklace that captures a moment or a bold statement piece that makes a lasting impression</strong>, Kartik Giri believes that jewelry should <strong>empower, inspire, and evoke a sense of wonder.</strong></p><p>With an eye for detail and a commitment to excellence, Kartik Giri ensures that <strong>only the finest materials are used</strong>, making every creation a true reflection of <strong>quality, sophistication, and timeless beauty</strong>. Above all, his mission remains unchanged: <strong>to make every customer feel special with jewelry that tells their unique story</strong>.</p><p><strong>Thank you for being a part of the journey. We’re honored to share our passion with you.</strong></p>"
-      }
-    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -76,7 +70,6 @@
     }
   },
   "order": [
-    "about_us_founder_F34yYe",
     "footer"
   ]
 }
