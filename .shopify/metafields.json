@@ -391,6 +391,16 @@
         "name": "list.metaobject_reference",
         "category": "REFERENCE"
       }
+    },
+    {
+      "key": "price_breakdown_json",
+      "namespace": "content",
+      "name": "Price Breakdown Json",
+      "description": "",
+      "type": {
+        "name": "json",
+        "category": "JSON"
+      }
     }
   ],
   "shop": []
