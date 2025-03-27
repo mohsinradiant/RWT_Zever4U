@@ -2295,6 +2295,15 @@ div:not([class])>.wf-floating-launcher {
     width: 100%;
   }
 
+  .header-logo {
+    padding-left: 20px;
+  }
+
+  .header-account {
+    padding-right: 70px;
+
+  }
+
   .header-brand .container-xl {
     display: -webkit-box;
     display: -ms-flexbox;
