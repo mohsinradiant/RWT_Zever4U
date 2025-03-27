@@ -2398,6 +2398,16 @@ div:not([class])>.wf-floating-launcher {
     border: none;
   }
 
+  .header-navbar .navbar-nav .nav-item .nav-link {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .dropdown-toggle:after {
+    top: 0px;
+  }
+
   .header-brand .container-xl .align-items-center .col-sm-6 .container-xl {
     padding-right: 0;
     display: -webkit-box;
