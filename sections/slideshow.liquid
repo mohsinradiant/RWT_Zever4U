@@ -34,6 +34,7 @@
   {%- if section.settings.auto_rotate and section.blocks.size > 1 -%}
     <div class="slideshow__controls slideshow__controls--top slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}">
       <button
+        style="display: none;"
         type="button"
         class="slider-button slider-button--prev"
         name="previous"
@@ -69,6 +70,7 @@
         {%- endif -%}
       </div>
       <button
+        style="display: none !important;"
         type="button"
         class="slider-button slider-button--next"
         name="next"
