@@ -768,7 +768,9 @@ button {}
   position: relative;
   font-size: 18px;
 }
-
+.header-account-wrap .header__search summary i{
+  visibility: hidden;
+}
 .header-account-wrap .header-account-item .count-circle {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
