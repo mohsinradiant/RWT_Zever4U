@@ -15,7 +15,7 @@
         "slide_JzN9T9": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_3.jpg",
+            "image": "shopify://shop_images/banner1.jpg",
             "image_mobile": "shopify://shop_images/Untitled_675_x_900_px_2.jpg",
             "heading": "",
             "heading_size": "h1",
@@ -34,7 +34,7 @@
         "slide_B4UG8J": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/banner2_1.jpg",
+            "image": "shopify://shop_images/banner3.jpg",
             "image_mobile": "shopify://shop_images/banner2.jpg",
             "heading": "",
             "heading_size": "h1",
@@ -50,11 +50,11 @@
             "text_alignment_mobile": "center"
           }
         },
-        "slide_faygTb": {
+        "slide_YmUQFK": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_4.jpg",
-            "image_mobile": "shopify://shop_images/Untitled_675_x_900_px_3.jpg",
+            "image": "shopify://shop_images/banner2_2_6979402d-ad23-47a1-9576-425755402e68.jpg",
+            "image_mobile": "shopify://shop_images/banner2.jpg",
             "heading": "",
             "heading_size": "h1",
             "subheading": "",
@@ -65,26 +65,7 @@
             "show_text_box": false,
             "text_alignment": "center",
             "image_overlay_opacity": 0,
-            "color_scheme": "scheme-1",
-            "text_alignment_mobile": "center"
-          }
-        },
-        "slide_QCARQC": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_6.jpg",
-            "image_mobile": "shopify://shop_images/Untitled_675_x_900_px_4.jpg",
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "shopify://collections/holi-special",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-1",
+            "color_scheme": "",
             "text_alignment_mobile": "center"
           }
         }
@@ -92,8 +73,7 @@
       "block_order": [
         "slide_JzN9T9",
         "slide_B4UG8J",
-        "slide_faygTb",
-        "slide_QCARQC"
+        "slide_YmUQFK"
       ],
       "settings": {
         "layout": "full_bleed",
