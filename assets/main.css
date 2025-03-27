@@ -2181,6 +2181,12 @@ div:not([class])>.wf-floating-launcher {
 }
 
 @media(max-width:756px) {
+  .header-account-wrap .header__search summary i{
+    visibility: visible;
+  }
+  .big-search-header{
+    visibility: hidden;
+  }
   .collection-hero-text-container {
     position: relative;
   }
