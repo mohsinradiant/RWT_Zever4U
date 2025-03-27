@@ -2391,7 +2391,9 @@ div:not([class])>.wf-floating-launcher {
   .header-navbar .navbar-nav .nav-item .nav-link {
     color: #121212;
   }
-
+  .dropdown-menu.show{
+    display: flex;
+  }
   .navbar-expand-lg .navbar-nav .dropdown-menu {
     background-color: transparent;
     border: none;
