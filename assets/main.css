@@ -2384,7 +2384,6 @@ div:not([class])>.wf-floating-launcher {
   }
 
   .header-navbar .container-xl ul {
-    display: flex;
     flex-direction: column;
     align-items: end;
   }
