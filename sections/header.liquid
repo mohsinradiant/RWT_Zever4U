@@ -97,6 +97,13 @@
         document.querySelector('input[type="text"]').value = '';
         document.querySelector('input[type="text"]').focus();
       }
+      document.querySelector('.big-search-header').addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent any bubbling issues
+        const target = document.querySelector('.header-account-wrap .header__search summary i');
+        if (target) {
+          target.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+        }
+      });
     </script>
 
     <div class="col-sm-3 header-account">
