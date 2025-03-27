@@ -728,8 +728,8 @@ button {}
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .header-logo .header-logo-img {
@@ -746,6 +746,7 @@ button {}
 
 .header-account {
   margin-bottom: -10px;
+  z-index: 1;
 }
 
 .header-account-wrap {
@@ -767,6 +768,10 @@ button {}
 .header-account-wrap .header-account-item {
   position: relative;
   font-size: 18px;
+}
+
+.header-account-wrap .header__search summary i {
+  visibility: hidden;
 }
 
 .header-account-wrap .header-account-item .count-circle {
@@ -2179,6 +2184,14 @@ div:not([class])>.wf-floating-launcher {
 }
 
 @media(max-width:756px) {
+  .header-account-wrap .header__search summary i {
+    visibility: visible;
+  }
+
+  .big-search-header {
+    display: none !important;
+  }
+
   .collection-hero-text-container {
     position: relative;
   }
@@ -2300,7 +2313,7 @@ div:not([class])>.wf-floating-launcher {
   }
 
   .header-account {
-    padding-right: 90px;
+    margin-right: 90px;
 
   }
 
@@ -2377,11 +2390,8 @@ div:not([class])>.wf-floating-launcher {
   .header-navbar {
     padding-top: 0;
     background-color: transparent;
-    margin-top: -55px;
+    margin-top: -62px;
     margin-bottom: 35px;
-  }
-
-  .header-navbar {
     margin-right: 20px;
   }
 

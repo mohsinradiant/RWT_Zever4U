@@ -23,6 +23,39 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const swiper = new Swiper('.products-slider', {
+      loop: true, // Infinite loop
+      slidesPerView: 1, // Number of slides visible at a time
+      spaceBetween: 10, // Space between slides
+      autoplay: {
+        delay: 2000, // 3 seconds auto-scroll
+        disableOnInteraction: false, // Keep autoplay working after user interaction
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: {{ section.settings.columns_desktop }},
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: {{ section.settings.columns_desktop }},
+          spaceBetween: 30,
+        },
+      }
+    });
+  });
+</script>
+
 {% schema %}
 {
   "name": "Trending Section",
