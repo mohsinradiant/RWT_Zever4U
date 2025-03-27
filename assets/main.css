@@ -2411,7 +2411,9 @@ div:not([class])>.wf-floating-launcher {
   .dropdown-toggle:after {
     top: 0px;
   }
-
+  .header-navbar .navbar-nav .nav-item .nav-link:hover{
+    opacity: 1;
+  }
   .header-brand .container-xl .align-items-center .col-sm-6 .container-xl {
     padding-right: 0;
     display: -webkit-box;
