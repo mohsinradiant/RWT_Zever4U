@@ -113,42 +113,48 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/top-category-3.png",
-            "link": "shopify://collections/rings"
+            "link": "shopify://collections/rings",
+            "title": "Rings"
           }
         },
         "category_iMJVdr": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/top-category-1.png",
-            "link": "shopify://collections/earrings"
+            "link": "shopify://collections/earrings",
+            "title": "Earrings"
           }
         },
         "category_YwHJ4U": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/top-category-2.png",
-            "link": "shopify://collections/weddings"
+            "link": "shopify://collections/weddings",
+            "title": "Wedding & Bridal"
           }
         },
         "category_DiCqFb": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/top-category-4.png",
-            "link": "shopify://collections/toe-ring"
+            "link": "shopify://collections/toe-ring",
+            "title": "Toe Rings"
           }
         },
         "category_qw7Cpt": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/top-category-5.png",
-            "link": "shopify://collections/bracelet"
+            "link": "shopify://collections/bracelet",
+            "title": "Bracelets"
           }
         },
         "category_Y6L7aL": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/top-category-6.png",
-            "link": "shopify://collections/accessories"
+            "link": "shopify://collections/accessories",
+            "title": "Spiritual Elegance"
           }
         }
       },
