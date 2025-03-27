@@ -2388,12 +2388,10 @@ div:not([class])>.wf-floating-launcher {
     align-items: end;
   }
 
-  .header-navbar .navbar-nav .nav-item .nav-link {
-    color: #121212;
-  }
-  .dropdown-menu.show{
+  .dropdown-menu.show {
     display: flex;
   }
+
   .navbar-expand-lg .navbar-nav .dropdown-menu {
     background-color: transparent;
     border: none;
@@ -2403,6 +2401,9 @@ div:not([class])>.wf-floating-launcher {
     display: flex;
     justify-content: end;
     align-items: center;
+    font-size: 1.6rem;
+    padding: 0;
+    color: #121212;
   }
 
   .dropdown-toggle:after {
