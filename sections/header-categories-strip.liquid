@@ -1,4 +1,4 @@
-<div class="page-width category-circles-strip-container">
+<div class="category-circles-strip-container">
   {% for block in section.blocks %}
     <a href="{{ block.settings.link }}">
       <img src="{{ block.settings.image |  image_url  }}">
@@ -12,8 +12,8 @@
     justify-content: center;
     align-items: start;
     overflow-x: auto;
-    margin-bottom: 15px;
-    margin-top: 5px;
+    background: #cb8161;
+    padding: 30px 0;
   }
   .category-circles-strip-container a {
     width: 75px;
