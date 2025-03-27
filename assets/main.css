@@ -784,7 +784,8 @@ button {}
 
 .header-navbar {
   padding-top: 5px;
-  padding-bottom: 5px
+  padding-bottom: 5px;
+  background: #cb8161;
 }
 
 .header-navbar .navbar-nav .nav-item {
@@ -799,7 +800,7 @@ button {}
 
 .header-navbar .navbar-nav .nav-item .nav-link {
   font-size: 13px;
-  color: #000;
+  color: #fff;
   text-wrap: nowrap;
 }
 
@@ -810,7 +811,7 @@ button {}
 }
 
 .header-navbar .navbar-nav .nav-item .nav-link:hover {
-  color: #cb8161;
+  opacity: .7;
 }
 
 .header-navbar .navbar-nav .category-dd .nav-link {
