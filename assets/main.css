@@ -746,6 +746,7 @@ button {}
 
 .header-account {
   margin-bottom: -10px;
+  z-index: 1;
 }
 
 .header-account-wrap {
