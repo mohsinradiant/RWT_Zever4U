@@ -202,6 +202,17 @@
       "disabled": true,
       "settings": {}
     },
+    "trending_section": {
+      "type": "trending-section",
+      "settings": {
+        "trending_heading": "Bestsellers",
+        "collection": "best-sellers",
+        "products_to_show": 12,
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_rating": true
+      }
+    },
     "favourites_section": {
       "type": "favourites-section",
       "blocks": {
@@ -280,7 +291,7 @@
         "style_button_url": "shopify://collections/earrings"
       }
     },
-    "trending_section": {
+    "trending_section_WqLjyk": {
       "type": "trending-section",
       "settings": {
         "trending_heading": "Trending Products",
@@ -414,9 +425,10 @@
     "slideshow_a6Kja8",
     "header_categories_strip_8piUrg",
     "homepage_banner",
+    "trending_section",
     "favourites_section",
     "stylish_section",
-    "trending_section",
+    "trending_section_WqLjyk",
     "deal_section",
     "home_featured_section",
     "shop_by_occasions_section",
