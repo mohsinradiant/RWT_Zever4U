@@ -744,6 +744,10 @@ button {}
   z-index: 1030;
 }
 
+.header-account {
+  margin-bottom: -10px;
+}
+
 .header-account-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
