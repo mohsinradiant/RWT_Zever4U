@@ -2373,6 +2373,7 @@ div:not([class])>.wf-floating-launcher {
 
   .header-navbar {
     padding-top: 0;
+    background-color: transparent;
   }
 
   .header-navbar .container-xl {
@@ -2386,6 +2387,14 @@ div:not([class])>.wf-floating-launcher {
     display: flex;
     flex-direction: column;
     align-items: end;
+  }
+
+  .header-navbar .navbar-nav .nav-item .nav-link {
+    color: #121212;
+  }
+
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+    background-color: transparent;
   }
 
   .header-brand .container-xl .align-items-center .col-sm-6 .container-xl {
