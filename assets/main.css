@@ -2309,7 +2309,7 @@ div:not([class])>.wf-floating-launcher {
   }
 
   .header-account {
-    padding-right: 90px;
+    margin-right: 90px;
 
   }
 
