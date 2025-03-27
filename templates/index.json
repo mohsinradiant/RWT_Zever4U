@@ -213,6 +213,17 @@
         "show_rating": true
       }
     },
+    "trending_section_JKrPHk": {
+      "type": "trending-section",
+      "settings": {
+        "trending_heading": "New Arrivals",
+        "collection": "new-arrivals",
+        "products_to_show": 12,
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_rating": true
+      }
+    },
     "favourites_section": {
       "type": "favourites-section",
       "blocks": {
@@ -426,6 +437,7 @@
     "header_categories_strip_8piUrg",
     "homepage_banner",
     "trending_section",
+    "trending_section_JKrPHk",
     "favourites_section",
     "stylish_section",
     "trending_section_WqLjyk",
