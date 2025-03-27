@@ -2374,6 +2374,7 @@ div:not([class])>.wf-floating-launcher {
   .header-navbar {
     padding-top: 0;
     background-color: transparent;
+    margin-top: -55px;
   }
 
   .header-navbar .container-xl {
