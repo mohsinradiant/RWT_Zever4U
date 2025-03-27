@@ -563,9 +563,8 @@
     });
   });
 </script>
-
 <script>
-const variants = [
+  const variants = [
   {% for variant in product.variants %}
     {
       "id": {{ variant.id }},
@@ -579,8 +578,8 @@ const variants = [
       "hsn_code": "{{ variant.metafields.global.harmonized_system_code | escape }}"
     }{% unless forloop.last %},{% endunless %}
   {% endfor %}
-];
-document.addEventListener("DOMContentLoaded", function () {
+  ];
+  document.addEventListener("DOMContentLoaded", function () {
     let metafieldDivs = document.querySelectorAll(".metafield-rich_text_field");
 
     metafieldDivs.forEach(metafieldDiv => {
@@ -634,48 +633,48 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-});
+  });
 
-const formatPrice = (price) => {
+  const formatPrice = (price) => {
   const currency = "{{ shop.currency }}"; // Get your shop's currency
   const priceInDecimal = price / 100; // Shopify stores price in cents
   return new Intl.NumberFormat('en-US', { // You can customize locale
     style: 'currency',
     currency: currency
   }).format(priceInDecimal);
-};
+  };
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     const wishlistBtns = document.querySelectorAll('.wishlist-btn');
-//     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+  // document.addEventListener('DOMContentLoaded', function () {
+  //     const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+  //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-//     function updateButtonState(button) {
-//       const productId = button.dataset.productId;
-//       if (wishlist.includes(productId)) {
-//         button.innerHTML = '<i class="fa-solid fa-heart"></i>';
-//       } else {
-//         button.innerHTML = '<i class="fa-regular fa-heart"></i>';
-//       }
-//     }
+  //     function updateButtonState(button) {
+  //       const productId = button.dataset.productId;
+  //       if (wishlist.includes(productId)) {
+  //         button.innerHTML = '<i class="fa-solid fa-heart"></i>';
+  //       } else {
+  //         button.innerHTML = '<i class="fa-regular fa-heart"></i>';
+  //       }
+  //     }
 
-//     wishlistBtns.forEach(button => {
-//       updateButtonState(button);
+  //     wishlistBtns.forEach(button => {
+  //       updateButtonState(button);
 
-//       button.addEventListener('click', function () {
-//         const productId = this.dataset.productId;
+  //       button.addEventListener('click', function () {
+  //         const productId = this.dataset.productId;
 
-//         if (wishlist.includes(productId)) {
-//           const index = wishlist.indexOf(productId);
-//           wishlist.splice(index, 1);
-//         } else {
-//           wishlist.push(productId);
-//         }
+  //         if (wishlist.includes(productId)) {
+  //           const index = wishlist.indexOf(productId);
+  //           wishlist.splice(index, 1);
+  //         } else {
+  //           wishlist.push(productId);
+  //         }
 
-//         localStorage.setItem('wishlist', JSON.stringify(wishlist));
-//         updateButtonState(this);
-//       });
-//     });
-// });
+  //         localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  //         updateButtonState(this);
+  //       });
+  //     });
+  // });
 </script>
 
 {% schema %}
