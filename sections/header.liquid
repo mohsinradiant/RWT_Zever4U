@@ -68,7 +68,6 @@
         background: #fafafa;
         cursor: pointer;
       "
-      onclick="document.querySelector('.header-account-wrap .header__search summary i').click();"
     >
       <i
         style="
@@ -93,17 +92,18 @@
     </div>
 
     <script>
-      function clearSearch() {
-        document.querySelector('input[type="text"]').value = '';
-        document.querySelector('input[type="text"]').focus();
-      }
       document.querySelector('.big-search-header').addEventListener('click', (event) => {
-        event.stopPropagation(); // Prevent any bubbling issues
+        event.stopPropagation(); // Prevent bubbling issues
         const target = document.querySelector('.header-account-wrap .header__search summary i');
         if (target) {
           target.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
         }
       });
+
+      function clearSearch() {
+        document.querySelector('input[type="text"]').value = '';
+        document.querySelector('input[type="text"]').focus();
+      }
     </script>
 
     <div class="col-sm-3 header-account">
