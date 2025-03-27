@@ -66,7 +66,9 @@
         padding: 1rem 2rem;
         width: 100%;
         background: #fafafa;
+        cursor: pointer;
       "
+      onclick="document.querySelector('.header__icon--summary').click();"
     >
       <i
         style="
@@ -89,12 +91,14 @@
         "
       >
     </div>
+
     <script>
       function clearSearch() {
         document.querySelector('input[type="text"]').value = '';
         document.querySelector('input[type="text"]').focus();
       }
     </script>
+
     <div class="col-sm-3 header-account">
       <div class="header-account-wrap">
         {% render 'header-search', input_id: 'Search-In-Modal' %}
