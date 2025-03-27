@@ -2377,6 +2377,16 @@ div:not([class])>.wf-floating-launcher {
     margin-top: -55px;
   }
 
+  .navbar-collapse {
+    margin-top: 20px;
+    position: absolute;
+    background: #fff;
+    top: 20px;
+    right: 10px;
+    padding: 21px;
+    border-radius: 10px;
+  }
+
   .header-navbar .container-xl {
     align-items: end;
     display: flex;
@@ -2406,15 +2416,19 @@ div:not([class])>.wf-floating-launcher {
     padding: 0;
     color: #121212;
   }
-  .header-navbar .navbar-nav .dropdown-menu .dropdown-item{
+
+  .header-navbar .navbar-nav .dropdown-menu .dropdown-item {
     opacity: .7;
   }
+
   .dropdown-toggle:after {
     top: 0px;
   }
-  .header-navbar .navbar-nav .nav-item .nav-link:hover{
+
+  .header-navbar .navbar-nav .nav-item .nav-link:hover {
     opacity: 1;
   }
+
   .header-brand .container-xl .align-items-center .col-sm-6 .container-xl {
     padding-right: 0;
     display: -webkit-box;
