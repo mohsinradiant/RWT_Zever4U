@@ -16,20 +16,12 @@
       aria-haspopup="dialog"
       aria-label="{{ 'general.search.search' | t }}"
     >
-      <div style="display: flex; align-items: center; border: 1px solid #ccc; border-radius: 4px; padding: 4px; width: 100%;">
-        <i style="scale: 1.36; margin-right: 8px;" class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Search Products" style="flex: 1; border: none; outline: none;">
-        <span class="svg-wrapper header__icon-close" onclick="clearSearch()" style="cursor: pointer; margin-left: 8px;">
+      <span>
+        <i style="scale: 1.36;" class="fa-solid fa-magnifying-glass"></i>
+        <span class="svg-wrapper header__icon-close">
           {{- 'icon-close.svg' | inline_asset_content -}}
         </span>
-      </div>
-
-      <script>
-        function clearSearch() {
-          document.querySelector('input[type="text"]').value = '';
-          document.querySelector('input[type="text"]').focus();
-        }
-      </script>
+      </span>
     </summary>
     <div
       class="search-modal modal__content gradient"
