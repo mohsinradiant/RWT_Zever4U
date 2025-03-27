@@ -728,8 +728,8 @@ button {}
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .header-logo .header-logo-img {
