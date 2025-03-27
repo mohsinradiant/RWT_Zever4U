@@ -57,6 +57,20 @@
         {%- endif -%}
       </a>
     </div>
+    <div style="display: flex; align-items: center; border: 1px solid #ccc; border-radius: 4px; padding: 4px; width: 100%;">
+      <i style="scale: 1.36; margin-right: 8px;" class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search Products" style="flex: 1; border: none; outline: none;">
+      <span class="svg-wrapper header__icon-close" onclick="clearSearch()" style="cursor: pointer; margin-left: 8px;">
+        {{- 'icon-close.svg' | inline_asset_content -}}
+      </span>
+    </div>
+
+    <script>
+      function clearSearch() {
+        document.querySelector('input[type="text"]').value = '';
+        document.querySelector('input[type="text"]').focus();
+      }
+    </script>
     <div class="col-sm-3 header-account">
       <div class="header-account-wrap">
         {% render 'header-search', input_id: 'Search-In-Modal' %}
