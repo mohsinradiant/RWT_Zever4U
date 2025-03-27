@@ -2375,6 +2375,7 @@ div:not([class])>.wf-floating-launcher {
     padding-top: 0;
     background-color: transparent;
     margin-top: -55px;
+    margin-bottom: 35px;
   }
 
   .navbar-collapse {
