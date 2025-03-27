@@ -2185,7 +2185,7 @@ div:not([class])>.wf-floating-launcher {
     visibility: visible;
   }
   .big-search-header{
-    visibility: hidden;
+    display: none !important;
   }
   .collection-hero-text-container {
     position: relative;
