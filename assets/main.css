@@ -2300,7 +2300,7 @@ div:not([class])>.wf-floating-launcher {
   }
 
   .header-account {
-    padding-right: 70px;
+    padding-right: 90px;
 
   }
 
@@ -2379,6 +2379,10 @@ div:not([class])>.wf-floating-launcher {
     background-color: transparent;
     margin-top: -55px;
     margin-bottom: 35px;
+  }
+
+  .header-navbar {
+    margin-right: 20px;
   }
 
   .navbar-collapse {
