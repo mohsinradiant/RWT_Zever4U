@@ -2395,6 +2395,7 @@ div:not([class])>.wf-floating-launcher {
 
   .navbar-expand-lg .navbar-nav .dropdown-menu {
     background-color: transparent;
+    border: none;
   }
 
   .header-brand .container-xl .align-items-center .col-sm-6 .container-xl {
