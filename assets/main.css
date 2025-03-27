@@ -724,8 +724,12 @@ button {}
 
 
 .header-brand {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .header-logo .header-logo-img {
