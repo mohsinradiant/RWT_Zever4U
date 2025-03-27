@@ -31,64 +31,60 @@
     </div>
   -->
   <div class="header-brand">
-    <div class="container-xl custom-width">
-      <div class="row align-items-center">
-        <div class="col-sm-3 header-logo">
-          <a class="me-3" href="{{ routes.root_url }}">
-            {%- if section.settings.logo_position == 'top-left' -%}
-              {%- if settings.logo != blank -%}
-                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-                {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-                {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
-                {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-                {{
-                  settings.logo
-                  | image_url: width: 600
-                  | image_tag:
-                    class: 'header-logo-img',
-                    widths: widths,
-                    height: logo_height,
-                    width: settings.logo_width,
-                    alt: logo_alt,
-                    sizes: sizes,
-                    preload: true
-                }}
-              {%- else -%}
-                <span class="h2">{{ shop.name }}</span>
-              {%- endif -%}
-            {%- endif -%}
-          </a>
+    <div class="col-sm-3 header-logo">
+      <a class="me-3" href="{{ routes.root_url }}">
+        {%- if section.settings.logo_position == 'top-left' -%}
+          {%- if settings.logo != blank -%}
+            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+            {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+            {{
+              settings.logo
+              | image_url: width: 600
+              | image_tag:
+                class: 'header-logo-img',
+                widths: widths,
+                height: logo_height,
+                width: settings.logo_width,
+                alt: logo_alt,
+                sizes: sizes,
+                preload: true
+            }}
+          {%- else -%}
+            <span class="h2">{{ shop.name }}</span>
+          {%- endif -%}
+        {%- endif -%}
+      </a>
+    </div>
+    <div class="col-sm-3 header-account">
+      <div class="header-account-wrap">
+        {% render 'header-search', input_id: 'Search-In-Modal' %}
+        <div class="header-account-item user-cart">
+          {% if customer %}
+            {% assign url = routes.account_url %}
+          {% else %}
+            {% assign url = routes.account_login_url %}
+          {% endif %}
+          <a href="{{ url }}"><i class="fa-regular fa-user"></i> </a>
         </div>
-        <div class="col-sm-3 header-account">
-          <div class="header-account-wrap">
-            {% render 'header-search', input_id: 'Search-In-Modal' %}
-            <div class="header-account-item user-cart">
-              {% if customer %}
-                {% assign url = routes.account_url %}
-              {% else %}
-                {% assign url = routes.account_login_url %}
-              {% endif %}
-              <a href="{{ url }}"><i class="fa-regular fa-user"></i> </a>
-            </div>
-            <style>
-              .header__icon {
-                height: 98% !important;
-                width: fit-content !important;
-              }
-            </style>
-            {% comment %}
-              <div class="header-account-item header-wishlist">
-                <a href="/pages/wishlist">
-                  <span id="wishlist-count" class="count-circle">0</span> <i class="fa-regular fa-heart"></i>
-                </a>
-              </div>
-            {% endcomment %}
-            <div class="header-account-item header-cart">
-              <a href="{{ routes.cart_url }}">
-                <span class="count-circle">{{ cart.item_count }}</span> <i class="fa-solid fa-cart-shopping"></i
-              ></a>
-            </div>
+        <style>
+          .header__icon {
+            height: 98% !important;
+            width: fit-content !important;
+          }
+        </style>
+        {% comment %}
+          <div class="header-account-item header-wishlist">
+            <a href="/pages/wishlist">
+              <span id="wishlist-count" class="count-circle">0</span> <i class="fa-regular fa-heart"></i>
+            </a>
           </div>
+        {% endcomment %}
+        <div class="header-account-item header-cart">
+          <a href="{{ routes.cart_url }}">
+            <span class="count-circle">{{ cart.item_count }}</span> <i class="fa-solid fa-cart-shopping"></i
+          ></a>
         </div>
       </div>
     </div>
