@@ -136,6 +136,30 @@
             "link": "shopify://collections/accessories",
             "title": "Spiritual Elegance"
           }
+        },
+        "category_G6dEhc": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Pendant-chain.png",
+            "link": "shopify://collections/pendent-chain-set",
+            "title": "Pendent Chain"
+          }
+        },
+        "category_VXNf7D": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/anklets.png",
+            "link": "shopify://collections/anklets",
+            "title": "Anklets"
+          }
+        },
+        "category_yWMReg": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Holi-Special.png",
+            "link": "shopify://collections/holi-special",
+            "title": "Holi Special"
+          }
         }
       },
       "block_order": [
@@ -144,7 +168,10 @@
         "category_YwHJ4U",
         "category_DiCqFb",
         "category_qw7Cpt",
-        "category_Y6L7aL"
+        "category_Y6L7aL",
+        "category_G6dEhc",
+        "category_VXNf7D",
+        "category_yWMReg"
       ],
       "settings": {}
     },
