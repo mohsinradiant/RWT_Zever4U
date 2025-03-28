@@ -9,7 +9,7 @@
 <style>
   .category-circles-strip-container {
     display: flex;
-    gap: 45px;
+    gap: 25px;
     justify-content: center;
     align-items: start;
     overflow-x: auto;
@@ -26,9 +26,11 @@
     margin: 9px 0 0;
     letter-spacing: 0;
     line-height: 1.6rem;
+    text-wrap: nowrap;
   }
   .category-circles-strip-container a {
-    width: 75px;
+    width: 105px;
+    min-width: 105px;
     cursor: pointer;
     height: auto;
     display: flex;
@@ -40,7 +42,7 @@
     opacity: 0.8;
   }
   .category-circles-strip-container a img {
-    width: 100%;
+    width: 75%;
     transition: all ease-in.3s;
     height: auto;
   }
