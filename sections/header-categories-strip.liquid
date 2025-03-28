@@ -71,47 +71,37 @@
     const container = document.querySelector('.category-circles-strip-container');
     if (!container) return;
 
-    function checkScreenSize() {
-      if (window.innerWidth < 756) {
-        if (!container.dataset.scrolling) {
-          container.dataset.scrolling = 'true'; // Prevent multiple instances
+    if (!container.dataset.scrolling) {
+      container.dataset.scrolling = 'true'; // Prevent multiple instances
 
-          let items = Array.from(container.children);
-          let totalWidth = items.reduce((sum, item) => sum + item.offsetWidth, 0);
+      let items = Array.from(container.children);
+      let totalWidth = items.reduce((sum, item) => sum + item.offsetWidth, 0);
 
-          // Ensure enough content by duplicating items
-          while (container.scrollWidth < window.innerWidth * 2) {
-            items.forEach((item) => {
-              let clone = item.cloneNode(true);
-              container.appendChild(clone);
-            });
-          }
-
-          let allItems = Array.from(container.children);
-          let scrollAmount = container.scrollWidth / 2; // Distance to scroll
-
-          // Auto-scroll animation
-          gsap.to(container, {
-            scrollLeft: scrollAmount, // Moves content left
-            duration: 25, // Slower speed (previously 10s, now 20s)
-            ease: 'linear',
-            repeat: -1,
-            onUpdate: function () {
-              // Reset scroll position for seamless effect
-              if (container.scrollLeft >= scrollAmount) {
-                container.scrollLeft = 0;
-              }
-            },
-          });
-        }
-      } else {
-        gsap.killTweensOf(container); // Stop GSAP on larger screens
-        delete container.dataset.scrolling;
+      // Ensure enough content by duplicating items
+      while (container.scrollWidth < window.innerWidth * 2) {
+        items.forEach((item) => {
+          let clone = item.cloneNode(true);
+          container.appendChild(clone);
+        });
       }
-    }
 
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
+      let allItems = Array.from(container.children);
+      let scrollAmount = container.scrollWidth / 2; // Distance to scroll
+
+      // Auto-scroll animation
+      gsap.to(container, {
+        scrollLeft: scrollAmount, // Moves content left
+        duration: 25, // Adjust speed as needed
+        ease: 'linear',
+        repeat: -1,
+        onUpdate: function () {
+          // Reset scroll position for seamless effect
+          if (container.scrollLeft >= scrollAmount) {
+            container.scrollLeft = 0;
+          }
+        },
+      });
+    }
   }
 
   document.addEventListener('DOMContentLoaded', startAutoScroll);
