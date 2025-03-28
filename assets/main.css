@@ -732,6 +732,13 @@ button {}
   padding-bottom: 20px;
 }
 
+@media(min-width:756px) {
+  .header-brand {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 .header-logo .header-logo-img {
   width: 110px;
 }
