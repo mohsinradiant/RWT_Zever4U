@@ -137,6 +137,22 @@
             "title": "Spiritual Elegance"
           }
         },
+        "category_YfcnUe": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Timeless-Gifts.png",
+            "link": "shopify://collections/birthdays",
+            "title": "Timeless Gifts"
+          }
+        },
+        "category_kEc7nn": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/top-category-6_aefe1027-1978-49d7-bf78-b6d28c4119af.png",
+            "link": "shopify://collections/accessories",
+            "title": "Spiritual Elegance"
+          }
+        },
         "category_G6dEhc": {
           "type": "category",
           "settings": {
@@ -169,6 +185,8 @@
         "category_DiCqFb",
         "category_qw7Cpt",
         "category_Y6L7aL",
+        "category_YfcnUe",
+        "category_kEc7nn",
         "category_G6dEhc",
         "category_VXNf7D",
         "category_yWMReg"
