@@ -330,6 +330,36 @@
         "name": "list.metaobject_reference",
         "category": "REFERENCE"
       }
+    },
+    {
+      "key": "coin-material",
+      "namespace": "shopify",
+      "name": "Coin material",
+      "description": "Specifies the type of material a collectible coin is made from, e.g. bronze, copper",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "instrument-material",
+      "namespace": "shopify",
+      "name": "Instrument material",
+      "description": "Identifies the main material used in the construction of a musical instrument, like maple wood or brass",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "wallet-features",
+      "namespace": "shopify",
+      "name": "Wallet features",
+      "description": "Describes special characteristics of wallets, like RFID protection or compact design",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
     }
   ],
   "variant": [],

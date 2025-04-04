@@ -73,6 +73,15 @@
                   </div>
                 </div>
               {%- endif -%}
+              {% if product.metafields.content.breadth != blank %}
+                <div class="item-row row">
+                  <div class="col-5 heading">Breadth</div>
+                  <div class="col-7 info">
+                    {{ product.metafields.content.breadth.value }}
+                    {{ product.metafields.content.breadth.unit }}
+                  </div>
+                </div>
+              {%- endif -%}
               {% if collection.metafields.custom.color != blank %}
                 <div class="item-row row">
                   <div class="col-5 heading">Colour</div>
