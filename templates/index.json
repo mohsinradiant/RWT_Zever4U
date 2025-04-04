@@ -105,6 +105,14 @@
             "title": "Earrings"
           }
         },
+        "category_GmxxNF": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_design_11.jpg",
+            "link": "",
+            "title": "Watches"
+          }
+        },
         "category_YwHJ4U": {
           "type": "category",
           "settings": {
@@ -181,6 +189,7 @@
       "block_order": [
         "category_bkYpnM",
         "category_iMJVdr",
+        "category_GmxxNF",
         "category_YwHJ4U",
         "category_DiCqFb",
         "category_qw7Cpt",
