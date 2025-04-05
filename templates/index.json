@@ -12,35 +12,18 @@
     "slideshow_a6Kja8": {
       "type": "slideshow",
       "blocks": {
-        "slide_H8XiH7": {
-          "type": "slide",
-          "settings": {
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-1",
-            "text_alignment_mobile": "center"
-          }
-        },
         "slide_B4UG8J": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_12.jpg",
             "image_mobile": "shopify://shop_images/mobile3.jpg",
             "heading": "",
-            "heading_size": "h1",
+            "heading_size": "h2",
             "subheading": "",
             "button_label": "",
             "link": "shopify://collections",
             "button_style_secondary": false,
-            "box_align": "middle-center",
+            "box_align": "top-left",
             "show_text_box": false,
             "text_alignment": "center",
             "image_overlay_opacity": 0,
@@ -88,7 +71,6 @@
         }
       },
       "block_order": [
-        "slide_H8XiH7",
         "slide_B4UG8J",
         "slide_JzN9T9",
         "slide_YmUQFK"
