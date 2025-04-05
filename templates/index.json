@@ -15,9 +15,9 @@
         "slide_B4UG8J": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/banner3.jpg",
+            "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_12.jpg",
             "image_mobile": "shopify://shop_images/mobile3.jpg",
-            "heading": "",
+            "heading": "<a href=\"/collections/trending\" title=\"Trendsetter\">/collections/trending</a>",
             "heading_size": "h1",
             "subheading": "",
             "button_label": "",
