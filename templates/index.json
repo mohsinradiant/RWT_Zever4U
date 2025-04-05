@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_12.jpg",
-            "image_mobile": "shopify://shop_images/mobile3.jpg",
+            "image_mobile": "shopify://shop_images/675X900.jpg",
             "heading": "",
             "heading_size": "h2",
             "subheading": "",
@@ -31,11 +31,28 @@
             "text_alignment_mobile": "center"
           }
         },
+        "slide_iCpq7B": {
+          "type": "slide",
+          "settings": {
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "text_alignment_mobile": "center"
+          }
+        },
         "slide_JzN9T9": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_13.jpg",
-            "image_mobile": "shopify://shop_images/mobile1.jpg",
+            "image_mobile": "shopify://shop_images/675X900_1.jpg",
             "heading": "",
             "heading_size": "h2",
             "subheading": "",
@@ -54,7 +71,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/THIS_HOLI_MATCH_YOUR_JEWELLERY_WITH_THECOLOUR_14.jpg",
-            "image_mobile": "shopify://shop_images/mobile2.jpg",
+            "image_mobile": "shopify://shop_images/675X900_2.jpg",
             "heading": "",
             "heading_size": "h1",
             "subheading": "",
@@ -72,6 +89,7 @@
       },
       "block_order": [
         "slide_B4UG8J",
+        "slide_iCpq7B",
         "slide_JzN9T9",
         "slide_YmUQFK"
       ],
