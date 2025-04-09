@@ -50,20 +50,18 @@
             <h2 class="all_heading">Details</h2>
 
             <div class="detail-table ">
-              {% if product.metafields.custom.reference != blank %}
+              {% comment %} {% if product.metafields.custom.reference != blank %}
                 <div class="item-row row">
                   <div class="col-5 heading">Reference</div>
                   <div class="col-7 info">{{ product.metafields.custom.reference }}</div>
                 </div>
               {%- endif -%}
-
               {% if product.metafields.shopify.jewelry_material_reference %}
                 <div class="item-row row">
                   <div class="col-5 heading">Material</div>
                   <div class="col-7 info">{{ collection.metafields.custom['jewelry-material'] }}</div>
                 </div>
               {%- endif -%}
-
               {% if product.metafields.custom.length != blank %}
                 <div class="item-row row">
                   <div class="col-5 heading">Length</div>
@@ -88,7 +86,6 @@
                   <div class="col-7 info">{{ collection.metafields.custom.color }}</div>
                 </div>
               {%- endif -%}
-
               {% if product.metafields.custom.reference != blank %}
                 <div class="item-row row">
                   <div class="col-5 heading">HSN Code</div>
@@ -96,7 +93,7 @@
                     {{ product.variants.first.metafields.global.harmonized_system_code }}
                   </div>
                 </div>
-              {%- endif -%}
+              {%- endif -%} {% endcomment %}
             </div>
 
             <div class="product-info-details mb-4">
@@ -270,6 +267,50 @@
                       View</a
                     >
                   </p>
+                  {% if product.metafields.custom.reference != blank %}
+                    <div class="item-row row">
+                      <div class="col-5 heading">Reference</div>
+                      <div class="col-7 info">{{ product.metafields.custom.reference }}</div>
+                    </div>
+                  {%- endif -%}
+                  {% if product.metafields.shopify.jewelry_material_reference %}
+                    <div class="item-row row">
+                      <div class="col-5 heading">Material</div>
+                      <div class="col-7 info">{{ collection.metafields.custom['jewelry-material'] }}</div>
+                    </div>
+                  {%- endif -%}
+                  {% if product.metafields.custom.length != blank %}
+                    <div class="item-row row">
+                      <div class="col-5 heading">Length</div>
+                      <div class="col-7 info">
+                        {{ product.metafields.custom.length.value }}
+                        {{ product.metafields.custom.length.unit }}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {% if product.metafields.content.breadth != blank %}
+                    <div class="item-row row">
+                      <div class="col-5 heading">Breadth</div>
+                      <div class="col-7 info">
+                        {{ product.metafields.content.breadth.value }}
+                        {{ product.metafields.content.breadth.unit }}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {% if collection.metafields.custom.color != blank %}
+                    <div class="item-row row">
+                      <div class="col-5 heading">Colour</div>
+                      <div class="col-7 info">{{ collection.metafields.custom.color }}</div>
+                    </div>
+                  {%- endif -%}
+                  {% if product.metafields.custom.reference != blank %}
+                    <div class="item-row row">
+                      <div class="col-5 heading">HSN Code</div>
+                      <div class="col-7 info" id="product-hsn">
+                        {{ product.variants.first.metafields.global.harmonized_system_code }}
+                      </div>
+                    </div>
+                  {%- endif -%}
                 </div>
 
                 <div class="cart-option pt-4 border-top">
