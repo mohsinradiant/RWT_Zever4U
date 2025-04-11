@@ -273,9 +273,18 @@
                   </p>
                   {% if product.metafields.content.ring_size != blank %}
                     <div class="item-row row">
-                      <div class="col-5 heading">Ring Size</div>
+                      <div class="col-5 heading">Ring Size:</div>
                       <div class="col-7 info">
                         {{ product.metafields.content.ring_size }}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if product.metafields.content.bangle_size != blank %}
+                    <div class="item-row row">
+                      <div class="col-5 heading">Bangle Size:</div>
+                      <div class="col-7 info">
+                        {{ product.metafields.content.bangle_size }}
                       </div>
                     </div>
                   {% endif %}
