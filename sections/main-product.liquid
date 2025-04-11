@@ -50,57 +50,59 @@
             <h2 class="all_heading">Details</h2>
 
             <div class="detail-table ">
-              {% comment %} {% if product.metafields.custom.reference != blank %}
-                <div class="item-row row">
-                  <div class="col-5 heading">Reference</div>
-                  <div class="col-7 info">{{ product.metafields.custom.reference }}</div>
-                </div>
-              {%- endif -%}
-              {% if product.metafields.shopify.jewelry_material_reference %}
-                <div class="item-row row">
-                  <div class="col-5 heading">Material</div>
-                  <div class="col-7 info">{{ collection.metafields.custom['jewelry-material'] }}</div>
-                </div>
-              {%- endif -%}
-              {% if product.metafields.custom.length != blank %}
-                <div class="item-row row">
-                  <div class="col-5 heading">Length</div>
-                  <div class="col-7 info">
-                    {{ product.metafields.custom.length.value }}
-                    {{ product.metafields.custom.length.unit }}
+              {% comment %}
+                {% if product.metafields.custom.reference != blank %}
+                  <div class="item-row row">
+                    <div class="col-5 heading">Reference</div>
+                    <div class="col-7 info">{{ product.metafields.custom.reference }}</div>
                   </div>
-                </div>
-              {%- endif -%}
-              {% if product.metafields.content.breadth != blank %}
-                <div class="item-row row">
-                  <div class="col-5 heading">Breadth</div>
-                  <div class="col-7 info">
-                    {{ product.metafields.content.breadth.value }}
-                    {{ product.metafields.content.breadth.unit }}
+                {%- endif -%}
+                {% if product.metafields.shopify.jewelry_material_reference %}
+                  <div class="item-row row">
+                    <div class="col-5 heading">Material</div>
+                    <div class="col-7 info">{{ collection.metafields.custom['jewelry-material'] }}</div>
                   </div>
-                </div>
-              {%- endif -%}
-              {% if collection.metafields.custom.color != blank %}
-                <div class="item-row row">
-                  <div class="col-5 heading">Colour</div>
-                  <div class="col-7 info">{{ collection.metafields.custom.color }}</div>
-                </div>
-              {%- endif -%}
-              {% if product.metafields.custom.reference != blank %}
-                <div class="item-row row">
-                  <div class="col-5 heading">HSN Code</div>
-                  <div class="col-7 info" id="product-hsn">
-                    {{ product.variants.first.metafields.global.harmonized_system_code }}
+                {%- endif -%}
+                {% if product.metafields.custom.length != blank %}
+                  <div class="item-row row">
+                    <div class="col-5 heading">Length</div>
+                    <div class="col-7 info">
+                      {{ product.metafields.custom.length.value }}
+                      {{ product.metafields.custom.length.unit }}
+                    </div>
                   </div>
-                </div>
-              {%- endif -%} {% endcomment %}
+                {%- endif -%}
+                {% if product.metafields.content.breadth != blank %}
+                  <div class="item-row row">
+                    <div class="col-5 heading">Breadth</div>
+                    <div class="col-7 info">
+                      {{ product.metafields.content.breadth.value }}
+                      {{ product.metafields.content.breadth.unit }}
+                    </div>
+                  </div>
+                {%- endif -%}
+                {% if collection.metafields.custom.color != blank %}
+                  <div class="item-row row">
+                    <div class="col-5 heading">Colour</div>
+                    <div class="col-7 info">{{ collection.metafields.custom.color }}</div>
+                  </div>
+                {%- endif -%}
+                {% if product.metafields.custom.reference != blank %}
+                  <div class="item-row row">
+                    <div class="col-5 heading">HSN Code</div>
+                    <div class="col-7 info" id="product-hsn">
+                      {{ product.variants.first.metafields.global.harmonized_system_code }}
+                    </div>
+                  </div>
+                {%- endif -%}
+              {% endcomment %}
             </div>
 
             <div class="product-info-details mb-4">
               {% if product.description != blank %}
                 <div class="product-info-block transition">
                   <h5 class="product-info-header body-font transition">Description <i class="fa fa-angle-down"></i></h5>
-<div class="product-info-content" style="display: none;">{{ product.description }}</div>
+                  <div class="product-info-content" style="display: none;">{{ product.description }}</div>
                 </div>
               {%- endif -%}
               {% comment %} {% if product.metafields.custom.insidethebox %} {% endcomment %}
@@ -260,13 +262,24 @@
                   {% endif %}
                   <p>
                     <i class="fa-solid fa-maximize text-brand"></i> <strong>Size Chart</strong> :
-                    <a
-                      href="#"
-                      class="text-brand"
-                    >
-                      View</a
-                    >
+                    {% comment %}
+                      <a
+                        href="#"
+                        class="text-brand"
+                      >
+                        View</a
+                      >
+                    {% endcomment %}
                   </p>
+                  {% if product.metafields.content.ring_size != blank %}
+                    <div class="item-row row">
+                      <div class="col-5 heading">Ring Size</div>
+                      <div class="col-7 info">
+                        {{ product.metafields.content.ring_size }}
+                      </div>
+                    </div>
+                  {% endif %}
+
                   {% if product.metafields.custom.reference != blank %}
                     <div class="item-row row">
                       <div class="col-5 heading">Reference</div>
