@@ -28,7 +28,13 @@
     },
     "about_us_content_dqFLgW": {
       "type": "about-us-content",
-      "settings": {}
+      "settings": {
+        "section_title": "About Us",
+        "section_title_2": "Where It All Began",
+        "content_1": "Zever4u.com, a venture of Giri Zever Mahal, is your ultimate destination for exquisite silver jewelry that blends tradition with modern aesthetics. With a legacy of craftsmanship and trust, we take pride in offering intricately designed rings, bangles, necklaces, earrings, and more—each piece reflecting elegance, purity, and fine artistry.",
+        "content_2": "Our jewelry is crafted with precision using the highest quality silver, ensuring durability and timeless appeal. Whether you're looking for a statement piece for a special occasion or everyday elegance, Zever4u has something for everyone. We are committed to providing a seamless shopping experience with secure transactions, doorstep delivery, and exceptional customer service.",
+        "content_3": "At Zever4u, we believe that jewelry is more than just an accessory—it is a symbol of beauty, heritage, and individuality. Explore our collection and embrace the charm of fine silver jewellry designed to add a touch of grace to your style."
+      }
     },
     "about_us_founder_9DdxnR": {
       "type": "about-us-founder",
