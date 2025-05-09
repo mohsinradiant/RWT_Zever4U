@@ -386,6 +386,18 @@
     "shop_by_occasions_section": {
       "type": "shop-by-occasions-section",
       "blocks": {
+        "collection_JBeHg4": {
+          "type": "collection",
+          "settings": {
+            "collection": "everyday-elegance"
+          }
+        },
+        "collection_xh8M48": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
         "collection_88NE7g": {
           "type": "collection",
           "settings": {
@@ -418,6 +430,8 @@
         }
       },
       "block_order": [
+        "collection_JBeHg4",
+        "collection_xh8M48",
         "collection_88NE7g",
         "collection_fXtt66",
         "collection_GNRn6d",
