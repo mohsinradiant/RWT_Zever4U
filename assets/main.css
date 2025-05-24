@@ -2772,7 +2772,7 @@ div:not([class])>.wf-floating-launcher {
   user-select: none;
   font-size:1.6rem;
   display: inline-block;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .top-banner:hover .banner-text {
