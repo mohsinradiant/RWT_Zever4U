@@ -2750,7 +2750,7 @@ div:not([class])>.wf-floating-launcher {
   background-color: transparent;
   color: #cb8161;
   text-align: center;
-  font-size: 0.875rem;
+  font-size: 1rem;
   padding: 6px 10px;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -2779,14 +2779,14 @@ div:not([class])>.wf-floating-launcher {
 /* Responsive font size for smaller devices */
 @media (max-width: 600px) {
   .top-banner {
-    font-size: 0.75rem;
-    padding: 5px 8px;
+    font-size: 0.9rem;
+    padding: 6px 10px;
   }
 }
 
 @media (max-width: 360px) {
   .top-banner {
-    font-size: 0.7rem;
-    padding: 4px 6px;
+    font-size: 0.8rem;
+    padding: 5px 8px;
   }
 }
