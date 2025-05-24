@@ -2747,7 +2747,7 @@ div:not([class])>.wf-floating-launcher {
 
 /* --- Custom Top Banner Styles --- */
 .top-banner {
-  background-color: #000;
+  background-color: transparent;
   color: #fff;
   text-align: center;
   font-size: 0.875rem;
