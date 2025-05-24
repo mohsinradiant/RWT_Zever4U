@@ -2754,7 +2754,7 @@ div:not([class])>.wf-floating-launcher {
   padding: 10px 15px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  line-height: -1;
+  line-height: 0;
   width: 100%;
   position: fixed;
   top: 0;
