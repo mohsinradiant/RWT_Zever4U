@@ -2711,3 +2711,82 @@ div:not([class])>.wf-floating-launcher {
     margin-right: 40px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Custom Top Banner Styles --- */
+.top-banner {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 0.875rem;
+  padding: 6px 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: default;
+}
+
+.top-banner .no-underline {
+  text-decoration: none !important;
+  cursor: default;
+  user-select: none;
+}
+
+.top-banner:hover .banner-text {
+  text-decoration: underline;
+  transition: text-decoration 0.3s ease;
+}
+
+/* Responsive font size for smaller devices */
+@media (max-width: 600px) {
+  .top-banner {
+    font-size: 0.75rem;
+    padding: 5px 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .top-banner {
+    font-size: 0.7rem;
+    padding: 4px 6px;
+  }
+}
