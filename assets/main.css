@@ -2764,7 +2764,6 @@ div:not([class])>.wf-floating-launcher {
   user-select: none;
   cursor: default;
   font-family: 'Poppins', sans-serif;
-  margin-bottom:5px;
 }
 
 .top-banner .no-underline {
@@ -2772,6 +2771,8 @@ div:not([class])>.wf-floating-launcher {
   cursor: default;
   user-select: none;
   font-size:1.6rem;
+  display: inline-block;
+  margin-bottom: 4px;
 }
 
 .top-banner:hover .banner-text {
