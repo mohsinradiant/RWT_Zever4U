@@ -2751,10 +2751,10 @@ div:not([class])>.wf-floating-launcher {
   color: white;
   text-align: center;
   font-size: 1rem;
-  padding: 8px 15px;
+  padding: 9px 15px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  line-height: .5;
+  line-height: 0;
   width: 100%;
   position: fixed;
   top: 0;
