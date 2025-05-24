@@ -2779,9 +2779,9 @@ div:not([class])>.wf-floating-launcher {
 
 
 .top-banner .banner-text {
-  font-size: 1.1rem; /* 15px */
-  font-weight: 700;
-  letter-spacing: 0.6px;
+  font-size: 1.4rem; /* 15px */
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 /* Responsive font size for smaller devices */
