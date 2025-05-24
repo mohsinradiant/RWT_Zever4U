@@ -2764,7 +2764,7 @@ div:not([class])>.wf-floating-launcher {
   user-select: none;
   cursor: default;
   font-family: 'Poppins', sans-serif;
-  margin-bottom:2px;
+  margin-bottom:5px;
 }
 
 .top-banner .no-underline {
