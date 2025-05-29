@@ -15,7 +15,7 @@
         "slide_B4UG8J": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Purple_Illustrative_Lavender_Desktop_Wallpaper_1_1.png",
+            "image": "shopify://shop_images/BANNER_IMAGE_for_clarity.jpg",
             "image_mobile": "shopify://shop_images/Timeless_Beauty_in_Every_Piece_Sterling_Silver_Jewellery_That_Shines._Phone_Wallpaper_1_1.png",
             "heading": "",
             "heading_size": "h2",
@@ -388,7 +388,6 @@
       "blocks": {
         "collection_JBeHg4": {
           "type": "collection",
-          "name": "Every Elegance",
           "settings": {
             "collection": "everyday-elegance"
           }
