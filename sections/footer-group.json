@@ -37,21 +37,12 @@
             "usps_heading": "100% Authentic",
             "usps_subheading": "Shop with peace of mind"
           }
-        },
-        "image_picker_cYP9Qe": {
-          "type": "image_picker",
-          "settings": {
-            "icon": "shopify://shop_images/usp-icon-4.jpg",
-            "usps_heading": "ONLINE SUPPORT",
-            "usps_subheading": "We are happy to help always"
-          }
         }
       },
       "block_order": [
         "image_picker_aKmVxz",
         "image_picker_eeqCh7",
-        "image_picker_eV4MjP",
-        "image_picker_cYP9Qe"
+        "image_picker_eV4MjP"
       ],
       "settings": {
         "footer_logo": "shopify://shop_images/footer-logo.png",
@@ -63,7 +54,7 @@
         "map_icon": "shopify://shop_images/map.png",
         "office_location": "<p>Chand Cinema Rd, beside Sanjay Lake Metro Station, Mayur Vihar Phase I, East, Kalyan Puri, Delhi, 110091</p>",
         "phone_icon": "shopify://shop_images/phone.png",
-        "contact_numbers": "<p>+91-8368160031, +91-9911249766</p>",
+        "contact_numbers": "<p>+91-8743881172, +91-9911249766</p>",
         "email_icon": "shopify://shop_images/mail.png",
         "official_emails": "<p>Contactzever4u@gmail.com</p>"
       }
