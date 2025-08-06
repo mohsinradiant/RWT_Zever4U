@@ -137,51 +137,51 @@
     </div>
   </div>
   <!-- HEADER NAVBAR -->
-</header>
-<nav class="header-navbar navbar navbar-expand-lg">
-  <div class="container-xl">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mobileNavbarCollapse"
-      aria-controls="mobileNavbarCollapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mobileNavbarCollapse">
-      <ul class="navbar-nav mx-auto">
-        {% for link in linklists['main-menu'].links %}
-          {% if link.links != blank %}
-            <li class="nav-item dropdown dropdown-mega position-static my-mega">
-              <a
-                class="nav-link dropdown-toggle"
-                href="{ link.url }}"
-                data-bs-toggle="dropdown"
-                data-bs-auto-close="outside"
-              >
-                {{- link.title -}}
-              </a>
-              <ul class="dropdown-menu">
-                {% for sublink in link.links %}
-                  <li>
-                    <a class="dropdown-item" href="{{ sublink.url }}">{{ sublink.title }}</a>
-                  </li>
-                {%- endfor -%}
-              </ul>
-            </li>
-          {%- else -%}
-            <li class="nav-item position-static">
-              <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-          {%- endif -%}
-        {%- endfor -%}
-      </ul>
+  <nav class="header-navbar navbar navbar-expand-lg">
+    <div class="container-xl">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mobileNavbarCollapse"
+        aria-controls="mobileNavbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mobileNavbarCollapse">
+        <ul class="navbar-nav mx-auto">
+          {% for link in linklists['main-menu'].links %}
+            {% if link.links != blank %}
+              <li class="nav-item dropdown dropdown-mega position-static my-mega">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="{ link.url }}"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                >
+                  {{- link.title -}}
+                </a>
+                <ul class="dropdown-menu">
+                  {% for sublink in link.links %}
+                    <li>
+                      <a class="dropdown-item" href="{{ sublink.url }}">{{ sublink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {%- else -%}
+              <li class="nav-item position-static">
+                <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
