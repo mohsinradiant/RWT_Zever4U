@@ -2344,7 +2344,11 @@ div:not([class])>.wf-floating-launcher {
   .header-logo {
     padding-left: 20px;
   }
-
+  .header-logo a{
+display: flex
+;
+    justify-content: center;
+    align-items: center;  }
   .header-account {
     margin-right: 90px;
 
@@ -2423,7 +2427,7 @@ div:not([class])>.wf-floating-launcher {
   .header-navbar {
     padding-top: 0;
     background-color: transparent;
-    margin-top: -62px;
+    margin-top: -64px;
     margin-bottom: 35px;
     margin-right: 20px;
   }
