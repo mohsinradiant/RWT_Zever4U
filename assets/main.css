@@ -2215,7 +2215,11 @@ div:not([class])>.wf-floating-launcher {
   line-height: 0;
   letter-spacing: 0;
 }
-
+  .header-logo a{
+display: flex
+;
+    justify-content: center;
+    align-items: center;  }
 @media(max-width:756px) {
   .header-account-wrap .header__search summary i {
     visibility: visible;
@@ -2344,11 +2348,7 @@ div:not([class])>.wf-floating-launcher {
   .header-logo {
     padding-left: 20px;
   }
-  .header-logo a{
-display: flex
-;
-    justify-content: center;
-    align-items: center;  }
+
   .header-account {
     margin-right: 90px;
 
