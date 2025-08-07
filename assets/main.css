@@ -1316,17 +1316,22 @@ button {}
 }
 
 .product-card .product-image {
-  display: block;
-  border: 1px solid #f5f5f5;
-  background-color: #fafafa
+    width: 100%;
+    display: block;
+    border: 1px solid #f5f5f5;
+    background-color: #fafafa;
+    height: auto;
+    aspect-ratio: 1 / 1;
 }
 
 .product-card .product-image img {
-  width: 100%;
-  webkit-transition: all 250ms linear;
-  -o-transition: all 250ms linear;
-  -webkit-transition: all 250ms linear;
-  transition: all 250ms linear;
+width: 100%;
+    object-fit: cover;
+    height: 100%;
+    webkit-transition: all .25s linear;
+    -o-transition: all .25s linear;
+    -webkit-transition: all .25s linear;
+    transition: all .25s linear;
 }
 
 .product-card .product-image:hover img {
