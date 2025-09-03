@@ -468,12 +468,11 @@
     pointer-events: none;
     z-index: 10;
     background-color: white;
+    background-repeat: no-repeat;
+    background-position: 0 0;
   }
 
-  .zoom-box img {
-    position: absolute;
-    will-change: transform; /* Optimize performance */
-  }
+  /* No inner <img> needed; using background-image for stability */
 </style>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -496,13 +495,9 @@
       if (!zoomBox) {
         zoomBox = document.createElement('div');
         zoomBox.classList.add('zoom-box');
-
-        const zoomImg = document.createElement('img');
-        zoomBox.appendChild(zoomImg);
         document.body.appendChild(zoomBox);
       }
 
-      const zoomImg = zoomBox.querySelector('img');
       zoomBox.style.display = 'block';
 
       // Change cursor to crosshair
@@ -512,25 +507,53 @@
         let activeImage = updateZoomImage();
         if (!activeImage) return;
 
-        zoomImg.src = activeImage.src;
+        zoomBox.style.backgroundImage = `url(${activeImage.src})`;
 
         const rect = activeImage.getBoundingClientRect();
         const offsetX = e.clientX - rect.left;
         const offsetY = e.clientY - rect.top;
 
-        const zoomFactor = 1.5;
-        const zoomBoxSize = 200;
+        const zoomFactor = 2; // increase/decrease for stronger/weaker zoom
+        const zoomBoxSize = 300; // must match CSS if you change size
 
-        zoomBox.style.left = `${e.pageX + 20}px`;
-        zoomBox.style.top = `${e.pageY - zoomBoxSize / 2}px`;
+        // Position zoom box near cursor but keep within viewport horizontally
+        const pageX = e.pageX;
+        const pageY = e.pageY;
 
-        zoomImg.style.width = `${activeImage.naturalWidth * zoomFactor}px`;
-        zoomImg.style.height = `${activeImage.naturalHeight * zoomFactor}px`;
+        let left = pageX + 20;
+        let top = pageY - zoomBoxSize / 2;
 
-        const moveX = (offsetX / rect.width) * activeImage.naturalWidth * zoomFactor - zoomBoxSize / 2;
-        const moveY = (offsetY / rect.height) * activeImage.naturalHeight * zoomFactor - zoomBoxSize / 2;
+        const scrollX = window.pageXOffset;
+        const scrollY = window.pageYOffset;
+        const viewportRight = scrollX + window.innerWidth;
+        const viewportBottom = scrollY + window.innerHeight;
 
-        zoomImg.style.transform = `translate(-${moveX}px, -${moveY}px)`;
+        // Clamp horizontal so the box doesn't overflow the viewport
+        if (left + zoomBoxSize + 16 > viewportRight) {
+          left = Math.max(scrollX + 16, viewportRight - zoomBoxSize - 16);
+        }
+        // Clamp vertical so the box stays fully visible
+        if (top < scrollY + 16) top = scrollY + 16;
+        if (top + zoomBoxSize + 16 > viewportBottom) top = viewportBottom - zoomBoxSize - 16;
+
+        zoomBox.style.left = `${left}px`;
+        zoomBox.style.top = `${top}px`;
+
+        const zoomedWidth = activeImage.naturalWidth * zoomFactor;
+        const zoomedHeight = activeImage.naturalHeight * zoomFactor;
+        zoomBox.style.backgroundSize = `${zoomedWidth}px ${zoomedHeight}px`;
+
+        const percentX = offsetX / rect.width;
+        const percentY = offsetY / rect.height;
+
+        let bgX = percentX * zoomedWidth - zoomBoxSize / 2;
+        let bgY = percentY * zoomedHeight - zoomBoxSize / 2;
+
+        // Clamp background position so we don't show beyond image edges at corners
+        bgX = Math.max(0, Math.min(bgX, Math.max(0, zoomedWidth - zoomBoxSize)));
+        bgY = Math.max(0, Math.min(bgY, Math.max(0, zoomedHeight - zoomBoxSize)));
+
+        zoomBox.style.backgroundPosition = `-${bgX}px -${bgY}px`;
       }
 
       activeImage.addEventListener('mousemove', onMouseMove);
@@ -546,7 +569,7 @@
       let activeImage = updateZoomImage();
       let zoomBox = document.querySelector('.zoom-box');
       if (zoomBox && activeImage) {
-        zoomBox.querySelector('img').src = activeImage.src;
+        zoomBox.style.backgroundImage = `url(${activeImage.src})`;
       }
     });
   });
