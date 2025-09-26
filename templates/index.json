@@ -34,6 +34,7 @@
         "slide_6MJ3HF": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Final_banner_of_durga_festival_Whiteboard.png",
             "image_mobile": "shopify://shop_images/1_0e79a8d0-5e67-4e6c-b5f2-06e39218e022.png",
             "heading": "Image slide",
             "heading_size": "h1",
