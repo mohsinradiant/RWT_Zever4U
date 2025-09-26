@@ -36,10 +36,10 @@
           "settings": {
             "image": "shopify://shop_images/Final_banner_of_durga_festival_Whiteboard.png",
             "image_mobile": "shopify://shop_images/1_0e79a8d0-5e67-4e6c-b5f2-06e39218e022.png",
-            "heading": "Image slide",
+            "heading": "",
             "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "subheading": "",
+            "button_label": "",
             "link": "",
             "button_style_secondary": false,
             "box_align": "middle-center",
