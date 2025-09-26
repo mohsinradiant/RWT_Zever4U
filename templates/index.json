@@ -12,30 +12,11 @@
     "slideshow_a6Kja8": {
       "type": "slideshow",
       "blocks": {
-        "slide_YmUQFK": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design_4.png",
-            "image_mobile": "shopify://shop_images/Blue_White_and_Gold_Traditional_Durga_Puja_Festival_Offer_Medium_Banner_US_Landscape_Instagram_Post_45_1792842b-700f-459c-b42f-c515f3fce037.png",
-            "heading": "",
-            "heading_size": "h2",
-            "subheading": "",
-            "button_label": "",
-            "link": "shopify://collections/best-sellers",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "",
-            "text_alignment_mobile": "center"
-          }
-        },
         "slide_Wxtk9b": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/1_ee5d1402-458e-49d9-9e42-66fbfbce9e9c.jpg",
-            "image_mobile": "shopify://shop_images/1_0e79a8d0-5e67-4e6c-b5f2-06e39218e022.png",
+            "image_mobile": "shopify://shop_images/app-bss-banner-popup_958535a0-2774-4c7d-9e46-a627c28bd956_durgaposter2.png",
             "heading": "",
             "heading_size": "h1",
             "subheading": "",
@@ -71,7 +52,6 @@
         }
       },
       "block_order": [
-        "slide_YmUQFK",
         "slide_Wxtk9b",
         "slide_B4UG8J"
       ],
