@@ -23,9 +23,17 @@
         "enable_country_selector": true,
         "enable_language_selector": false
       }
+    },
+    "shop_for_them_section_dXA8Xh": {
+      "type": "shop-for-them-section",
+      "name": "Shop for them Section",
+      "settings": {
+        "them_heading": "MANGALSUTRA"
+      }
     }
   },
   "order": [
-    "header"
+    "header",
+    "shop_for_them_section_dXA8Xh"
   ]
 }
