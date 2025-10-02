@@ -24,16 +24,21 @@
         "enable_language_selector": false
       }
     },
-    "shop_for_them_section_dXA8Xh": {
-      "type": "shop-for-them-section",
-      "name": "Shop for them Section",
+    "home_featured_products_pQwmr7": {
+      "type": "home-featured-products",
+      "name": "Home Featured Products",
       "settings": {
-        "them_heading": "MANGALSUTRA"
+        "product_heading": "",
+        "product_list": [],
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "show_rating": false
       }
     }
   },
   "order": [
     "header",
-    "shop_for_them_section_dXA8Xh"
+    "home_featured_products_pQwmr7"
   ]
 }
