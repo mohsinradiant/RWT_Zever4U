@@ -23,22 +23,9 @@
         "enable_country_selector": true,
         "enable_language_selector": false
       }
-    },
-    "home_featured_products_pQwmr7": {
-      "type": "home-featured-products",
-      "name": "Home Featured Products",
-      "settings": {
-        "product_heading": "",
-        "product_list": [],
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "show_view_all": true,
-        "show_rating": false
-      }
     }
   },
   "order": [
-    "header",
-    "home_featured_products_pQwmr7"
+    "header"
   ]
 }
