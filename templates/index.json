@@ -487,47 +487,6 @@
       "settings": {
         "them_heading": "Shop for them"
       }
-    },
-    "collection_list_YxmyDB": {
-      "type": "collection-list",
-      "blocks": {
-        "featured_collection_MmNPkf": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_hJUGxc": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_TFciJV": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_MmNPkf",
-        "featured_collection_hJUGxc",
-        "featured_collection_TFciJV"
-      ],
-      "name": "t:sections.collection-list.presets.name",
-      "settings": {
-        "title": "Collections",
-        "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 3,
-        "color_scheme": "",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
@@ -542,7 +501,6 @@
     "deal_section",
     "home_featured_section",
     "shop_by_occasions_section",
-    "shop_for_them_section",
-    "collection_list_YxmyDB"
+    "shop_for_them_section"
   ]
 }
