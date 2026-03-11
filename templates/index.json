@@ -34,8 +34,8 @@
         "slide_6MJ3HF": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Colorful_Splash_Happy_Holi_Greeting_Banner_2048_x_516_px_2.png",
-            "image_mobile": "shopify://shop_images/Colorful_Splash_Happy_Holi_Greeting_Banner_2048_x_516_px_3_x_4_in_2.png",
+            "image": "shopify://shop_images/laptop_banner_2.jpg",
+            "image_mobile": "shopify://shop_images/mobile_banner_2.jpg",
             "heading": "",
             "heading_size": "h1",
             "subheading": "",
@@ -53,8 +53,8 @@
         "slide_B4UG8J": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Full_Color_Vibrant_Happy_Holi_Instagram_Post_2048_x_516_px.png",
-            "image_mobile": "shopify://shop_images/Full_Color_Vibrant_Happy_Holi_Instagram_Post_2048_x_516_px_3_x_4_in.png",
+            "image": "shopify://shop_images/laptop_banner_3.jpg",
+            "image_mobile": "shopify://shop_images/mobile_banner_3.jpg",
             "heading": "",
             "heading_size": "h2",
             "subheading": "",
